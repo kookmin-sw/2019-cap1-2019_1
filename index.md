@@ -30,7 +30,7 @@
 
 김용태
 
-![김용태](\doc\팀소개\김용태.jpg)
+![yongtae](.\doc\img\yongtae.jpg)
 
 *#학번*     20143042
 
@@ -42,7 +42,7 @@
 
 성종욱
 
-![성종욱](\doc\팀소개\성종욱.jpg)
+![jongwook](.\doc\img\jongwook.jpg)
 
 *#학번*     20143069
 
@@ -54,7 +54,7 @@
 
 송영은
 
-![송영은](\doc\팀소개\송영은.jpg)
+![youngeun](.\doc\img\youngeun.jpg)
 
 *#학번*     20163118
 
@@ -65,6 +65,7 @@
 ##### 4. 팀원
 
 송성유
+![seong](.\doc\img\seong.jpg)
 
 *#학번*     20163117
 
@@ -76,7 +77,7 @@
 
 유영준
 
-![유영준](\doc\팀소개\유영준.jpg)
+![youngjun](\doc\img\youngjun.jpg)
 
 *#학번*     20152843
 
