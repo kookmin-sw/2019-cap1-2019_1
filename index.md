@@ -42,7 +42,7 @@
 
 성종욱
 
-![jongwook](.\doc\img\jongwook.jpg)
+![jongwook](./doc/img/jongwook.jpg)
 
 *#학번*     20143069
 
@@ -54,7 +54,7 @@
 
 송영은
 
-![youngeun](.\doc\img\youngeun.jpg)
+![youngeun](./doc/img/youngeun.jpg)
 
 *#학번*     20163118
 
@@ -65,7 +65,7 @@
 ##### 4. 팀원
 
 송성유
-![seong](.\doc\img\seong.jpg)
+![seong](./doc/img/seong.jpg)
 
 *#학번*     20163117
 
@@ -77,7 +77,7 @@
 
 유영준
 
-![youngjun](\doc\img\youngjun.jpg)
+![youngjun](./doc/img/youngjun.jpg)
 
 *#학번*     20152843
 
