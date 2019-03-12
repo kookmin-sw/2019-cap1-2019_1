@@ -1,37 +1,101 @@
-## Welcome to GitHub Pages
+## 기똥차
 
-You can use the [editor on GitHub](https://github.com/kookmin-sw/cap-template/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+2019년 캡스톤 디자인 1조
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### 1. 프로젝트 소개
 
-```markdown
-Syntax highlighted code block
+------
 
-# Header 1
-## Header 2
-### Header 3
+본 프로젝트는 시각장애인 안내견의 기능을 대체, 보완할 임베디드 시스템을 개발하는 것을 목표로 한다. 시각장애인이 이 시스템을 사용하면 점자 보도블록을 따라 자율주행하는 구동체를 따라 안전하게 보행할 수 있으며 횡단보도를 차도로 벗어나지 않고 안전하게 건널 수 있다. 커뮤니티 매핑으로 제작된 점자 블록 지도를 통해 최적의 경로를 보행할 수 있으며, 주변에 인식되는 장애물을 음성으로 안내받을 수 있다. 또한 이 구동체는 음성인식을 통하여 조작할 수 있다. 
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### 2. 소개영상
 
-[Link](url) and ![Image](src)
-```
+------
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### 3. 팀 소개
 
-### Support or Contact
+------
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+###### Professor
+
+- 윤성혜 교수님
+
+##### 1. 팀장
+
+김용태
+
+![김용태](C:\Users\yongt\Desktop\2019캡스톤1조_git\doc\팀소개\김용태.jpg)
+
+*#학번*     20143042
+
+*#E-mail*  yongtae0114@gmail.com
+
+*#역할*     Project Leader, Application 개발, App-Car / App-Server 통신
+
+##### 2. 팀원
+
+성종욱
+
+![성종욱](C:\Users\yongt\Desktop\2019캡스톤1조_git\doc\팀소개\성종욱.jpg)
+
+*#학번*     20143069
+
+*#E-mail*  ypwa121@gmail.com
+
+*#역할*     Application 개발, 음성인식 API, 지도 API
+
+##### 3. 팀원
+
+송영은
+
+![송영은](C:\Users\yongt\Desktop\2019캡스톤1조_git\doc\팀소개\송영은.jpg)
+
+*#학번*     20163118
+
+*#E-mail*  522818@naver.com
+
+*#역할*     영상처리, Application Design
+
+##### 4. 팀원
+
+송성유
+
+*#학번*
+
+*#E-mail*
+
+*#역할*
+
+##### 5. 팀원
+
+유영준
+
+![유영준](C:\Users\yongt\Desktop\2019캡스톤1조_git\doc\팀소개\유영준.jpg)
+
+*#학번*     20152843
+
+*#E-mail*  junyoo96@gmail.com
+
+*#역할*     서버 개발, 데이터베이스 관리
+
+
+
+### 4. 사용법
+
+------
+
+소스코드제출시 업로드 예정
+
+
+
+### 5. 기타
+
+------
+
+`불꽃카리스마 열정 가득한 팀입니다.`
