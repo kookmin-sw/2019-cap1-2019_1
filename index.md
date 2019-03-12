@@ -30,7 +30,7 @@
 
 김용태
 
-![yongtae](.\doc\img\yongtae.jpg)
+![yongtae](./doc/img/yongtae.jpg)
 
 *#학번*     20143042
 
