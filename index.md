@@ -66,11 +66,11 @@
 
 송성유
 
-*#학번*
+*#학번*     20163117
 
-*#E-mail*
+*#E-mail*  thdtjddb@naver.com
 
-*#역할*
+*#역할*     Map Data Structure 개발, 자율주행 기능 개발
 
 ##### 5. 팀원
 
