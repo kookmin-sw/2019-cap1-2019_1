@@ -26,7 +26,9 @@ There are some difficulties in implementing this system, but our team will overc
 
 ------
 
-[![Video Label](https://img.youtube.com/vi/G3Q03miDkMk/0.jpg)](https://youtu.be/G3Q03miDkMk)
+
+
+[![giddongcar](https://img.youtube.com/vi/G3Q03miDkMk/0.jpg)](https://youtu.be/G3Q03miDkMk "giddongcar")
 
 
 
