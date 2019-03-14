@@ -42,7 +42,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 김용태
 
-![yongtae](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/yongtae.jpg)
+![yongtae](./doc/img/yongtae.jpg)
 
 *#학번*     20143042
 
@@ -54,7 +54,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 성종욱
 
-![jongwook](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/jongwook.jpg)
+![jongwook](./doc/img/jongwook.jpg)
 
 *#학번*     20143069
 
@@ -66,7 +66,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 송영은
 
-![youngeun](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/youngeun.jpg)
+![youngeun](./doc/img/youngeun.jpg)
 
 *#학번*     20163118
 
@@ -78,7 +78,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 송성유
 
-![seong](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/seongyu.jpg)
+![seong](./doc/img/seongyu.jpg)
 
 *#학번*     20163117
 
@@ -90,7 +90,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 유영준
 
-![youngjun](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/youngjun.jpg)
+![youngjun](./doc/img/youngjun.jpg)
 
 *#학번*     20152843
 
