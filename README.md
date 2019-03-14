@@ -26,7 +26,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 ------
 
-<iframe width = "640" height = "360" src = "https://youtu.be/G3Q03miDkMk"></iframe>
+[![Video Label](https://img.youtube.com/vi/G3Q03miDkMk/0.jpg)](https://youtu.be/G3Q03miDkMk)
 
 
 
