@@ -1,68 +1,115 @@
-# Welcome to GitHub
+## 기똥차
 
-캡스톤 팀 생성을 축하합니다.
-
-## 팀소개 및 페이지를 꾸며주세요.
-
-- readme.md 수정.
-
-- index.md 예시보고 수정.
-
-- 수정후 팀페이지 확인하여 점검.
-
-**팀페이지 주소** -> https://kookmin-sw.github.io/ `{{자신의 리파지토리 아이디}}`
-
-**예시)** 1조  https://kookmin-sw.github.io/2018-cap-1
-
-## readme파일에 아래와 같은 내용들을 추가하세요.
-
-### 1. 프로잭트 소개
-
-프로젝트
-
-### 2. 소개 영상
-
-프로젝트 소개하는 영상을 추가하세요
-
-### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
+2019년 캡스톤 디자인 1조
 
 
-## Markdown을 사용하여 내용꾸미기
 
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
+### 1. 프로젝트 소개
 
-```markdown
-Syntax highlighted code block
+------
 
-# Header 1
-## Header 2
-### Header 3
+본 프로젝트는 시각장애인 안내견의 기능을 대체, 보완할 임베디드 시스템을 개발하는 것을 목표로 한다. 시각장애인이 이 시스템을 사용하면 점자 보도블록을 따라 자율주행하는 구동체를 따라 안전하게 보행할 수 있으며 횡단보도를 차도로 벗어나지 않고 안전하게 건널 수 있다. 커뮤니티 매핑으로 제작된 점자 블록 지도를 통해 최적의 경로를 보행할 수 있으며, 주변에 인식되는 장애물을 음성으로 안내받을 수 있다. 또한 이 구동체는 음성인식을 통하여 조작할 수 있다. 
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### 2. Abstract
 
-[Link](url) and ![Image](src)
-```
+------
 
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Our project is to develop a road guidance system for people who are blind who have difficulty moving to places. In view of the inconvenience and practical problems of the existing blind guide dogs, we will provide a more convenient and efficient guide service. First, the system provides a voice interface system through the application. Second, it provides accurate and safe route guidance through the drive Third, manage node data for Braille Block Map and explore the shortest path using the directions algorithm through the server. 
 
-### Support or Contact
+There are some difficulties in implementing this system, but our team will overcome them one by one, and we hope that these research and development will become a developed service for the better life of the blind.
 
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+
+
+### 3. 소개영상
+
+------
+
+<iframe width = "640" height = "360" src = "https://youtu.be/G3Q03miDkMk"></iframe>
+
+
+
+### 4. 팀 소개
+
+------
+
+###### Professor
+
+- 윤성혜 교수님
+
+##### 1. 팀장
+
+김용태
+
+![yongtae](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/yongtae.jpg)
+
+*#학번*     20143042
+
+*#E-mail*  yongtae0114@gmail.com
+
+*#역할*     Project Leader, Application 개발, App-Car / App-Server 통신
+
+##### 2. 팀원
+
+성종욱
+
+![jongwook](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/jongwook.jpg)
+
+*#학번*     20143069
+
+*#E-mail*  ypwa121@gmail.com
+
+*#역할*     Application 개발, 음성인식 API, 지도 API
+
+##### 3. 팀원
+
+송영은
+
+![youngeun](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/youngeun.jpg)
+
+*#학번*     20163118
+
+*#E-mail*  522818@naver.com
+
+*#역할*     영상처리, Application Design
+
+##### 4. 팀원
+
+송성유
+
+![seong](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/seongyu.jpg)
+
+*#학번*     20163117
+
+*#E-mail*  thdtjddb@naver.com
+
+*#역할*     Map Data Structure 개발, 자율주행 기능 개발
+
+##### 5. 팀원
+
+유영준
+
+![youngjun](C:/Users/yongt/Desktop/2019%EC%BA%A1%EC%8A%A4%ED%86%A41%EC%A1%B0_git/doc/img/youngjun.jpg)
+
+*#학번*     20152843
+
+*#E-mail*  junyoo96@gmail.com
+
+*#역할*     서버 개발, 데이터베이스 관리
+
+
+
+### 5. 사용법
+
+------
+
+소스코드제출시 업로드 예정
+
+
+
+### 6. 기타
+
+------
+
+`불꽃카리스마 열정 가득한 팀입니다.`
