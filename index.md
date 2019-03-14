@@ -12,13 +12,26 @@
 
 
 
-### 2. 소개영상
+### 2. Abstract
 
 ------
 
+Our project is to develop a road guidance system for people who are blind who have difficulty moving to places. In view of the inconvenience and practical problems of the existing blind guide dogs, we will provide a more convenient and efficient guide service. First, the system provides a voice interface system through the application. Second, it provides accurate and safe route guidance through the drive Third, manage node data for Braille Block Map and explore the shortest path using the directions algorithm through the server. 
+
+There are some difficulties in implementing this system, but our team will overcome them one by one, and we hope that these research and development will become a developed service for the better life of the blind.
 
 
-### 3. 팀 소개
+
+### 3. 소개영상
+
+------
+
+<iframe width = "640" height = "360" src = "https://youtu.be/G3Q03miDkMk">
+</iframe>
+
+
+
+### 4. 팀 소개
 
 ------
 
@@ -66,7 +79,7 @@
 
 송성유
 
-![seong](./doc/img/seong.jpg)
+![seong](./doc/img/seongyu.jpg)
 
 *#학번*     20163117
 
@@ -88,7 +101,7 @@
 
 
 
-### 4. 사용법
+### 5. 사용법
 
 ------
 
@@ -96,7 +109,7 @@
 
 
 
-### 5. 기타
+### 6. 기타
 
 ------
 
