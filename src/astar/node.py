@@ -1,5 +1,5 @@
 class Node:
-    __slots__ = ("node_id", "pos_x", "pos_y", "neighbors")
+    __slots__ = ('node_id', 'pos_x', 'pos_y', 'neighbors')
 
     def __init__(self, node_id, pos_x, pos_y, neighbors):
         self.node_id = node_id
