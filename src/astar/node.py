@@ -8,3 +8,15 @@ class Node:
         self.neighbors = neighbors
 
 
+class Neighbors:
+    __slots__ = ('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW')
+
+    def __init__(self):
+        self.N = None
+        self.NE = None
+        self.E = None
+        self.SE = None
+        self.S = None
+        self.SW = None
+        self.W = None
+        self.NW = None
