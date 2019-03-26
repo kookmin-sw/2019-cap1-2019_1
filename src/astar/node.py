@@ -13,17 +13,11 @@ class CardinalPoints(enum.Enum):
 
 
 class Neighbors:
-    __slots__ = ('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW')
+    __slots__ = 'neighbor_list'
 
     def __init__(self):
-        self.N = None
-        self.NE = None
-        self.E = None
-        self.SE = None
-        self.S = None
-        self.SW = None
-        self.W = None
-        self.NW = None
+        self.neighbor_list = [None, None, None, None, None, None, None, None]
+
 
 
 class Node:
