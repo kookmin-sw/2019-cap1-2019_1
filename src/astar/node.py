@@ -12,19 +12,23 @@ class CardinalPoints(enum.Enum):
     NW = 7
 
 
-class Neighbors:
-    __slots__ = 'neighbor_list'
-
-    def __init__(self):
-        self.neighbor_list = [None, None, None, None, None, None, None, None]
-
-
-
 class Node:
     __slots__ = ('node_id', 'pos_x', 'pos_y', 'neighbors')
 
-    def __init__(self, node_id, pos_x, pos_y, neighbors=Neighbors()):
+    def __init__(self, node_id, pos_x, pos_y, neighbors=None):
+        if neighbors is None:
+            neighbors = [None, None, None, None, None, None, None, None]
         self.node_id = node_id
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.neighbors = neighbors
+
+    def set_point(self, point, node):
+        self.neighbors[point] = node
+
+    def get_list(self):
+        temp = []
+        for p in self.neighbors:
+            if p:
+                temp.append(p)
+        return temp
