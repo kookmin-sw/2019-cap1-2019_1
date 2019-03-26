@@ -1,3 +1,17 @@
+import enum
+
+
+class CardinalPoints(enum.Enum):
+    N = 0
+    NE = 1
+    E = 2
+    SE = 3
+    S = 4
+    SW = 5
+    W = 6
+    NW = 7
+
+
 class Neighbors:
     __slots__ = ('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW')
 
@@ -20,4 +34,3 @@ class Node:
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.neighbors = neighbors
-
