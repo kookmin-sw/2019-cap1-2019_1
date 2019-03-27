@@ -23,8 +23,8 @@ class Node:
         self.pos_y = pos_y
         self.neighbors = neighbors
 
-    def set_point(self, point, node):
-        self.neighbors[point] = node
+    def set_neighbor(self, point, node):
+        self.neighbors[point.value] = node
 
     def get_list(self):
         temp = []
@@ -32,3 +32,6 @@ class Node:
             if p:
                 temp.append(p)
         return temp
+
+
+__all__ = ['Node', 'CardinalPoints']
