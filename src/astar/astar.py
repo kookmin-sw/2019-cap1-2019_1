@@ -33,7 +33,7 @@ class AStar:
         """Computes the estimated (rough) distance between a node and the goal, this method must be implemented in a subclass. The second parameter is always the goal."""
         dx = current.pos_x - goal.pos_x
         dy = current.pos_y - goal.pos_y
-        raise sqrt(dx*dx + dy*dy) * 1.1
+        return sqrt(dx*dx + dy*dy) * 1.1
 
     def distance_between(self, n1, n2):
         """Gives the real distance between two adjacent nodes n1 and n2 (i.e n2 belongs to the list of n1's neighbors).
@@ -41,11 +41,11 @@ class AStar:
            This method must be implemented in a subclass."""
         dx = n1.pos_x - n2.pos_x
         dy = n1.pos_y - n2.pos_y
-        raise sqrt(dx * dx + dy * dy)
+        return sqrt(dx * dx + dy * dy)
 
     def neighbors(self, node):
         """For a given node, returns (or yields) the list of its neighbors. this method must be implemented in a subclass"""
-        raise node.get_list()
+        return node.get_list()
 
     def is_goal_reached(self, current, goal):
         """ returns true when we can consider that 'current' is the goal"""
