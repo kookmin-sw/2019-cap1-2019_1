@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\release\\raw\\credential.json",
+        "source": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\src\\main\\res\\raw\\credential.json"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\release\\raw\\audio.raw",
+        "source": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\src\\main\\res\\raw\\audio.raw"
+    }
+]

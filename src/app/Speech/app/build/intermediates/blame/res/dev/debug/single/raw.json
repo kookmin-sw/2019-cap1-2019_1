@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\yongtae4980_bf9224ad83bb.json",
+        "source": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\src\\main\\res\\raw\\yongtae4980_bf9224ad83bb.json"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\audio.raw",
+        "source": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\src\\main\\res\\raw\\audio.raw"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\audio.raw",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\raw\\audio.raw"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\credential.json",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\raw\\credential.json"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\credential.json",
+        "source": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\src\\main\\res\\raw\\credential.json"
+    }
+]

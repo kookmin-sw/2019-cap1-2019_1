@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2\479c1e06db31c432330183f5cae684163f186146\javax.annotation-api-1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\javax.annotation-api-1.2_a46ca17cafa3748ec98ff4878ee3ee53a4064618\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a7a0aa678c3bbadb67fb41df9e107f7ee9087902">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_054ff39f677147372198a5ae0d4adf7daf67dad9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client\1.19.0\cdca49ad0977c040f603478aa2e16b2775c8fec6\google-http-client-1.19.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="cdca49ad0977c040f603478aa2e16b2775c8fec6">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\google-http-client-1.19.0_55b6eaf6da8ce155834ba02196731a352a64e8ce\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.auth\google-auth-library-oauth2-http\0.7.0\cd28a978efb34394c18dbc408b62fb2314b6dd6e\google-auth-library-oauth2-http-0.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="cd28a978efb34394c18dbc408b62fb2314b6dd6e">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\google-auth-library-oauth2-http-0.7.0_6038d3ea95c49218ff0e856612bd718ce02378aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\guava-19.0_cc3609c8411f4157fab19a76e075a79512b7eafd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\io.grpc\grpc-core\1.4.0\2f7ce5529115969119bff4962ac08df6700cf5d8\grpc-core-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2f7ce5529115969119bff4962ac08df6700cf5d8">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\grpc-core-1.4.0_cf7c105aed66d8998e67f95f0d074630e4bb3cff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\okio-1.6.0_c6007f9e7c6844bff7b0f3f20f7c5f98fc356aa7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\incremental-classes\dev\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="09a2ce2a05681d300606dc86a32bcaa218974839">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10000\instant-run-bootstrap_5914de1fce228dbec3da564b0246da190e05cc89\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\306c59788f827141a612cb8c201139ea9d7a4592\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c2deeac83ffa1304264bc755c2ddb84e7a7fa239">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_a4f8db8fc66b772f784286a327d7b7ecfce0d9e7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.5.0\4de2b4ed3445c37ec1720a7d214712e845a24636\okhttp-2.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\okhttp-2.5.0_e5e5779a9e331491e4d833ebbfcf7e0059a66f3e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\incremental-runtime-classes\dev\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10000\instant-run_0cd5d29cbad0841be3dd8772eb956443b6bdf029\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c879101226d1b2aaf6edae3d7491de6fd56d2659">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_eb377717aaa12095d6e8685dadfb8c3290066114\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\incremental-classes\dev\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="866d06951c07e4acb47067802ec01e6368d41427">
+        <dex dex="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10000\instant-run-bootstrap_b2b25d106698c5509eeca1da75fe10dde1a245de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="cad1364721fc716a39bdc351d3637edb634c9aa5">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_290c70d567c4c18a5a99d97f20ccc0577adae912\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-jackson2\1.19.0\81dbf9795d387d5e80e55346582d5f2fb81a42eb\google-http-client-jackson2-1.19.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="81dbf9795d387d5e80e55346582d5f2fb81a42eb">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\google-http-client-jackson2-1.19.0_7b3109ba75b488599b70de036f8c9dbff4b837e0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\16a0943f44c5735d61d28b0b70bbbd1caacb8905\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="05e3d15c623cd98f0eb43c8249fb6151fae0786c">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_c2734cb52832e8786f6bd25bb1ac5ef188d55d80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\io.grpc\grpc-protobuf-lite\1.4.0\33e08cf571fcb2bbddc0c8176f18a43703c35763\grpc-protobuf-lite-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="33e08cf571fcb2bbddc0c8176f18a43703c35763">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\grpc-protobuf-lite-1.4.0_9a239ec5ae2a95dae96898acb80e425ada99b2d9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.errorprone\error_prone_annotations\2.0.19\c3754a0bdd545b00ddc26884f9e7624f8b6a14de\error_prone_annotations-2.0.19.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c3754a0bdd545b00ddc26884f9e7624f8b6a14de">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\error_prone_annotations-2.0.19_a27586dc23a8ec7c4fc46cb1c00a58cfdab62ba2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.1.3\f6c3aed1cdfa21b5c1737c915186ea93a95a58bd\jackson-core-2.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\jackson-core-2.1.3_c264d37a23ede49e11112359ff16ae330c51bd01\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\aa437280e63715edf536815c2e1de94400a0f861\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b77e50b3c31d0fc64148530f7077f79ec114b5b9">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_cf34fc789ca4904fed8f19cba4f5065e6e5a0787\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="25ea2e8b0c338a877313bd4672d3fe056ea78f0d">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\jsr305-3.0.2_75730e97aee01c53e3bfc0a8f45c63d1e102d126\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\47b42a76dde9151a6b818dab0f7640abeeec0f42\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4961be1437163ab598620a3c907c0f3432936f51">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_40b7942b76ff7e6fa4e970b8c5b00fa6cc1ed5ed\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\io.grpc\grpc-context\1.4.0\8cbaa53c647ecee7077d4cdaa6855f6a18a03e9d\grpc-context-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8cbaa53c647ecee7077d4cdaa6855f6a18a03e9d">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\grpc-context-1.4.0_c27064bb70ced7d40b7ddf54fb408a741f01b14b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="40a6b8f05124eb9e6012e18b80a6dbd13440e283">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_4309d63162b02dc9451b95398a789fc01ef7ad14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.instrumentation\instrumentation-api\0.4.2\3b548639e14ca8d8af5075acac82926266479ebf\instrumentation-api-0.4.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3b548639e14ca8d8af5075acac82926266479ebf">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\instrumentation-api-0.4.2_a1ccdbf88a3135920b40dfa60667ff60c018c18d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\io.grpc\grpc-stub\1.4.0\840a1a94c9f6a91511644fed6b1116914acfdb90\grpc-stub-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="840a1a94c9f6a91511644fed6b1116914acfdb90">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\grpc-stub-1.4.0_92ed11fe4351c9384ee54fabf9dac87cb09c4b4a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.protobuf\protobuf-lite\3.0.1\59b5b9c6e1a3054696d23492f888c1f8b583f5fc\protobuf-lite-3.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="59b5b9c6e1a3054696d23492f888c1f8b583f5fc">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\protobuf-lite-3.0.1_351703898e6bd6526991074977896503c123e4ee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\a483ba462014be8c8428ef4b9eb67d211f4a9831\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_5fbbf82852208c67c1dd9f8ea9e80549f6b31159\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\25.4.0\f6a2fc748ae3769633dea050563e1613e93c135e\support-annotations-25.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f6a2fc748ae3769633dea050563e1613e93c135e">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\support-annotations-25.4.0_e207b25be18c82770a2003020f6138b48994026e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b1e0cd070d7cf659ece90e919bff76e7ddc32532">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_a812198d49e40dcf855921ca3880fbdf9b43b530\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\1d7c3f7c25e89bfadbeee8b015c20fd20e718c12\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d29e451fd5bcc265989bf80afd4f149d95d72e7d">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_fc416071203ac35b6b067ea2db7a40a61ae1835c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\com.google.auth\google-auth-library-credentials\0.7.0\81d9b21970a98a294bc1cdc8d049a60bc6f430e\google-auth-library-credentials-0.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="081d9b21970a98a294bc1cdc8d049a60bc6f430e">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\google-auth-library-credentials-0.7.0_5e2143a9aa79354fe9f5dd6409913fff5c52f730\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\ee1da32e481006c1ff7df8c071cf3f95eade2d23\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a64026daf4819a589aea776f5deb19b257a104d1">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_4a083cbd599d03d526aeacb51b9115ca12370b9c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\incremental-runtime-classes\dev\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10000\instant-run_256b5f5796fcc33478626ee9f869639deb9f44fa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e04f28ac2dd9bbe48ced6fc87fedf46c2586f5d6">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\classes_69ceaea164a3b49f87e012066a95f3a71043e44c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yongt\.gradle\caches\modules-2\files-2.1\io.grpc\grpc-okhttp\1.4.0\e6c8f1caa1f618ca4285f55a7c680e5236c4ed4\grpc-okhttp-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0e6c8f1caa1f618ca4285f55a7c680e5236c4ed4">
+        <dex dex="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\transforms\dex\dev\debug\folders\1000\10\grpc-okhttp-1.4.0_fd4d3ba19fc01b6d41bc1b1e08d462e26501f759\classes.dex" />
+    </item>
+
+</items>

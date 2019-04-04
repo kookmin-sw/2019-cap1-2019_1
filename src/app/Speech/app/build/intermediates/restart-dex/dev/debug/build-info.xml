@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="25"
+    build-mode="FULL"
+    density="420dpi"
+    format="10"
+    plugin-version="2.3.3"
+    timestamp="1554361516036"
+    token="-1453059973248535154"
+    verifier="FULL_BUILD_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="31522" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="14515" />
+    <task
+        name="verifier"
+        duration="12785" />
+
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\outputs\apk\app-dev-debug.apk"
+        type="SPLIT_MAIN" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_5.apk"
+        type="SPLIT" />
+
+    <build
+        build-mode="FULL"
+        timestamp="1554361516036"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\build\outputs\apk\app-dev-debug.apk"
+            type="SPLIT_MAIN" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\yongt\Desktop\android-docs-samples-master\speech\Speech\app\build\intermediates\split-apk\dev\debug\slices\slice_5.apk"
+            type="SPLIT" />
+    </build>
+
+</instant-run>

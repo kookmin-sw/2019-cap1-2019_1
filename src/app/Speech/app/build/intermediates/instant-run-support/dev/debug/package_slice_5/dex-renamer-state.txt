@@ -1,0 +1,4 @@
+#Thu Apr 04 16:08:48 KST 2019
+base.0=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\5\\slice_5
+renamed.0=classes.dex
+file.0=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\5\\slice_5\\classes.dex

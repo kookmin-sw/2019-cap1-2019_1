@@ -1,0 +1,7 @@
+#Thu Apr 04 16:08:50 KST 2019
+base.0=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\10000\\instant-run_256b5f5796fcc33478626ee9f869639deb9f44fa
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\10000\\instant-run-bootstrap_b2b25d106698c5509eeca1da75fe10dde1a245de\\classes.dex
+base.1=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\10000\\instant-run-bootstrap_b2b25d106698c5509eeca1da75fe10dde1a245de
+file.0=C\:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\transforms\\dex\\dev\\debug\\folders\\1000\\10000\\instant-run_256b5f5796fcc33478626ee9f869639deb9f44fa\\classes.dex
