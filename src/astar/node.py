@@ -13,14 +13,15 @@ class CardinalPoints(enum.Enum):
 
 
 class Node:
-    __slots__ = ('node_id', 'pos_x', 'pos_y', 'neighbors')
+    __slots__ = ('node_id', 'pos_x', 'pos_y', 'node_type', 'neighbors')
 
-    def __init__(self, node_id, pos_x, pos_y, neighbors=None):
+    def __init__(self, node_id, pos_x, pos_y, node_type=None, neighbors=None):
         if neighbors is None:
             neighbors = [None, None, None, None, None, None, None, None]
         self.node_id = node_id
         self.pos_x = pos_x
         self.pos_y = pos_y
+        self.node_type = node_type
         self.neighbors = neighbors
 
     def set_neighbor(self, point, node):
