@@ -1,41 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_fab_out.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_fab_out.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_fab_out.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_fab_out.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_popup_exit.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_popup_exit.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_fade_out.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_fade_out.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_snackbar_in.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_snackbar_in.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_out_bottom.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_popup_exit.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_popup_exit.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_snackbar_out.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_snackbar_out.xml"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_out_bottom.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_out_bottom.xml"
     },
@@ -48,16 +12,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_fab_in.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_fab_in.xml"
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\anim\\design_fab_out.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_fade_out.xml",
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_fade_out.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_fade_out.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_fade_in.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_fade_in.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_in_top.xml",
@@ -66,10 +26,6 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_popup_enter.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\design_fab_in.xml",
@@ -88,14 +44,6 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_popup_enter.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_in_bottom.xml"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
@@ -104,11 +52,7 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_slide_in_top.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\anim\\abc_popup_exit.xml"
     }
 ]

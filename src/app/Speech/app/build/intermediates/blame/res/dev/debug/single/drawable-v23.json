@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\android-docs-samples-master\\speech\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-v23\\abc_control_background_material.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-v23\\abc_control_background_material.xml"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-v23\\abc_control_background_material.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-v23\\abc_control_background_material.xml"
     }

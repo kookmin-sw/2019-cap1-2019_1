@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\shaders"/></dataSet><dataSet config="dev"><source path="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\dev\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\debug\shaders"/></dataSet><dataSet config="devDebug"><source path="C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\devDebug\shaders"/></dataSet></merger>

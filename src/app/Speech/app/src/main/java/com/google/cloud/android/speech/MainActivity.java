@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             mSpeechService = SpeechService.from(binder);
-
             mSpeechService.addListener(mSpeechServiceListener);
             mStatus.setVisibility(View.VISIBLE);
         }
