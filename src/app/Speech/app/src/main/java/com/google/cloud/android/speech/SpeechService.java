@@ -273,7 +273,7 @@ public class SpeechService extends Service {
         if (mRequestObserver == null) {
             return;
         }
-        // Call the streaming recognition API
+        // Call the streaming recognition API //중요!!!!
         mRequestObserver.onNext(StreamingRecognizeRequest.newBuilder()
                 .setAudioContent(ByteString.copyFrom(data, 0, size))
                 .build());

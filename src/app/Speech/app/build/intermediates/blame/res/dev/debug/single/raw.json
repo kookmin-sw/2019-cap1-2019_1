@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\audio.raw",
         "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\raw\\audio.raw"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\raw\\credential.json",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\raw\\credential.json"
     }
 ]

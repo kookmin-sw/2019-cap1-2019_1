@@ -88,12 +88,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\notification_template_part_time.xml",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\notification_template_part_time.xml"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\design_layout_tab_text.xml",
@@ -106,6 +106,10 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_set_destination.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_set_destination.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_action_menu_layout.xml",
@@ -126,6 +130,10 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\design_bottom_sheet_dialog.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\layout\\design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_modified_node.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_modified_node.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\design_layout_snackbar.xml",
@@ -172,6 +180,10 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\select_dialog_singlechoice_material.xml"
     },
     {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_cancel_path.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_cancel_path.xml"
+    },
+    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_action_bar_title_item.xml"
     },
@@ -206,5 +218,9 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_enroll_node.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_enroll_node.xml"
     }
 ]

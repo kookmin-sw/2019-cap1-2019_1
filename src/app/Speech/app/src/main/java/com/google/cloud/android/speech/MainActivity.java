@@ -17,6 +17,7 @@
 package com.google.cloud.android.speech;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -38,6 +39,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private ResultAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
+    public String s; // 문구
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -237,6 +240,9 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 REQUEST_RECORD_AUDIO_PERMISSION);
     }
 
+    /////////////////////////////////////////////////////////////////////////////
+    ////////////////여기서 스트링 주고 받자 ///////////////////////////////////////
+    ////////////////↓↓↓↓↓↓↓↓↓↓↓////////////////////////////////////////
     private final SpeechService.Listener mSpeechServiceListener =
             new SpeechService.Listener() {
                 @Override
@@ -251,6 +257,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                                 if (isFinal) {
                                     mText.setText(null);
                                     mAdapter.addResult(text);
+                                    //s = text;
+                                    recognizeSpeaking(text);
                                     mRecyclerView.smoothScrollToPosition(0);
                                 } else {
                                     mText.setText(text);
@@ -276,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
         private final ArrayList<String> mResults = new ArrayList<>();
 
-        ResultAdapter(ArrayList<String> results) {
+        ResultAdapter(ArrayList<String> results) { // 생성자
             if (results != null) {
                 mResults.addAll(results);
             }
@@ -308,4 +316,55 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
+    //Yong tae Zone//////////////////////////////////////////////////////////////
+
+    public void recognizeSpeaking(String s){
+
+        String setDestinationString = "목적지 설정";
+        String cancelPathString = "경로 취소";
+        String enrollNodeString = "노드 등록";
+        String modifiedNodeString = "노드 수정";
+
+        if(s.contentEquals(setDestinationString)){
+            Intent intent = new Intent(this, SetDestination.class);
+            startActivity(intent);
+        }
+        else if(s.contentEquals(cancelPathString)){
+            Intent intent = new Intent(this, CancelPath.class);
+            startActivity(intent);
+        }
+        else if(s.contentEquals(enrollNodeString)){
+            Intent intent = new Intent(this, EnrollNode.class);
+            startActivity(intent);
+        }
+        else if(s.contentEquals(modifiedNodeString)){
+            Intent intent = new Intent(this, ModifiedNode.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "메뉴에 없는 말이다.", Toast.LENGTH_SHORT).show(); //음성인식 테스트
+        }
+    }
+
+    public void onClickSetDestination(View v){
+        Intent intent = new Intent(this, SetDestination.class);
+        startActivity(intent);
+    }
+
+    public void onClickCancelPath(View v){
+        Intent intent = new Intent(this, CancelPath.class);
+        startActivity(intent);
+    }
+
+    public void onClickEnrollNdoe(View v){
+        Intent intent = new Intent(this, EnrollNode.class);
+        startActivity(intent);
+    }
+
+    public void onClickModifiedNode(View v){
+        Intent intent = new Intent(this, ModifiedNode.class);
+        startActivity(intent);
+    }
 }
