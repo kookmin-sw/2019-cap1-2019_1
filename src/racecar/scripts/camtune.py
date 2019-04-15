@@ -102,8 +102,8 @@ def process_image(frame):
     return img1, x_location
 
 
-def find_line(frame, iswarp=None, blur=None):
-    if iswarp is not None:
+def find_line(frame, warping=None, blurring=None):
+    if warping is not None:
         # warper
         img = warper.warp(frame)
     else:
