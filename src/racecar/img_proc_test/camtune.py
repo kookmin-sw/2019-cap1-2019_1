@@ -68,7 +68,7 @@ def main():
     rospy.init_node('auto_xycar', anonymous=True)
     #signal.signal(signal.SIGINT, signal_handler)
 
-    while cv_image != None:
+    while cv_image is not None:
       #img1, x_location = process_image(cv_image)
       img_line = find_line(cv_image)
       img_circle = find_circle(cv_image)
@@ -76,7 +76,7 @@ def main():
       
       #cv2.imshow('origin', cv_image)
       
-      #if x_location != None:
+      #if x_location is not None:
       #    pid = round(pidcal.pid_control(int(x_location)), 6)
       
       if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -114,7 +114,7 @@ def process_image(frame):
 
 
 def find_line(frame, iswarp=None, blur=None):
-    if iswarp != None:
+    if iswarp is not None:
         # warper
         img = warper.warp(frame)
     else:
@@ -135,7 +135,7 @@ def find_line(frame, iswarp=None, blur=None):
     
     # find lines using houghlines and show them
     lines = cv2.HoughLines(img_canny, 1, np.pi/180, 100)
-    if lines != None :  `
+    if lines is not None :  `
       for line in lines:
         for rho, theta in line:
           a = np.cos(theta)
@@ -154,7 +154,7 @@ def find_line(frame, iswarp=None, blur=None):
     
 def find_circle(frame, iswarp=None):
     
-    if iswarp != None:
+    if iswarp is not None:
         # warper
         img = warper.warp(frame)
     else:
@@ -177,7 +177,7 @@ def find_circle(frame, iswarp=None):
     circles = cv2.HoughCircles(img_graymask, cv2.HOUGH_GRADIENT, 1, 15, param1=20,param2=10,minRadius=3, maxRadius=10)
 	
 	# show circles
-    if circles != None :
+    if circles is not None :
       circles = np.uint16(np.around(circles))
       for i in circles[0,:]:
         cv2.circle(img,(i[0],i[1]),i[2],(255,0,0),2)	# circle

@@ -88,10 +88,10 @@ def main():
     # record the processed
     # out2 = cv2.VideoWriter('/home/nvidia/Desktop/oripy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 30, (640,480))
 
-    while cv_image != None:
+    while cv_image is not None:
         img1, x_location = process_image(cv_image)
         cv2.imshow('result', img1)
-        if x_location != None:
+        if x_location is not None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
             print(pid)
             auto_drive(pid)

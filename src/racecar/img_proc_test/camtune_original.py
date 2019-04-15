@@ -61,10 +61,10 @@ def main():
     rospy.init_node('auto_xycar', anonymous=True)
     #signal.signal(signal.SIGINT, signal_handler)
 
-    while cv_image != None:
+    while cv_image is not None:
       img1, x_location = process_image(cv_image)
       cv2.imshow('origin', cv_image)
-      #if x_location != None:
+      #if x_location is not None:
       #    pid = round(pidcal.pid_control(int(x_location)), 6)
       if cv2.waitKey(1) & 0xFF == ord('q'):
           break
