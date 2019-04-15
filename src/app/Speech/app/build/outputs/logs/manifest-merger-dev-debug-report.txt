@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:2:1-34:12
 	package
 		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:4:5-46
 		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
@@ -23,8 +23,16 @@ uses-permission#android.permission.RECORD_AUDIO
 ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:7:5-71
 	android:name
 		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:7:22-68
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:8:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:9:22-78
 application
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:9:5-30:19
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:11:5-32:19
 MERGED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\yongt\.android\build-cache\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\47b42a76dde9151a6b818dab0f7640abeeec0f42\output\AndroidManifest.xml:22:5-26:19
@@ -40,53 +48,53 @@ MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\yongt\.android
 MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\build-cache\ee1da32e481006c1ff7df8c071cf3f95eade2d23\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\yongt\.android\build-cache\36c76d1c17cb470bc4f910af9e64d971b4b20c1c\output\AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:15:9-41
 	android:supportsRtl
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:16:9-35
 	android:fullBackupContent
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:11:9-55
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:13:9-55
 	tools:ignore
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:16:9-48
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:18:9-48
 	android:allowBackup
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:12:9-35
 	android:icon
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:14:9-43
 	android:theme
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:15:9-44
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:17:9-44
 activity#com.google.cloud.android.speech.ModifiedNode
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:17:9-59
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:9-59
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:17:19-47
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:19-47
 activity#com.google.cloud.android.speech.EnrollNode
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:18:9-48
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:9-48
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:18:19-45
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:19-45
 activity#com.google.cloud.android.speech.CancelPath
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:9-48
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:9-48
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:19-45
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:19-45
 activity#com.google.cloud.android.speech.SetDestination
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:9-52
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:22:9-52
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:19-49
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:22:19-49
 activity#com.google.cloud.android.speech.MainActivity
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:9-27:20
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-29:20
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:19-47
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:19-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:22:13-26:29
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:24:13-28:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:17-69
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:25-66
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:17-77
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:27:27-74
 service#com.google.cloud.android.speech.SpeechService
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:29:9-50
+ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:31:9-50
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:29:18-47
+		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:31:18-47
 uses-sdk
 INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:21:5-23:62
