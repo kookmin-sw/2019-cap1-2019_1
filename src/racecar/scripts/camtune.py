@@ -145,5 +145,42 @@ def find_line(frame, warping=None, blurring=None):
     return img
 
 
+def find_circle(frame, warping=None, blurring=None):
+    if blurring is not None:
+        img = cv2.GaussianBlur(frame, (5, 5), 0)
+    else:
+        img = frame
+
+    if warping is not None:
+        # warper
+        img = warper.warp(img)
+
+    img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+    # create mask using color range
+    img_mask = cv2.inRange(img_hsv, lower_color, upper_color)
+    img_mask = cv2.bitwise_and(img, img, mask=img_mask)
+    cv2.imshow("mask", img_mask)
+
+    # imply mask for yellow image
+    img_graymask = cv2.cvtColor(img_mask, cv2.COLOR_BGR2GRAY)
+
+    # canny edge (for debug)
+    # img_canny = cv2.Canny(np.uint8(img_graymask), 10, 20, apertureSize=3)
+    # cv2.imshow("canny_circle", img_canny)
+
+    # find circle using houghcircle
+    circles = cv2.HoughCircles(img_graymask, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
+
+    # show circles
+    if circles is not None:
+        circles = np.uint16(np.around(circles))
+        for i in circles[0, :]:
+            cv2.circle(img, (i[0], i[1]), i[2], (255, 0, 0), 2)  # circle
+            cv2.circle(img, (i[0], i[1]), 1, (0, 0, 255), 2)  # center
+
+    return img
+
+
 if __name__ == '__main__':
     main()
