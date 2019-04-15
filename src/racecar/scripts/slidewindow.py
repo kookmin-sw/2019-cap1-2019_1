@@ -26,10 +26,10 @@ class SlideWindow:
 
         # find nonzero location in img, nonzerox, nonzeroy is the array flatted one dimension by x,y 
         nonzero = img.nonzero()
-        # print nonzero
+        # print(nonzero)
         nonzeroy = np.array(nonzero[0])
         nonzerox = np.array(nonzero[1])
-        # print nonzerox
+        # print(nonzerox)
         # init data need to sliding windows
         margin = 20
         minpix = 10

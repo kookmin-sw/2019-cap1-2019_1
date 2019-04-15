@@ -153,7 +153,7 @@ class JoyTeleop:
         # Check if the pressed buttons match the commands exactly.
         buttons_match = np.array_equal(self.command_list[c]['buttons'], button_indexes)
 
-        # print button_indexes
+        # print(button_indexes)
         if buttons_match:
             return True
 

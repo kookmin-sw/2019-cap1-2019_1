@@ -42,8 +42,7 @@ car_run_speed = 0.5
 
 
 def signal_handler(signal, frame):
-    print
-    'You pressed Ctrl+C!'
+    print('You pressed Ctrl+C!')
     sys.exit(0)
 
 

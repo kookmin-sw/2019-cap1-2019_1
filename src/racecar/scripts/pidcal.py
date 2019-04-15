@@ -5,8 +5,7 @@ class PidCal:
     dp = [p[0] / 10, p[1] / 10, p[2] / 10]  # to twiddle kp, ki, kd
 
     def __init__(self):
-        print
-        "init PidCal"
+        print("init PidCal")
         self.x = 0
 
     def cal_error(self, setpoint=318):
@@ -46,10 +45,8 @@ class PidCal:
     # setpoint is the center and the x_current is where the car is
     # width = 640, so 320 is the center but 318 is more accurate in real
     def pid_control(self, x_current, setpoint=318):
-        print
-        "HHHHHHHHHHHHHHH"
-        print
-        x_current
+        print("HHHHHHHHHHHHHHH")
+        print(x_current)
         self.x = int(x_current)
         self.twiddle()
 

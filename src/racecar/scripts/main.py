@@ -68,10 +68,7 @@ def auto_drive(pid):
     ack_msg.drive.steering_angle = pid
     ack_msg.drive.speed = car_run_speed
     ack_publisher.publish(ack_msg)
-    print
-    'speed: '
-    print
-    car_run_speed
+    print('speed: ', car_run_speed)
 
 
 def main():
@@ -96,8 +93,7 @@ def main():
         cv2.imshow('result', img1)
         if x_location != None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
-            print
-            pid
+            print(pid)
             auto_drive(pid)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
