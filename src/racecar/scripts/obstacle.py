@@ -24,7 +24,7 @@ def detect_obstacle():
         t = i / 180 * np.pi
         l = lidar_data.ranges[i]
 
-        if l * np.sin(t) < rangeH and l * np.cos(t) < rangeV:
+        if l * np.sin(t) < rangeH and np.abs(l * np.cos(t)) < rangeV:
             return True
 
     return False
