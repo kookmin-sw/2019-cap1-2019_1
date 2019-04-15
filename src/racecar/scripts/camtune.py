@@ -103,11 +103,14 @@ def process_image(frame):
 
 
 def find_line(frame, warping=None, blurring=None):
-    if warping is not None:
-        # warper
-        img = warper.warp(frame)
+    if blurring is not None:
+        img = cv2.GaussianBlur(frame, (5, 5), 0)
     else:
         img = frame
+
+    if warping is not None:
+        # warper
+        img = warper.warp(img)
 
     img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
