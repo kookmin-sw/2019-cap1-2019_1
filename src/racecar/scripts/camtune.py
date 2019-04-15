@@ -71,7 +71,7 @@ def main():
 
     rospy.init_node('auto_xycar', anonymous=True)
 
-    while cv_image != None:
+    while cv_image is not None:
         img1, x_location = process_image(cv_image)
         cv2.imshow('origin', cv_image)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -103,11 +103,12 @@ def process_image(frame):
 
 
 def find_line(frame, iswarp=None, blur=None):
-    if iswarp != None:
+    if iswarp is not None:
         # warper
         img = warper.warp(frame)
     else:
         img = frame
+
     img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
     # create mask using color range
