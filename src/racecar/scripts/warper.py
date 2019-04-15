@@ -6,9 +6,9 @@ class Warper:
     def __init__(self):
         h = 480
         w = 640
-        print("h : " ,h)
-        print("w : " ,w)
-         
+        print("h : ", h)
+        print("w : ", w)
+
         # distort scr to dst
         src = np.float32([
             [w * 1.6, h * 1.3],
@@ -22,7 +22,6 @@ class Warper:
             [w * (-0.3), 0],
             [w * 1.3, 0],
         ])
-        
 
         self.M = cv2.getPerspectiveTransform(src, dst)
         self.Minv = cv2.getPerspectiveTransform(dst, src)
