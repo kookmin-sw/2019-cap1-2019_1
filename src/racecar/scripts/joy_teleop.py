@@ -13,8 +13,10 @@ from rosservice import ROSServiceException
 
 import numpy as np
 
+
 class JoyTeleopException(Exception):
     pass
+
 
 '''
 Originally from https://github.com/ros-teleop/teleop_tools
@@ -30,6 +32,7 @@ class JoyTeleop:
     Will not start without configuration, has to be stored in 'teleop' parameter.
     See config/joy_teleop.yaml for an example.
     """
+
     def __init__(self):
         if not rospy.has_param("teleop"):
             rospy.logfatal("no configuration was found, taking node down")
@@ -150,13 +153,14 @@ class JoyTeleop:
         # Check if the pressed buttons match the commands exactly.
         buttons_match = np.array_equal(self.command_list[c]['buttons'], button_indexes)
 
-        #print button_indexes
+        # print button_indexes
         if buttons_match:
             return True
 
         # This might also be a default command.
         # We need to check if ANY commands match this set of pressed buttons.
-        any_commands_matched = np.any([ np.array_equal(command['buttons'], button_indexes) for name, command in self.command_list.iteritems()])
+        any_commands_matched = np.any(
+            [np.array_equal(command['buttons'], button_indexes) for name, command in self.command_list.iteritems()])
 
         # Return the final result.
         return (buttons_match) or (not any_commands_matched and self.command_list[c]['is_default'])
@@ -166,7 +170,7 @@ class JoyTeleop:
         # Check if this is a default command
         if 'is_default' not in command:
             command['is_default'] = False
-        
+
         if command['type'] == 'topic':
             if 'deadman_buttons' not in command:
                 command['deadman_buttons'] = []
@@ -216,14 +220,15 @@ class JoyTeleop:
 
         else:
             for mapping in cmd['axis_mappings']:
-                if len(joy_state.axes)<=mapping['axis']:
-                  rospy.logerr('Joystick has only {} axes (indexed from 0), but #{} was referenced in config.'.format(len(joy_state.axes), mapping['axis']))
-                  val = 0.0
+                if len(joy_state.axes) <= mapping['axis']:
+                    rospy.logerr('Joystick has only {} axes (indexed from 0), but #{} was referenced in config.'.format(
+                        len(joy_state.axes), mapping['axis']))
+                    val = 0.0
                 else:
-                  val = joy_state.axes[mapping['axis']] * mapping.get('scale', 1.0) + mapping.get('offset', 0.0)
+                    val = joy_state.axes[mapping['axis']] * mapping.get('scale', 1.0) + mapping.get('offset', 0.0)
 
                 self.set_member(msg, mapping['target'], val)
-                
+
         self.publishers[cmd['topic_name']].publish(msg)
 
     def run_action(self, c, joy_state):

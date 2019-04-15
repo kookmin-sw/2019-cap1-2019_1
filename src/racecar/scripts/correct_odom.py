@@ -9,8 +9,10 @@
 # message.
 
 import rospy
-from tf import TransformListener, TransformBroadcaster, transformations, LookupException, ConnectivityException, ExtrapolationException
+from tf import TransformListener, TransformBroadcaster, transformations, LookupException, ConnectivityException, \
+    ExtrapolationException
 from geometry_msgs.msg import PoseStamped
+
 
 class CorrectOdomNode:
     def __init__(self):
@@ -24,13 +26,13 @@ class CorrectOdomNode:
         self.base_frame_id = 'base_link'
         self.odom_frame_id = 'odom'
         # note: world frame id provided by the PoseStamped header
-        
+
         self.sub = rospy.Subscriber("pose_stamped", PoseStamped, self.pose_callback)
 
     def pose_callback(self, msg):
         # base to odom (b2o) transform
         try:
-            (b2o_trans, b2o_rot) = self.tfl.lookupTransform(self.base_frame_id, self.odom_frame_id,  rospy.Time(0))
+            (b2o_trans, b2o_rot) = self.tfl.lookupTransform(self.base_frame_id, self.odom_frame_id, rospy.Time(0))
         except (LookupException, ConnectivityException, ExtrapolationException):
             rospy.logwarn_throttle(10, "tf exception in pose_callback()... ignoring")
             return
@@ -46,7 +48,7 @@ class CorrectOdomNode:
                                                      msg.pose.orientation.z,
                                                      msg.pose.orientation.w))
         w2b = transformations.concatenate_matrices(w2b_trans, w2b_rot)
-                                                             
+
         # world to base * base to odom = world to odom (w2o)
         w2o = transformations.concatenate_matrices(w2b, b2o)
 
@@ -54,6 +56,7 @@ class CorrectOdomNode:
         w2o_trans = transformations.translation_from_matrix(w2o)
         w2o_rot = transformations.quaternion_from_matrix(w2o)
         self.tfb.sendTransform(w2o_trans, w2o_rot, msg.header.stamp, self.odom_frame_id, msg.header.frame_id)
+
 
 if __name__ == "__main__":
     rospy.init_node("correct_odom_node")
