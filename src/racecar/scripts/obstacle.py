@@ -9,7 +9,9 @@ rangeV = 1.0
 
 
 def lidar_callback(Data):
-    pass
+    global lidar_data
+    if Data is not None:
+        lidar_data = Data
 
 
 def detect_obstacle():
