@@ -17,7 +17,7 @@ class Node:
 
     def __init__(self, node_id, pos_x, pos_y, node_type=None, neighbors=None):
         if neighbors is None:
-            neighbors = [None, None, None, None, None, None, None, None]
+            neighbors = []
         self.node_id = node_id
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -28,11 +28,7 @@ class Node:
         self.neighbors[point.value] = node
 
     def get_list(self):
-        temp = []
-        for p in self.neighbors:
-            if p:
-                temp.append(p)
-        return temp
+        return self.neighbors
 
 
 __all__ = ['Node', 'CardinalPoints']
