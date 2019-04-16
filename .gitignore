@@ -2,8 +2,15 @@
 /src/app/Speech/.gradle/**
 /src/app/Speech/local.properties
 **/.idea/**
-/src/app/Speech/.DS_Store/**
+/src/app/Speech/.DS_Store
 /src/app/Speech/build/**
-/src/app/Speech/captures/**
+/src/app/Speech/captures
 
 /src/app/Speech/app/src/main/res/raw/*.json
+
+/src/app/Map/.gradle/**
+/src/app/Map/local.properties
+/src/app/Map/.DS_Store
+/src/app/Map/build/**
+/src/app/Map/captures
+/src/app/Map/.externalNativeBuild
