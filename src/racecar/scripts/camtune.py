@@ -72,11 +72,14 @@ def main():
     rospy.init_node('auto_xycar', anonymous=True)
 
     while cv_image is not None:
-        img1, x_location = process_image(cv_image)
         yellow_img = preprocessing(cv_image, warping=True, blurring=True)
+        img1, x_location = process_image(yellow_img)
         cv2.imshow('origin', cv_image)
         find_line(yellow_img)
         find_circle(yellow_img)
+        if x_location is not None:
+            pid = round(pidcal.pid_control(int(x_location)), 6)
+            print(pid)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         cv2.imshow("result", img1)
@@ -89,18 +92,13 @@ def main():
 
 
 def process_image(frame):
-    # grayscle
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    # blur
-    kernel_size = 5
-    blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
-    # canny edge
     low_threshold = 20
     high_threshold = 70
-    edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
+    edges_img = cv2.Canny(np.uint8(frame), low_threshold, high_threshold)
+    cv2.imshow("proc edge", edges_img)
     # warper
-    img = warper.warp(edges_img)
-    img1, x_location = slidewindow.slidewindow(img)
+    # img = warper.warp(edges_img)
+    img1, x_location = slidewindow.slidewindow(edges_img)
 
     return img1, x_location
 
