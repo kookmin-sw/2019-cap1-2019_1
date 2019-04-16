@@ -52,7 +52,7 @@ class SlideWindow:
         # indicies before start line(the region of pts_left)
         good_left_inds = \
             ((nonzerox >= width / 2 - 130) & (nonzeroy >= nonzerox * 0.33 + 337) & (
-                        nonzerox <= width / 2 - 70)).nonzero()[
+                    nonzerox <= width / 2 - 70)).nonzero()[
                 0]
         good_right_inds = ((nonzerox >= width / 2 + 57) & (nonzeroy >= nonzerox * (-0.48) + 580) & (
                 nonzerox <= width / 2 + 120)).nonzero()[0]

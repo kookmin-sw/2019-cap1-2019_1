@@ -68,7 +68,8 @@ def auto_drive(pid):
     ack_msg.drive.steering_angle = pid
     ack_msg.drive.speed = car_run_speed
     ack_publisher.publish(ack_msg)
-    print('speed: ', car_run_speed)
+    print('speed: ')
+    print(car_run_speed)
 
 
 def main():
