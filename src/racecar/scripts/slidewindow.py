@@ -16,7 +16,7 @@ class SlideWindow:
 
         x_location = None
         # init out_img, height, width        
-        out_img = np.dstack((img, img, img)) * 255
+        out_img = np.dstack((img, img, img))
         height = img.shape[0]
         width = img.shape[1]
 
