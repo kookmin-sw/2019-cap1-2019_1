@@ -73,10 +73,10 @@ def main():
 
     while cv_image is not None:
         img1, x_location = process_image(cv_image)
+        yellow_img = preprocessing(cv_image, warping=True, blurring=True)
         cv2.imshow('origin', cv_image)
-        yellow_edge = preprocessing(cv_image, warping=True, blurring=True)
-        find_line(yellow_edge)
-        find_circle(yellow_edge)
+        find_line(yellow_img)
+        find_circle(yellow_img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         cv2.imshow("result", img1)
