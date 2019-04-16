@@ -10,8 +10,8 @@ class Node:
         self.node_type = node_type
         self.neighbors = neighbors
 
-    def set_neighbor(self, point, node):
-        self.neighbors[point.value] = node
+    def set_neighbor(self, node):
+        self.neighbors.append(node)
 
     def get_list(self):
         return self.neighbors
