@@ -1,2 +1,2 @@
-src/astar/.idea**
-src/astar/__pycache__**
+**/.idea/**
+**/__pycache__/**
