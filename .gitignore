@@ -1,0 +1,9 @@
+*.iml
+/src/app/Speech/.gradle/**
+/src/app/Speech/local.properties
+**/.idea/**
+/src/app/Speech/.DS_Store/**
+/src/app/Speech/build/**
+/src/app/Speech/captures/**
+
+/src/app/Speech/app/src/main/res/raw/*.json
