@@ -50,10 +50,8 @@ class SlideWindow:
         cv2.polylines(out_img, [pts_catch], False, (0, 120, 120), 1)
 
         # indicies before start line(the region of pts_left)
-        good_left_inds = \
-            ((nonzerox >= width / 2 - 130) & (nonzeroy >= nonzerox * 0.33 + 337) & (
-                    nonzerox <= width / 2 - 70)).nonzero()[
-                0]
+        good_left_inds = ((nonzerox >= width / 2 - 130) & (nonzeroy >= nonzerox * 0.33 + 337) & (
+                nonzerox <= width / 2 - 70)).nonzero()[0]
         good_right_inds = ((nonzerox >= width / 2 + 57) & (nonzeroy >= nonzerox * (-0.48) + 580) & (
                 nonzerox <= width / 2 + 120)).nonzero()[0]
 
@@ -79,7 +77,7 @@ class SlideWindow:
         else:
             line_flag = 3
             # indicies before start line(the region of pts_center)
-            # good_center_inds = ((nonzeroy >= nonzerox * 0.45 + 132) & (nonzerox >= width/2 - 60) & (nonzerox <= width/2 + 90)).nonzero()[0] 
+            # good_center_inds = ((nonzeroy >= nonzerox * 0.45 + 132) & (nonzerox >= width/2 - 60) & (nonzerox <= width/2 + 90)).nonzero()[0]
             # p_cut is for the multi-demensional function
             # but curve is mostly always quadratic function so i used polyfit( , ,2)
         #    if nonzeroy[good_center_inds] != [] and nonzerox[good_center_inds] != []:
@@ -106,7 +104,7 @@ class SlideWindow:
                     # indicies of dots in nonzerox in one square
                     good_left_inds = ((nonzeroy >= win_y_low) & (nonzeroy < win_y_high) & (nonzerox >= win_x_low) & (
                             nonzerox < win_x_high)).nonzero()[0]
-                    # check num of indicies in square and put next location to current 
+                    # check num of indicies in square and put next location to current
                     if len(good_left_inds) > minpix:
                         x_current = np.int(np.mean(nonzerox[good_left_inds]))
 
