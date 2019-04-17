@@ -123,11 +123,37 @@ def process_image(frame):
 
 
 def get_right_lines(lines, img):
-    pass
+    rights_ht = []
+    rights_ab = []
+    r = lines.T[0]
+    theta = lines.T[1]
+    a = - np.tan(theta)
+    b = np.abs(r / np.cos(theta))
+    top = 0
+    mid = height / 2
+    bot = height
+    mean_top = np.mean(a * top + b)
+    mean_mid = np.mean(a * mid + b)
+    mean_bot = np.mean(a * bot + b)
+
+    cv2.line(img, (mean_top, top), (mean_bot, bot), 128, 2)
+    cv2.imshow('mean_line', img)
+
+    for line in lines:
+        slope = - np.tan(line[0][1])
+        bias = np.abs(line[0][0] / np.cos(line[0][1]))
+        if mean_top < slope * top + bias and mean_mid < slope * mid + bias and mean_bot < slope * bot + bias:
+            rights_ht.append(line)
+            rights_ab.append([slope, bias])
+
+    return np.array(rights_ht), np.array(rights_ab)
 
 
 def cal_x_location(lines_ab):
-    pass
+    y = 340
+    return np.mean(lines_ab.T[0] * y + lines_ab.T[1])
+
+
 def preprocessing(frame, warping=False, blurring=False):
     if blurring:
         img = cv2.GaussianBlur(frame, (5, 5), 0)
