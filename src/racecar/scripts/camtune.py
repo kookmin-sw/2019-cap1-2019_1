@@ -145,7 +145,7 @@ def find_line(frame):
                 x2 = int(x0 - 1000 * (-b))
                 y2 = int(y0 - 1000 * (a))
 
-                cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+                cv2.line(img, (x1, y1), (x2, y2), 255, 2)
         cv2.imshow("lines", img)
     return img, lines
 
@@ -163,8 +163,8 @@ def find_circle(frame):
     if circles is not None:
         circles = np.uint16(np.around(circles))
         for i in circles[0, :]:
-            cv2.circle(img, (i[0], i[1]), i[2], (255, 0, 0), 2)  # circle
-            cv2.circle(img, (i[0], i[1]), 1, (0, 0, 255), 2)  # center
+            cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
+            cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
     cv2.imshow("circles", img)
     return img
 
