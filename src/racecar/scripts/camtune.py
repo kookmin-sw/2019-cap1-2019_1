@@ -103,13 +103,13 @@ def process_image(frame):
     return img1, x_location
 
 
-def preprocessing(frame, warping=None, blurring=None):
-    if blurring is not None:
+def preprocessing(frame, warping=False, blurring=False):
+    if blurring:
         img = cv2.GaussianBlur(frame, (5, 5), 0)
     else:
         img = frame
 
-    if warping is not None:
+    if warping:
         # warper
         img = warper.warp(img)
 
@@ -132,8 +132,8 @@ def find_line(frame):
 
     # find lines using houghlines and show them
     lines = cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
+    img = frame.copy()
     if lines is not None:
-        img = frame.copy()
         for line in lines:
             for rho, theta in line:
                 a = np.cos(theta)
