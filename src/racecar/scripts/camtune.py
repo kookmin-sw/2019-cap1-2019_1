@@ -125,16 +125,9 @@ def preprocessing(frame, warping=False, blurring=False):
     return img_graymask
 
 
-def find_line(frame):
-    # canny edge
-    img_canny = cv2.Canny(np.uint8(frame), low_threshold, high_threshold, apertureSize=5)
-    cv2.imshow("canny_line", img_canny)
-
-    # find lines using houghlines and show them
-    lines = cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
-    img = frame.copy()
+def draw_line(img, lines):
     if lines is not None:
-        for line in lines:
+        for line, i in zip(lines, range(len(lines))):
             for rho, theta in line:
                 a = np.cos(theta)
                 b = np.sin(theta)
@@ -145,8 +138,19 @@ def find_line(frame):
                 x2 = int(x0 - 1000 * (-b))
                 y2 = int(y0 - 1000 * (a))
 
-                cv2.line(img, (x1, y1), (x2, y2), 255, 2)
-        cv2.imshow("lines", img)
+                cv2.line(img, (x1, y1), (x2, y2), 255 / (i + 1), 2)
+
+
+def find_line(frame):
+    # canny edge
+    img_canny = cv2.Canny(np.uint8(frame), low_threshold, high_threshold, apertureSize=5)
+    cv2.imshow("canny_line", img_canny)
+
+    # find lines using houghlines and show them
+    lines = cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
+    img = frame.copy()
+    draw_line(img, lines)
+    cv2.imshow("lines", img)
     return img, lines
 
 
