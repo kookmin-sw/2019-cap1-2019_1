@@ -132,7 +132,9 @@ def preprocessing(frame, warping=False, blurring=False):
     return img_graymask
 
 
-def draw_line(img, lines):
+def draw_line(img, lines, color=None):
+    if color is None:
+        color = 255
     if lines is not None:
         for line, i in zip(lines, range(len(lines))):
             for rho, theta in line:
@@ -145,7 +147,7 @@ def draw_line(img, lines):
                 x2 = int(x0 - 1000 * (-b))
                 y2 = int(y0 - 1000 * (a))
 
-                cv2.line(img, (x1, y1), (x2, y2), 255 / (i + 1), 2)
+                cv2.line(img, (x1, y1), (x2, y2), color, 2)
 
 
 def find_line(frame):
@@ -156,7 +158,7 @@ def find_line(frame):
     # find lines using houghlines and show them
     lines = cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
     img = frame.copy()
-    draw_line(img, lines)
+    draw_line(img, lines, 255)
     cv2.imshow("lines", img)
     return img, lines
 
