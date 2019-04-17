@@ -80,16 +80,28 @@ def main():
         global height
         height = cv_image.shape[0]
         yellow_img = preprocessing(cv_image, warping=True, blurring=True)
-        img1, x_location = process_image(yellow_img)
+        # img1, x_location = process_image(yellow_img)
         cv2.imshow('origin', cv_image)
         img_lines, lines = find_line(yellow_img)
+        rights_ht, rights_ab = get_right_lines(lines, img_lines)
+
+        img_right = yellow_img.copy()
+        draw_line(img_right, rights_ht, 255)
+        cv2.imshow('rights', img_right)
+
+        x_location = int(cal_x_location(rights_ab))
+        img_x_location = yellow_img.copy()
+        cv2.rectangle(img_x_location, (x_location-30, 310), (x_location+30, 370), 255, -1)
+        cv2.imshow('x_location', img_x_location)
+        x_location += int(width * 0.175)
+
         img_circles, circles = find_circle(yellow_img)
         if x_location is not None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
             print(pid)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        cv2.imshow("result", img1)
+        # cv2.imshow("result", img1)
 
     try:
         rospy.spin()
@@ -110,6 +122,12 @@ def process_image(frame):
     return img1, x_location
 
 
+def get_right_lines(lines, img):
+    pass
+
+
+def cal_x_location(lines_ab):
+    pass
 def preprocessing(frame, warping=False, blurring=False):
     if blurring:
         img = cv2.GaussianBlur(frame, (5, 5), 0)
