@@ -48,6 +48,9 @@ upper_color = np.array([30, 255, 255])
 low_threshold = 300
 high_threshold = 500
 
+width = 0
+height = 0
+
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
@@ -72,11 +75,15 @@ def main():
     rospy.init_node('auto_xycar', anonymous=True)
 
     while cv_image is not None:
+        global width
+        width = cv_image.shape[1]
+        global height
+        height = cv_image.shape[0]
         yellow_img = preprocessing(cv_image, warping=True, blurring=True)
         img1, x_location = process_image(yellow_img)
         cv2.imshow('origin', cv_image)
-        find_line(yellow_img)
-        find_circle(yellow_img)
+        img_lines, lines = find_line(yellow_img)
+        img_circles, circles = find_circle(yellow_img)
         if x_location is not None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
             print(pid)
@@ -170,7 +177,7 @@ def find_circle(frame):
             cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
             cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
     cv2.imshow("circles", img)
-    return img
+    return img, circles
 
 
 if __name__ == '__main__':
