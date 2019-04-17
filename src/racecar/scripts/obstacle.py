@@ -1,7 +1,7 @@
 import numpy as np
 
 import rospy
-from std_msgs.msg import LaserScan
+from sensor_msgs.msg import LaserScan
 
 lidar_data = None
 rangeH = 0.5
