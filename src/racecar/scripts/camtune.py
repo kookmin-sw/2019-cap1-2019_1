@@ -77,17 +77,18 @@ def main():
         # img1, x_location = process_image(yellow_img)
         cv2.imshow('origin', cv_image)
         img_lines, lines = processor.find_line(yellow_img)
-        rights_ht, rights_ab = processor.get_right_lines(lines, img_lines)
+        rights_ht, rights_ab = processor.get_right_lines(lines, img_lines, draw_mean_line=True)
 
         img_right = yellow_img.copy()
         processor.draw_line(img_right, rights_ht, 255)
         cv2.imshow('rights', img_right)
 
         x_location = processor.cal_x_location(rights_ab)
-        img_x_location = yellow_img.copy()
-        cv2.rectangle(img_x_location, (x_location - 30, 310), (x_location + 30, 370), 255, -1)
-        cv2.imshow('x_location', img_x_location)
-        x_location = int(x_location + width * 0.175)
+        if x_location is not None:
+            img_x_location = yellow_img.copy()
+            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
+            cv2.imshow('x_location', img_x_location)
+            x_location += width * 0.175
 
         img_circles, circles = processor.find_circle(yellow_img)
         if x_location is not None:
