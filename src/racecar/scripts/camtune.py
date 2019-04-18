@@ -73,27 +73,27 @@ def main():
         width = cv_image.shape[1]
         global height
         height = cv_image.shape[0]
-        yellow_img = processor.preprocessing(cv_image, warping=True, blurring=True)
-        # img1, x_location = process_image(yellow_img)
         cv2.imshow('origin', cv_image)
-        img_lines, lines = processor.find_line(yellow_img)
-        rights_ht, rights_ab = processor.get_right_lines(lines, img_lines, draw_mean_line=True)
-
-        img_right = yellow_img.copy()
-        processor.draw_line(img_right, rights_ht, 255)
-        cv2.imshow('rights', img_right)
-
-        x_location = processor.cal_x_location(rights_ab)
-        if x_location is not None:
-            img_x_location = yellow_img.copy()
-            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
-            cv2.imshow('x_location', img_x_location)
-            x_location += width * 0.175
-
-        img_circles, circles = processor.find_circle(yellow_img)
-        if x_location is not None:
-            pid = round(pidcal.pid_control(int(x_location)), 6)
-            print(pid)
+        yellow_img = processor.yellow_mask(cv_image, blurring=False)
+        # img1, x_location = process_image(yellow_img)
+        # img_lines, lines = processor.find_line(yellow_img)
+        # rights_ht, rights_ab = processor.get_right_lines(lines, img_lines, draw_mean_line=True)
+        #
+        # img_right = yellow_img.copy()
+        # processor.draw_line(img_right, rights_ht, 255)
+        # cv2.imshow('rights', img_right)
+        #
+        # x_location = processor.cal_x_location(rights_ab)
+        # if x_location is not None:
+        #     img_x_location = yellow_img.copy()
+        #     cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
+        #     cv2.imshow('x_location', img_x_location)
+        #     x_location += width * 0.175
+        #
+        # img_circles, circles = processor.find_circle(yellow_img)
+        # if x_location is not None:
+        #     pid = round(pidcal.pid_control(int(x_location)), 6)
+        #     print(pid)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         # cv2.imshow("result", img1)

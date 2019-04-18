@@ -11,7 +11,7 @@ class ImageProcessor:
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([0, 100, 30])
+        self.lower_color = np.array([15, 100, 30])
         self.upper_color = np.array([30, 255, 255])
 
         # canny
@@ -55,15 +55,11 @@ class ImageProcessor:
         y = 340
         return np.mean(lines_ab.T[0] * y + lines_ab.T[1])
 
-    def preprocessing(self, frame, warping=False, blurring=False):
+    def yellow_mask(self, frame, blurring=False):
         if blurring:
             img = cv2.GaussianBlur(frame, (5, 5), 0)
         else:
             img = frame
-
-        if warping:
-            # warper
-            img = self.warper.warp(img)
 
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -71,10 +67,7 @@ class ImageProcessor:
         img_mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
         img_mask = cv2.bitwise_and(img, img, mask=img_mask)
         cv2.imshow("mask", img_mask)
-
-        # mask to gray
-        img_graymask = cv2.cvtColor(img_mask, cv2.COLOR_BGR2GRAY)
-        return img_graymask
+        return img_mask
 
     def draw_line(self, img, lines, color=None):
         if color is None:
