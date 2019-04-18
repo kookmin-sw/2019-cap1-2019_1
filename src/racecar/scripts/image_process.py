@@ -27,7 +27,7 @@ class ImageProcessor:
         r = lines.T[0]
         theta = lines.T[1]
         a = - np.tan(theta)
-        b = np.abs(r / np.cos(theta))
+        b = r / np.cos(theta)
         top = 0
         mid = img.shape[0] / 2
         bot = img.shape[0]
@@ -41,8 +41,8 @@ class ImageProcessor:
 
         for line in lines:
             slope = - np.tan(line[0][1])
-            bias = np.abs(line[0][0] / np.cos(line[0][1]))
-            if mean_top < slope * top + bias and mean_mid < slope * mid + bias and mean_bot < slope * bot + bias:
+            bias = line[0][0] / np.cos(line[0][1])
+            if (mean_top < slope * top + bias) and (mean_mid < slope * mid + bias) and (mean_bot < slope * bot + bias):
                 rights_ht.append(line)
                 rights_ab.append([slope, bias])
 
