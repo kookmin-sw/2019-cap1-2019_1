@@ -326,6 +326,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         String cancelPathString = "경로 취소";
         String enrollNodeString = "노드 등록";
         String modifiedNodeString = "노드 수정";
+        String privacyLocationString = "이름 등록";
 
         if(s.contentEquals(setDestinationString)){
             Intent intent = new Intent(this, SetDestination.class);
@@ -341,6 +342,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         }
         else if(s.contentEquals(modifiedNodeString)){
             Intent intent = new Intent(this, ModifiedNode.class);
+            startActivity(intent);
+        }
+        else if(s.contentEquals(privacyLocationString)){
+            Intent intent = new Intent(this, PrivacyLocation.class);
             startActivity(intent);
         }
         else{
@@ -365,6 +370,16 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     public void onClickModifiedNode(View v){
         Intent intent = new Intent(this, ModifiedNode.class);
+        startActivity(intent);
+    }
+
+    public void onClickPrivacyLocation(View v){
+        Intent intent = new Intent(this, PrivacyLocation.class);
+        startActivity(intent);
+    }
+
+    public void onClickTest(View v){
+        Intent intent = new Intent(this, test.class);
         startActivity(intent);
     }
 }

@@ -19,4 +19,5 @@
     <string name="listening">Listening…</string>
     <string name="load_file">Load file</string>
     <string name="title_activity_set_destination">SetDestination</string>
+    <string name="title_activity_maps_test">Map</string>
 </resources>
