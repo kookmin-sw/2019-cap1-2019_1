@@ -11,7 +11,7 @@ class ImageProcessor:
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([0, 150, 30])
+        self.lower_color = np.array([0, 100, 30])
         self.upper_color = np.array([30, 255, 255])
 
         # canny
@@ -49,7 +49,7 @@ class ImageProcessor:
         return np.array(rights_ht), np.array(rights_ab)
 
     def cal_x_location(self, lines_ab):
-        if lines_ab is None:
+        if lines_ab is None or len(lines_ab) == 0:
             return None
 
         y = 340
