@@ -45,9 +45,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCOyg16eZTzqZ-fnG_Pp_0n9a25tMpQBWU" />
 
-        <activity
-            android:name="com.google.cloud.android.speech.MapsActivityTest"
-            android:label="@string/title_activity_maps_test" />
         <activity android:name="com.google.cloud.android.speech.test" />
         <activity android:name="com.google.cloud.android.speech.PrivacyLocation" />
         <activity android:name="com.google.cloud.android.speech.ModifiedNode" />
