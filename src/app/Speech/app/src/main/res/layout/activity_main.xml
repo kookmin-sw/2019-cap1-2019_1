@@ -87,4 +87,22 @@
         android:onClick="onClickModifiedNode"
         android:text="노드 수정" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="540dp"
+        android:onClick="onClickPrivacyLocation"
+        android:text="이름 등록" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="240dp"
+        android:onClick="onClickTest"
+        android:text="test" />
+
 </android.support.design.widget.CoordinatorLayout>

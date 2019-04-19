@@ -1,139 +1,186 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:2:1-34:12
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:2:1-54:12
 	package
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:4:5-46
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:4:5-46
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:3:5-51
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:3:5-51
 	xmlns:android
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:6:5-67
-	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:6:22-64
-uses-permission#android.permission.RECORD_AUDIO
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:7:5-71
-	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:7:22-68
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:8:5-79
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:8:22-76
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:11:22-76
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:12:5-67
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:12:22-64
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:13:5-71
+	android:name
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:13:22-68
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:9:5-81
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:14:5-81
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:9:22-78
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:14:22-78
 application
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:11:5-32:19
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:16:5-52:19
 MERGED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\yongt\.android\build-cache\36c76d1c17cb470bc4f910af9e64d971b4b20c1c\output\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\yongt\.android\build-cache\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\47b42a76dde9151a6b818dab0f7640abeeec0f42\output\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\aa437280e63715edf536815c2e1de94400a0f861\output\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-tasks:11.0.1] C:\Users\yongt\.android\build-cache\5dd8625807792c11a64b1ca97f96949bd35097a1\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:11.0.1] C:\Users\yongt\.android\build-cache\0d74e2cb1648a1e33cb5ae5d362d3aa965fa0302\output\AndroidManifest.xml:19:5-21:19
 MERGED from [com.android.support:support-v4:25.4.0] C:\Users\yongt\.android\build-cache\a483ba462014be8c8428ef4b9eb67d211f4a9831\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\yongt\.android\build-cache\1d7c3f7c25e89bfadbeee8b015c20fd20e718c12\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\yongt\.android\build-cache\16a0943f44c5735d61d28b0b70bbbd1caacb8905\output\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\yongt\.android\build-cache\306c59788f827141a612cb8c201139ea9d7a4592\output\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\build-cache\ee1da32e481006c1ff7df8c071cf3f95eade2d23\output\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\yongt\.android\build-cache\36c76d1c17cb470bc4f910af9e64d971b4b20c1c\output\AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:15:9-41
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:20:9-41
 	android:supportsRtl
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:16:9-35
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:21:9-35
 	android:fullBackupContent
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:13:9-55
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:18:9-55
 	tools:ignore
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:18:9-48
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-48
 	android:allowBackup
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:17:9-35
 	android:icon
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:14:9-43
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:19:9-43
 	android:theme
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:17:9-44
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:22:9-44
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:33:9-35:71
+	android:value
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:35:13-68
+	android:name
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:34:13-58
+activity#com.google.cloud.android.speech.test
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:37:9-42
+	android:name
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:37:19-39
+activity#com.google.cloud.android.speech.PrivacyLocation
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:38:9-53
+	android:name
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:38:19-50
 activity#com.google.cloud.android.speech.ModifiedNode
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:9-59
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:39:9-50
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:19:19-47
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:39:19-47
 activity#com.google.cloud.android.speech.EnrollNode
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:9-48
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:40:9-48
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:20:19-45
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:40:19-45
 activity#com.google.cloud.android.speech.CancelPath
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:9-48
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:41:9-48
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:21:19-45
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:41:19-45
 activity#com.google.cloud.android.speech.SetDestination
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:22:9-52
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:42:9-52
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:22:19-49
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:42:19-49
 activity#com.google.cloud.android.speech.MainActivity
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-29:20
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:43:9-49:20
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:23:19-47
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:43:19-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:24:13-28:29
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:44:13-48:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:17-69
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:45:17-69
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:25:25-66
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:45:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:27:17-77
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:47:17-77
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:27:27-74
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:47:27-74
 service#com.google.cloud.android.speech.SpeechService
-ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:31:9-50
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:51:9-50
 	android:name
-		ADDED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml:31:18-47
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:51:18-47
 uses-sdk
-INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\yongt\.android\build-cache\36c76d1c17cb470bc4f910af9e64d971b4b20c1c\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\yongt\.android\build-cache\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\output\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\47b42a76dde9151a6b818dab0f7640abeeec0f42\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\aa437280e63715edf536815c2e1de94400a0f861\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:23:5-43
+MERGED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tasks:11.0.1] C:\Users\yongt\.android\build-cache\5dd8625807792c11a64b1ca97f96949bd35097a1\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:11.0.1] C:\Users\yongt\.android\build-cache\0d74e2cb1648a1e33cb5ae5d362d3aa965fa0302\output\AndroidManifest.xml:17:5-43
 MERGED from [com.android.support:support-v4:25.4.0] C:\Users\yongt\.android\build-cache\a483ba462014be8c8428ef4b9eb67d211f4a9831\output\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\yongt\.android\build-cache\1d7c3f7c25e89bfadbeee8b015c20fd20e718c12\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\yongt\.android\build-cache\16a0943f44c5735d61d28b0b70bbbd1caacb8905\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\yongt\.android\build-cache\306c59788f827141a612cb8c201139ea9d7a4592\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\build-cache\ee1da32e481006c1ff7df8c071cf3f95eade2d23\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\yongt\.android\build-cache\36c76d1c17cb470bc4f910af9e64d971b4b20c1c\output\AndroidManifest.xml:5:5-7:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yongt\Desktop\capstone\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:23:9-25:38
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\yongt\.android\build-cache\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\output\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\47b42a76dde9151a6b818dab0f7640abeeec0f42\output\AndroidManifest.xml:23:9-25:38
 MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\yongt\.android\build-cache\aa437280e63715edf536815c2e1de94400a0f861\output\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:transition:25.4.0] C:\Users\yongt\.android\build-cache\6eec34c9b6d2f9a9d4b7fb93483a588afcb1bdac\output\AndroidManifest.xml:23:9-25:38
 MERGED from [com.android.support:support-v4:25.4.0] C:\Users\yongt\.android\build-cache\a483ba462014be8c8428ef4b9eb67d211f4a9831\output\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\yongt\.android\build-cache\1d7c3f7c25e89bfadbeee8b015c20fd20e718c12\output\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\yongt\.android\build-cache\16a0943f44c5735d61d28b0b70bbbd1caacb8905\output\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:cardview-v7:25.4.0] C:\Users\yongt\.android\build-cache\cf0037292d26d54b0ddbd3aaf68dc6507f1212d4\output\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:recyclerview-v7:25.4.0] C:\Users\yongt\.android\build-cache\c0844ff691296c65d45d3c3949e9c684a82fc836\output\AndroidManifest.xml:23:9-25:38
 MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\yongt\.android\build-cache\306c59788f827141a612cb8c201139ea9d7a4592\output\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\yongt\.android\build-cache\4aae17eb49fa44d6b89a9f37458ee0d69292f5f2\output\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\build-cache\ee1da32e481006c1ff7df8c071cf3f95eade2d23\output\AndroidManifest.xml:26:9-28:38
 	android:value
 		ADDED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:28:13-35
 	android:name
 		ADDED from [com.android.support:design:25.4.0] C:\Users\yongt\.android\build-cache\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\output\AndroidManifest.xml:27:13-51
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:19:22-76
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:11.0.1] C:\Users\yongt\.android\build-cache\6d00f72165d82c839e1b229292a5ccb0519a0329\output\AndroidManifest.xml:21:52-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] C:\Users\yongt\.android\build-cache\e6aea7db8741ed675a25b1753a07f9fead61cf08\output\AndroidManifest.xml:19:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:11.0.1] C:\Users\yongt\.android\build-cache\0d74e2cb1648a1e33cb5ae5d362d3aa965fa0302\output\AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:11.0.1] C:\Users\yongt\.android\build-cache\0d74e2cb1648a1e33cb5ae5d362d3aa965fa0302\output\AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:11.0.1] C:\Users\yongt\.android\build-cache\0d74e2cb1648a1e33cb5ae5d362d3aa965fa0302\output\AndroidManifest.xml:20:20-65
