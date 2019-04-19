@@ -112,9 +112,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapLongClick(LatLng latLng) {
                 for(Marker marker : mMarkerList) {
-                    if(Math.abs(marker.getPosition().latitude - latLng.latitude) < 0.05 && Math.abs(marker.getPosition().longitude - latLng.longitude) < 0.05) {
+                    Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
+                    if(Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
                         Toast.makeText(MapsActivity.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
                         //mMarkerList.remove(marker);
+                        //marker.remove(marker);
                         setLocInfo(marker);
                         break;
                     }
