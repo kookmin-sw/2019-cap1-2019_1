@@ -25,6 +25,7 @@ import java.util.Locale;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -91,6 +92,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gps = new GPSTracker(MapsActivity.this);
         mMarkerList = new ArrayList<Marker>();
 
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -114,10 +117,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for(Marker marker : mMarkerList) {
                     Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
                     if(Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
-                        Toast.makeText(MapsActivity.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
-                        //mMarkerList.remove(marker);
-                        //marker.remove(marker);
-                        setLocInfo(marker);
+                        dialogBuilder.setTitle("알림");
+                        dialogBuilder.setMessage("위치 정보를 수정 또는 삭제하시겠습니까?");
+                        dialogBuilder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        mMarkerList.remove(marker);
+                                        marker.remove();
+                                        Toast.makeText(MapsActivity.this, "A marker removed.", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
+                        dialogBuilder.setNegativeButton("수정", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        setLocInfo(marker);
+                                        Toast.makeText(MapsActivity.this, "A marker updated.", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
+                        dialogBuilder.setNeutralButton("취소", null);
+                        dialogBuilder.show();
                         break;
                     }
                 }
