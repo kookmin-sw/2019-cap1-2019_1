@@ -26,11 +26,9 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -40,10 +38,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Marker> mMarkerList;
 
     private Button btnMyLocation;
-    private EditText editText;
-
-    private EnterListener enterListener;
-    private String s = "null";
 
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 11;
 
@@ -117,33 +111,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for(Marker marker : mMarkerList) {
                     Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
                     if(Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
+                        // set Dialog message
                         dialogBuilder.setTitle("알림");
                         dialogBuilder.setMessage("위치 정보를 수정 또는 삭제하시겠습니까?");
                         dialogBuilder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        mMarkerList.remove(marker);
-                                        marker.remove();
-                                        Toast.makeText(MapsActivity.this, "A marker removed.", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                mMarkerList.remove(marker);
+                                marker.remove();
+                                Toast.makeText(MapsActivity.this, "A marker is removed.", Toast.LENGTH_SHORT).show();
                             }
                         });
                         dialogBuilder.setNegativeButton("수정", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case DialogInterface.BUTTON_NEGATIVE:
-                                        setLocInfo(marker);
-                                        Toast.makeText(MapsActivity.this, "A marker updated.", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                // get activity_set_map_info.xml view
+                                LayoutInflater promptli = LayoutInflater.from(MapsActivity.this);
+                                View promptsView = promptli.inflate(R.layout.activity_set_map_info, null);
+
+                                // set activity_set_map_info.xml to AlertDialog builder
+                                AlertDialog.Builder promptDialogBuilder = new AlertDialog.Builder( MapsActivity.this);
+                                promptDialogBuilder.setView(promptsView);
+                                final EditText userInput = (EditText)promptsView.findViewById(R.id.editTextDialogUserInput);
+
+                                // set Dialog message
+                                promptDialogBuilder.setCancelable(false)
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                String changedSnippet = userInput.getText().toString();
+                                                setLocInfo(marker, changedSnippet);
+                                                Toast.makeText(MapsActivity.this, "A marker is updated.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                promptDialogBuilder.show();
                             }
                         });
                         dialogBuilder.setNeutralButton("취소", null);
@@ -180,7 +187,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (mMap != null) {
             mMap.setMyLocationEnabled(true);
-            //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         }
 
         UiSettings mapSettings;
@@ -233,8 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return retAddr;
     }
 
-    public void setLocInfo(Marker marker) {
-        String snippet = s;
+    public void setLocInfo(Marker marker, String snippet) {
         Marker setMarker;
 
         for (Marker mMarker : mMarkerList) {
@@ -245,15 +250,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMarkerList.add(setMarker);
                 break;
             }
-        }
-    }
-
-    class EnterListener implements EditText.OnEditorActionListener {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            s = v.getText().toString();
-            editText.setText("");
-            return false;
         }
     }
 }
