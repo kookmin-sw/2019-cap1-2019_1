@@ -1,8 +1,7 @@
-
-
 from flask import Flask
 from flask import jsonify
 from flask import json
+
 
 
 #Oracle
@@ -11,25 +10,11 @@ import cx_Oracle
 #json request
 from flask import request
 
-#한국어 깨짐문제
-from functools import wraps
-
 app=Flask(__name__)
 
 #DB connect
 con=cx_Oracle.connect('scott/12345678@oracle11gr2.cdubaygxhxxb.ap-northeast-2.rds.amazonaws.com:1521/orcl')
 db=con.cursor()
-
-
-#한국어 깨짐 문제
-def as_json(f):
-	@wraps(f)
-	def decorated_function(*args,**kwargs):
-		res=f(*args,**kwargs)
-		res=json.dumps(res,ensure_ascii=False).encode('utf8')
-		return Response(res,content_type='application/json;charset=utf-8')
-	return decorated_function
-
 
 #class
 class Node(object):
@@ -50,7 +35,7 @@ def json_test():
 	resp=jsonify(data)	
 	return resp
 
-@app.route('/select',methods=['POST'])
+@app.route('/select')
 def select():
 	#con=cx_Oracle.connect('scott/12345678@oracle11gr2.cdubaygxhxxb.ap-northeast-2.rds.amazonaws.com:1521/orcl')
 	#db=con.cursor()
@@ -60,53 +45,75 @@ def select():
 	datas=[]
 	data={}
 	for record in records:
-		print(record)
-		data={'node_id':record[0],'node_type':record[1],'node_name':record[2],'pos_x':record[3],'pos_y':record[4],'node_neighbors':record[5]}	
+		data={'node_id':record[0],'node_type':record[1],'node_name':record[2],'node_longitude':record[3],'node_latitude':record[4],'node_neighbors':record[5]}	
 		datas.append(data)
 		data={}
 
-	sendData={"Node":datas}		
+	#global dataAll
+
+	#first case to retrieve db data
+	#for record in db:
+		#print(record)
+		#print(record[0])
+		#print(record[1])
+		
+		#make json
+		#data={'name':record[0],'direction':record[1],'id':record[2]}
+		
+		#dataAll=json.dumps(data)
+		
 		
 
-	resp=jsonify(sendData)
+	resp=jsonify(datas)
+		
+	
+
+	
+
+	#db.close()
+	#con.close()	
+	
+	#dataFinal=json.dumps({'Nodes':data})
+
+	#print(dataFinal)
 
 	return resp
 
 #Insert example
 @app.route('/insert', methods=['POST'])
 def insert():
-	
-	print("call")
-	#print("안녕")	
-	#print(request.headers['content-type'])
-	#print(request.data)
-	request_json=request.get_json()
-	#print("after requestjson")
 		
+	request_json=request.get_json()
+	#print(request_json)
 
 	datas=[]
 	data=()
 
 	for firstkey, big_list in request_json.items():
-		
+		#print(firstkey)
 		if firstkey=="Node":
 			for pair in big_list:
-				#print("no")
-				data=(pair["node_id"],pair["node_type"],pair["node_name"],pair["pos_x"],pair["pos_y"],pair["node_neighbors"])
-				#print("son")
+				#print(pair["node_id"])
+				data=(pair["node_id"],pair["pos_x"],pair["pos_y"],pair["node_type"],pair["node_neighbors"],pair["node_name"])
 				datas.append(data)
 				data=()
-	
+
+
+				
+
+	print(datas)
+
+
+	#rows=[('2','CORNER','HOME',5,10,'1/2/3'),('3','CORNER','HOME',5,10,'2/3/4')]
 	db.bindarraysize=2
-	#double형이여도 int로 써도됨
-	db.setinputsizes(int,20,20,int,int,20)
-	db.executemany("insert into node(node_id,node_type,node_name,pos_x,pos_y,node_neighbors) values (:1,:2,:3,:4,:5,:6)",datas)
+	db.setinputsizes(int,int,int,20,20,20)
+	db.executemany("insert into node(node_id,node_type,node_name,node_longitude,node_latitude,node_neighbors) values (:1,:2,:3,:4,:5,:6)",datas)
 	con.commit()
 	
 	#db.close()
 	#con.close()
 
-	return 'success'
+	return jsonify(request_json)
 
 @app.route('/update')
 def update():

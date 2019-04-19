@@ -50,7 +50,7 @@ def json_test():
 	resp=jsonify(data)	
 	return resp
 
-@app.route('/select',methods=['POST'])
+@app.route('/select')
 def select():
 	#con=cx_Oracle.connect('scott/12345678@oracle11gr2.cdubaygxhxxb.ap-northeast-2.rds.amazonaws.com:1521/orcl')
 	#db=con.cursor()
@@ -59,14 +59,14 @@ def select():
 	records=db.fetchall()
 	datas=[]
 	data={}
+
 	for record in records:
 		print(record)
 		data={'node_id':record[0],'node_type':record[1],'node_name':record[2],'pos_x':record[3],'pos_y':record[4],'node_neighbors':record[5]}	
 		datas.append(data)
 		data={}
 
-	sendData={"Node":datas}		
-		
+	sendData={"Node":datas}
 
 	resp=jsonify(sendData)
 
@@ -95,7 +95,9 @@ def insert():
 				data=(pair["node_id"],pair["node_type"],pair["node_name"],pair["pos_x"],pair["pos_y"],pair["node_neighbors"])
 				#print("son")
 				datas.append(data)
-				data=()
+				data=(
+
+
 	
 	db.bindarraysize=2
 	#double형이여도 int로 써도됨
@@ -106,7 +108,7 @@ def insert():
 	#db.close()
 	#con.close()
 
-	return 'success'
+	return jsonify(request_json)
 
 @app.route('/update')
 def update():
