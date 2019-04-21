@@ -17,6 +17,7 @@
 
 #Credential
 src/app/Speech/app/src/main/res/raw/*.json
+src/app/Map/app/src/main/res/raw/*.json
 
 # Generated files
 src/app/Speech/bin/
