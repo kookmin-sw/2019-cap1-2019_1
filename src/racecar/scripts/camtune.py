@@ -83,23 +83,27 @@ def main():
         # img1, x_location = process_image(yellow_img)
         lines_img, lines = processor.find_line(warp_img)
         cv2.imshow('lines', lines_img)
-        rights_ht, rights_ab = processor.get_right_lines(lines, lines_img, draw_mean_line=True)
+        cluster_img = warp_img.copy()
+        processor.clustering(lines, cluster_img)
+        cv2.imshow('cluster', cluster_img)
+        # print(lines)
+        # rights_ht, rights_ab = processor.get_right_lines(lines, lines_img, draw_mean_line=True)
 
-        rights_img = warp_img.copy()
-        processor.draw_line(rights_img, rights_ht, 255)
-        cv2.imshow('rights', rights_img)
-
-        x_location = processor.cal_x_location(rights_ab)
-        if x_location is not None:
-            img_x_location = warp_img.copy()
-            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
-            cv2.imshow('x_location', img_x_location)
-            x_location += width * 0.175
-
-        img_circles, circles = processor.find_circle(warp_img)
-        if x_location is not None:
-            pid = round(pidcal.pid_control(int(x_location)), 6)
-            print(pid)
+        # rights_img = warp_img.copy()
+        # processor.draw_line(rights_img, rights_ht, 255)
+        # cv2.imshow('rights', rights_img)
+        #
+        # x_location = processor.cal_x_location(rights_ab)
+        # if x_location is not None:
+        #     img_x_location = warp_img.copy()
+        #     cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
+        #     cv2.imshow('x_location', img_x_location)
+        #     x_location += width * 0.175
+        #
+        # img_circles, circles = processor.find_circle(warp_img)
+        # if x_location is not None:
+        #     pid = round(pidcal.pid_control(int(x_location)), 6)
+        #     print(pid)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         # cv2.imshow("result", img1)

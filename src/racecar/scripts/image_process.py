@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from sklearn.cluster import DBSCAN
 
 from slidewindow import SlideWindow
 from warper import Warper
@@ -14,11 +15,9 @@ class ImageProcessor:
         self.lower_color = np.array([15, 100, 30])
         self.upper_color = np.array([30, 255, 255])
 
-        # canny
-        self.low_threshold = 300
-        self.high_threshold = 500
-
         self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+
+        self.dbscan = DBSCAN(eps=7, min_samples=3)
 
     def yellow_mask(self, frame, blurring=False):
         if blurring:
@@ -42,6 +41,37 @@ class ImageProcessor:
         img = edges_img.copy()
         self.draw_line(img, lines, 255)
         return img, lines
+
+    def clustering(self, lines, img):
+        if lines is None:
+            return
+        cartesian = []
+        for line in lines:
+            r = line[0][0]
+            theta = line[0][1]
+            x = np.cos(theta) * r
+            y = np.sin(theta) * r
+            cartesian.append([x, y])
+        cartesian = np.array(cartesian)
+
+        self.dbscan.fit(cartesian)
+        step = 128 / np.max(self.dbscan.labels_)
+        for i in range(len(lines)):
+            if self.dbscan.labels_[i] == -1:
+                continue
+            rho = lines[i][0][0]
+            theta = lines[i][0][1]
+            color = 127 + step * self.dbscan.labels_[i]
+            a = np.cos(theta)
+            b = np.sin(theta)
+            x0 = a * rho
+            y0 = b * rho
+            x1 = int(x0 + 1000 * (-b))
+            y1 = int(y0 + 1000 * (a))
+            x2 = int(x0 - 1000 * (-b))
+            y2 = int(y0 - 1000 * (a))
+
+            cv2.line(img, (x1, y1), (x2, y2), color, 2)
 
     @staticmethod
     def get_right_lines(lines, img, draw_mean_line=False):
