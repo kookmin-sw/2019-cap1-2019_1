@@ -36,16 +36,11 @@ class ImageProcessor:
         cv2.imshow("mask", img_res)
         return img_res
 
-    def find_line(self, frame):
-        # canny edge
-        # img_canny = cv2.Canny(np.uint8(frame), self.low_threshold, self.high_threshold, apertureSize=5)
-        # cv2.imshow("canny_line", img_canny)
-
+    def find_line(self, edges_img):
         # find lines using houghlines and show them
-        lines = cv2.HoughLines(frame, 1, np.pi / 180, 200)
-        img = frame.copy()
+        lines = cv2.HoughLines(edges_img, 1, np.pi / 180, 200)
+        img = edges_img.copy()
         self.draw_line(img, lines, 255)
-        cv2.imshow("lines", img)
         return img, lines
 
     @staticmethod
@@ -107,10 +102,6 @@ class ImageProcessor:
 
     @staticmethod
     def find_circle(frame):
-        # canny edge (for debug)
-        # img_canny = cv2.Canny(np.uint8(img_graymask), 10, 20, apertureSize=3)
-        # cv2.imshow("canny_circle", img_canny)
-
         # find circle using houghcircle
         img = frame.copy()
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)

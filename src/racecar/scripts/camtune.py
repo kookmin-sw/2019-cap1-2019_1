@@ -81,12 +81,13 @@ def main():
         warp_img = warper.warp(edges_img)
         # cv2.imshow('warp', warp_img)
         # img1, x_location = process_image(yellow_img)
-        img_lines, lines = processor.find_line(warp_img)
-        rights_ht, rights_ab = processor.get_right_lines(lines, img_lines, draw_mean_line=True)
+        lines_img, lines = processor.find_line(warp_img)
+        cv2.imshow('lines', lines_img)
+        rights_ht, rights_ab = processor.get_right_lines(lines, lines_img, draw_mean_line=True)
 
-        img_right = warp_img.copy()
-        processor.draw_line(img_right, rights_ht, 255)
-        cv2.imshow('rights', img_right)
+        rights_img = warp_img.copy()
+        processor.draw_line(rights_img, rights_ht, 255)
+        cv2.imshow('rights', rights_img)
 
         x_location = processor.cal_x_location(rights_ab)
         if x_location is not None:
