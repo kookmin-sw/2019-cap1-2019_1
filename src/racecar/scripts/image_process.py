@@ -18,7 +18,10 @@ class ImageProcessor:
         self.low_threshold = 300
         self.high_threshold = 500
 
-    def get_right_lines(self, lines, img, draw_mean_line=False):
+        self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+
+    @staticmethod
+    def get_right_lines(lines, img, draw_mean_line=False):
         if lines is None:
             return None, None
 
@@ -48,7 +51,8 @@ class ImageProcessor:
 
         return np.array(rights_ht), np.array(rights_ab)
 
-    def cal_x_location(self, lines_ab):
+    @staticmethod
+    def cal_x_location(lines_ab):
         if lines_ab is None or len(lines_ab) == 0:
             return None
 
@@ -64,12 +68,15 @@ class ImageProcessor:
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         # create mask using color range
-        img_mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
-        img_mask = cv2.bitwise_and(img, img, mask=img_mask)
-        cv2.imshow("mask", img_mask)
-        return img_mask
+        mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+        img_res = cv2.bitwise_and(img, img, mask=mask)
+        cv2.imshow("mask", img_res)
+        return img_res
 
-    def draw_line(self, img, lines, color=None):
+    @staticmethod
+    def draw_line(img, lines, color=None):
         if color is None:
             color = 255
         if lines is not None:
@@ -88,17 +95,18 @@ class ImageProcessor:
 
     def find_line(self, frame):
         # canny edge
-        img_canny = cv2.Canny(np.uint8(frame), self.low_threshold, self.high_threshold, apertureSize=5)
-        cv2.imshow("canny_line", img_canny)
+        # img_canny = cv2.Canny(np.uint8(frame), self.low_threshold, self.high_threshold, apertureSize=5)
+        # cv2.imshow("canny_line", img_canny)
 
         # find lines using houghlines and show them
-        lines = cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
+        lines = cv2.HoughLines(frame, 1, np.pi / 180, 200)
         img = frame.copy()
         self.draw_line(img, lines, 255)
         cv2.imshow("lines", img)
         return img, lines
 
-    def find_circle(self, frame):
+    @staticmethod
+    def find_circle(frame):
         # canny edge (for debug)
         # img_canny = cv2.Canny(np.uint8(img_graymask), 10, 20, apertureSize=3)
         # cv2.imshow("canny_circle", img_canny)
