@@ -20,6 +20,34 @@ class ImageProcessor:
 
         self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
 
+    def yellow_mask(self, frame, blurring=False):
+        if blurring:
+            img = cv2.GaussianBlur(frame, (5, 5), 0)
+        else:
+            img = frame
+
+        img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+        # create mask using color range
+        mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+        img_res = cv2.bitwise_and(img, img, mask=mask)
+        cv2.imshow("mask", img_res)
+        return img_res
+
+    def find_line(self, frame):
+        # canny edge
+        # img_canny = cv2.Canny(np.uint8(frame), self.low_threshold, self.high_threshold, apertureSize=5)
+        # cv2.imshow("canny_line", img_canny)
+
+        # find lines using houghlines and show them
+        lines = cv2.HoughLines(frame, 1, np.pi / 180, 200)
+        img = frame.copy()
+        self.draw_line(img, lines, 255)
+        cv2.imshow("lines", img)
+        return img, lines
+
     @staticmethod
     def get_right_lines(lines, img, draw_mean_line=False):
         if lines is None:
@@ -59,22 +87,6 @@ class ImageProcessor:
         y = 340
         return np.mean(lines_ab.T[0] * y + lines_ab.T[1])
 
-    def yellow_mask(self, frame, blurring=False):
-        if blurring:
-            img = cv2.GaussianBlur(frame, (5, 5), 0)
-        else:
-            img = frame
-
-        img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-        # create mask using color range
-        mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
-        img_res = cv2.bitwise_and(img, img, mask=mask)
-        cv2.imshow("mask", img_res)
-        return img_res
-
     @staticmethod
     def draw_line(img, lines, color=None):
         if color is None:
@@ -92,18 +104,6 @@ class ImageProcessor:
                     y2 = int(y0 - 1000 * (a))
 
                     cv2.line(img, (x1, y1), (x2, y2), color, 2)
-
-    def find_line(self, frame):
-        # canny edge
-        # img_canny = cv2.Canny(np.uint8(frame), self.low_threshold, self.high_threshold, apertureSize=5)
-        # cv2.imshow("canny_line", img_canny)
-
-        # find lines using houghlines and show them
-        lines = cv2.HoughLines(frame, 1, np.pi / 180, 200)
-        img = frame.copy()
-        self.draw_line(img, lines, 255)
-        cv2.imshow("lines", img)
-        return img, lines
 
     @staticmethod
     def find_circle(frame):
