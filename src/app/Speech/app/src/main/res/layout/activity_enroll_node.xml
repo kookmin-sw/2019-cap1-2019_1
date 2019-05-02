@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EnrollNode">
+
+    <RadioGroup
+        android:id="@+id/inOrOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/inDoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실내"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/outDoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실외"/>
+
+    </RadioGroup>>
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:onClick="testButton" />
 
     <Button
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go Main"
-        android:onClick="returnButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:onClick="returnButton" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

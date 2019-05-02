@@ -1,7 +1,11 @@
 package com.google.cloud.android.speech;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +21,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -25,12 +35,17 @@ import java.util.Locale;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Node;
 
 public class test extends FragmentActivity implements OnMapReadyCallback {
 
@@ -46,10 +61,18 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
 
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 11;
 
+    //위치
+    LatLng initLatLng = new LatLng(0.0, 0.0);
+    public Double latitude = initLatLng.latitude;
+    public Double longitude = initLatLng.longitude;
+
+    //
+    public String netResponse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_set_destination);
 
         btnMyLocation = (Button)findViewById(R.id.button);
         editText = (EditText)findViewById(R.id.editText);
@@ -73,9 +96,33 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }
+        getLocation();
     }
 
+    //////////////////////////////////////
+    public void getLocation(){
+        long minTime = 10000;
+        float minDistance = 0;
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+    }
 
+    ///////////////////////////////
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        sendPost("http://13.125.251.226:5000/insert", latitude, longitude);
+
+        //통신
+        Toast.makeText(test.this,
+                "통신성공",
+                Toast.LENGTH_LONG).show();
+        //finish();
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -85,18 +132,20 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         gps = new GPSTracker(test.this);
         mMarkerList = new ArrayList<Marker>();
 
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 String address = getAddress(latLng);
-                Double latitude = latLng.latitude;
-                Double longitude = latLng.longitude;
+                latitude = latLng.latitude;
+                longitude = latLng.longitude;
 
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(latLng);
@@ -135,8 +184,8 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 if (gps.canGetLocation()) {
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude();
                     Toast.makeText(test.this,
                             "latitude :" + String.valueOf(latitude) + "\nlongitude :" + String.valueOf(longitude),
                             Toast.LENGTH_LONG).show();
@@ -158,9 +207,9 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
         mapSettings.setRotateGesturesEnabled(true);
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng first = new LatLng(latitude, longitude);
+        mMap.addMarker(new MarkerOptions().position(first).title("Marker in here"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(first));
     }
 
     private static final int LOCATION_REQUEST_CODE = 101;
@@ -224,4 +273,158 @@ public class test extends FragmentActivity implements OnMapReadyCallback {
             return false;
         }
     }
+
+
+    //통신 Code
+    public void sendPost(final String url_, final double latitude, final  double longitude) {
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(url_);
+                    Log.e("hey","hey");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+//                    JSONObject jsonParam = new JSONObject();
+//                    jsonParam.put("node_id",'1');
+//                    jsonParam.put("node_type","CORNER");
+//                    jsonParam.put("node_name","HOME");
+//                    jsonParam.put("node_longitude",15);
+//                    jsonParam.put("node_latitute",10);
+//                    jsonParam.put("node_neighbors","1/2/3");
+
+                    //노드 json넣기
+                    Node node1=new Node(1,latitude, longitude, "CORNER", "1/2/3", "BUILDING");
+                    //Node node2=new Node(2,1.5, 2.1, "GREENLIGHT", "1/2/3", "HOME");
+                    //Node node3=new Node(3,1.3, 2.3, "CORNER", "1/2/3", "TOILET");
+
+                    ArrayList<Node> nodeList=new ArrayList<>();
+                    nodeList.add(node1);
+                    //nodeList.add(node2);
+                    //nodeList.add(node3);
+
+                    JSONObject sendJsonObject=new JSONObject();
+
+                    JSONArray jArray=new JSONArray();
+                    for(int i=0; i<nodeList.size(); ++i)
+                    {
+                        JSONObject nodeJsonObject=new JSONObject();
+                        //nodeJsonObject.put("node_id",nodeList.get(i).getNode_id());
+                        nodeJsonObject.put("pos_x",nodeList.get(i).getPos_x());
+                        nodeJsonObject.put("pos_y",nodeList.get(i).getPos_y());
+                        //nodeJsonObject.put("node_type",nodeList.get(i).getNode_type());
+                        //nodeJsonObject.put("node_neighbors",nodeList.get(i).getNode_neighbors());
+                        //nodeJsonObject.put("node_name",nodeList.get(i).getNode_name());
+                        jArray.put(nodeJsonObject);
+                    }
+
+                    //User 휴대폰 고유넘버
+                    JSONObject userJsonObject=new JSONObject();
+                    //userJsonObject.put("user_phonenumber","0001");
+
+                    //sendJsonObject.put("User",userJsonObject);
+                    sendJsonObject.put("Node",jArray);
+
+                    ////
+
+                    Log.i("JSON", sendJsonObject.toString());
+                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+
+                    //여기서 보내는듯
+                    os.writeBytes(sendJsonObject.toString());
+
+                    os.flush();
+                    os.close();
+
+                    //여기서부터 Response Code
+                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("MSG" , conn.getResponseMessage());
+
+                    InputStream is = null;
+
+                    if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                        is = conn.getInputStream();// is is inputstream
+                    } else {
+                        is = conn.getErrorStream();
+                    }
+
+
+                    try {
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                                is, "UTF-8"), 8);
+                        StringBuilder sb = new StringBuilder();
+                        String line = null;
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        is.close();
+                        String response = sb.toString();
+                        //HERE YOU HAVE THE VALUE FROM THE SERVER
+                        Log.d("Your Data", response);
+                    } catch (Exception e) {
+                        Log.e("Buffer Error", "Error converting result " + e.toString());
+                    }
+
+
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+    }
+    //Node code
+    class Node
+    {
+        private int node_id;
+        private String node_type;
+        private String node_name;
+        private double pos_x;
+        private double pos_y;
+        private String node_neighbors;
+
+        public Node(int node_id_,double pos_x_, double pos_y_, String node_type_, String node_neighbors_, String node_name_)
+        {
+            node_id=node_id_;
+            node_type=node_type_;
+            node_name=node_name_;
+            pos_x=pos_x_;
+            pos_y=pos_y_;
+            node_neighbors=node_neighbors_;
+        }
+
+        public int getNode_id() {
+            return node_id;
+        }
+
+        public String getNode_type() {
+            return node_type;
+        }
+
+        public String getNode_name() {
+            return node_name;
+        }
+
+        public double getPos_x() {
+            return pos_x;
+        }
+
+        public double getPos_y() {
+            return pos_y;
+        }
+
+        public String getNode_neighbors() {
+            return node_neighbors;
+        }
+    }
+
 }
