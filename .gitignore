@@ -25,11 +25,11 @@ src/app/Speech/gen/
 src/app/Speech/out/
 
 # Gradle files
-src/app/Speech/.gradle
-src/app/Speech/.gradle/*
-src/app/Speech/build/*
+/src/app/Speech/.gradle
+/src/app/Speech/.gradle/*
+/src/app/Speech/build/*
 
-src/app/Speech/app/build/*
+/src/app/Speech/app/build/*
 
 # Local configuration file (sdk path, etc)
 src/app/Speech/local.properties
