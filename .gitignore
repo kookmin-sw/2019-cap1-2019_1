@@ -28,6 +28,7 @@ src/app/Speech/out/
 src/app/Speech/.gradle
 src/app/Speech/.gradle/*
 src/app/Speech/build/*
+
 src/app/Speech/app/build/*
 
 # Local configuration file (sdk path, etc)

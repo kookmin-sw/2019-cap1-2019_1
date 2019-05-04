@@ -382,4 +382,9 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         Intent intent = new Intent(this, test.class);
         startActivity(intent);
     }
+
+    public void onClickSetting(View v){
+        Intent intent = new Intent(this, Setting.class);
+        startActivity(intent);
+    }
 }

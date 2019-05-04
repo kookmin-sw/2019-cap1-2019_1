@@ -2,6 +2,7 @@ package com.google.cloud.android.speech;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -20,7 +21,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import android.content.SharedPreferences;
+
 public class EnrollNode extends AppCompatActivity implements OnMapReadyCallback {
+
+    Network network;
 
     RadioButton inDoor;
     RadioButton outDoor;
@@ -53,6 +58,8 @@ public class EnrollNode extends AppCompatActivity implements OnMapReadyCallback 
         //RadioButton
         inDoor = (RadioButton) findViewById(R.id.inDoor);
         outDoor = (RadioButton) findViewById(R.id.outDoor);
+
+        network = new Network();
     }
 
     protected void onStart() {
@@ -97,12 +104,21 @@ public class EnrollNode extends AppCompatActivity implements OnMapReadyCallback 
         finish();
     }
 
-    public void testButton(View v){
-        if(inDoor.isChecked()){
-            Toast.makeText(this, "실내", Toast.LENGTH_SHORT).show();
-        }
-        else if(outDoor.isChecked()){
-            Toast.makeText(this, "실외", Toast.LENGTH_SHORT).show();
-        }
+
+    public void nodeInputNum(int n){
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putInt("num", n);
+        ed.commit();
+    }
+
+    public int nodeOutputNum(){
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        return pref.getInt("num", 0);
+    }
+
+    public void sendButton(View v){
+        boolean door = outDoor.isChecked();
+        network.sendPost("http://13.125.251.226:5000/insert", latitude, longitude);
     }
 }
