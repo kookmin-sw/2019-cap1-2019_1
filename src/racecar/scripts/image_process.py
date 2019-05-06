@@ -56,7 +56,7 @@ class ImageProcessor:
 
     def find_line(self, edges_img):
         # find lines using houghlines and show them
-        lines = cv2.HoughLines(edges_img, 1, np.pi / 180, 150)
+        lines = cv2.HoughLines(edges_img, 2, np.pi / 180, 150)
         img = edges_img.copy()
         self.draw_lines(img, lines, 255)
         return img, lines
