@@ -3,21 +3,25 @@ import numpy as np
 from sklearn.cluster import DBSCAN
 
 from slidewindow import SlideWindow
-from warper import Warper
 
 
 class ImageProcessor:
-    def __init__(self):
-        self.warper = Warper()
+    def __init__(self, clustering_op='theta'):
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([15, 100, 30])
+        self.lower_color = np.array([15, 50, 20])
         self.upper_color = np.array([30, 255, 255])
 
         self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
 
-        self.dbscan = DBSCAN(eps=10, min_samples=3)
+        self.clustering_op = clustering_op
+        eps = 0.0
+        if clustering_op == 'pos':
+            eps = 5
+        elif clustering_op == 'theta':
+            eps = np.pi / 12
+        self.dbscan = DBSCAN(eps=eps, min_samples=3)
 
     def yellow_mask(self, frame, blurring=False, morphology=False):
         if blurring:
@@ -45,17 +49,25 @@ class ImageProcessor:
         self.draw_line(img, lines, 255)
         return img, lines
 
-    def clustering(self, lines, img):
+    def clustering(self, lines, img, op='pos'):
         if lines is None:
             return
         cartesian = []
         for line in lines:
-            r = line[0][0]
-            theta = line[0][1]
-            x = np.cos(theta) * r
-            y = np.sin(theta) * r
-            cartesian.append([x, y])
+            if self.clustering_op == 'pos':
+                r = line[0][0]
+                theta = line[0][1]
+                x = np.cos(theta) * r
+                y = np.sin(theta) * r
+                cartesian.append([x, y])
+            elif self.clustering_op == 'theta':
+                theta = line[0][1] - np.pi / 2
+                if theta < 0:
+                    theta += np.pi
+                cartesian.append(theta)
         cartesian = np.array(cartesian)
+        if self.clustering_op == 'theta':
+            cartesian = cartesian.reshape(-1, 1)
 
         self.dbscan.fit(cartesian)
         print(self.dbscan.labels_)
@@ -143,12 +155,10 @@ class ImageProcessor:
         img = frame.copy()
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
 
-        print(circles)
         # show circles
         if circles is not None:
             circles = np.uint16(np.around(circles))
             for i in circles[0, :]:
                 cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
                 cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
-        cv2.imshow("circles", img)
         return img, circles

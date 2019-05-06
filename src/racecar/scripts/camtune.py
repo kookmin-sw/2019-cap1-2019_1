@@ -33,7 +33,7 @@ from ackermann_msgs.msg import AckermannDriveStamped
 warper = Warper()
 slidewindow = SlideWindow()
 pidcal = PidCal()
-processor = ImageProcessor()
+processor = ImageProcessor(clustering_op='theta')
 
 q1 = que.Queue()
 bridge = CvBridge()
@@ -73,22 +73,24 @@ def main():
         width = cv_image.shape[1]
         global height
         height = cv_image.shape[0]
-        # cv2.imshow('origin', cv_image)
+        cv2.imshow('origin', cv_image)
         yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
+        # gray_img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
         # edges_img = cv2.Canny(gray_img, 300, 500, apertureSize=5)
         # cv2.imshow('edges', edges_img)
         # warp_img = warper.warp(edges_img)
         # cv2.imshow('warp', warp_img)
         warp_img = warper.warp(gray_img)
         cv2.imshow('warp', warp_img)
-        edges_img = cv2.Canny(warp_img, 300, 500, apertureSize=5)
+        # edges_img = cv2.Canny(warp_img, 300, 500, apertureSize=5)
+        edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
         cv2.imshow('edges', edges_img)
         # img1, x_location = process_image(yellow_img)
         lines_img, lines = processor.find_line(edges_img)
         cv2.imshow('lines', lines_img)
         cluster_img = edges_img.copy()
-        processor.clustering(lines, cluster_img)
+        processor.clustering(lines, cluster_img, op='theta')
         cv2.imshow('cluster', cluster_img)
         # rights_ht, rights_ab = processor.get_right_lines(lines, lines_img, draw_mean_line=True)
 
@@ -103,7 +105,9 @@ def main():
         #     cv2.imshow('x_location', img_x_location)
         #     x_location += width * 0.175
         #
-        # img_circles, circles = processor.find_circle(warp_img)
+        img_circles, circles = processor.find_circle(warp_img)
+        cv2.imshow("circles", img_circles)
+
         # if x_location is not None:
         #     pid = round(pidcal.pid_control(int(x_location)), 6)
         #     print(pid)
