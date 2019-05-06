@@ -5,6 +5,18 @@ from sklearn.cluster import DBSCAN
 from slidewindow import SlideWindow
 
 
+def get_right_line(lines):
+    if lines is None:
+        return None
+    max_value = 0
+    max_idx = 0
+    for i in range(len(lines)):
+        if abs(lines[i][0][0]) > max_value:
+            max_value = abs(lines[i][0][0])
+            max_idx = i
+    return lines[max_idx]
+
+
 class ImageProcessor:
     def __init__(self, clustering_op='theta'):
         self.slidewindow = SlideWindow()
@@ -97,6 +109,8 @@ class ImageProcessor:
             return None
 
         n = max(self.dbscan.labels_)
+        if n == -1:
+            return None
         count = np.zeros(n + 1, dtype=int)
         for i in self.dbscan.labels_:
             if i != -1:

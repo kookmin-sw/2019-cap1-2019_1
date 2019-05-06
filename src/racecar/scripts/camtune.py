@@ -106,6 +106,11 @@ def main():
         processor.draw_lines(main_lines_img, main_lines)
         cv2.imshow('main_lines', main_lines_img)
 
+        right_line_img = preprocessed_img.copy()
+        right_line = get_right_line(main_lines)
+        processor.draw_line(right_line_img, right_line)
+        cv2.imshow('right_line', right_line_img)
+
         # x_location = processor.cal_x_location(rights_ab)
         # if x_location is not None:
         #     img_x_location = preprocessed_img.copy()
