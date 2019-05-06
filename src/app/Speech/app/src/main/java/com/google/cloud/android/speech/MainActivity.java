@@ -17,7 +17,6 @@
 package com.google.cloud.android.speech;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -25,6 +24,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
@@ -42,7 +42,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
+import static android.speech.tts.TextToSpeech.ERROR;
 
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
 
@@ -93,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private RecyclerView mRecyclerView;
 
     public String s; // 문구
+
+    private TextToSpeech tts; //Text To Speech
+
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -129,6 +134,22 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 savedInstanceState.getStringArrayList(STATE_RESULTS);
         mAdapter = new ResultAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
+
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+           @Override
+           public void onInit(int status){
+               if(status == TextToSpeech.SUCCESS){
+                   int result = tts.setLanguage(Locale.KOREA);
+                   if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                       Toast.makeText(MainActivity.this, "이 언어는 지원하지 않습니다.", Toast.LENGTH_SHORT).show();
+                   }
+                   else{
+                       tts.setPitch(1.0f);
+                       tts.setSpeechRate(1.0f);
+                   }
+               }
+           }
+        });
     }
 
     @Override
@@ -149,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
                     REQUEST_RECORD_AUDIO_PERMISSION);
         }
+
     }
 
     @Override
@@ -163,6 +185,16 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
         super.onStop();
     }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+        }
+    }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -379,12 +411,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     }
 
     public void onClickTest(View v){
-        Intent intent = new Intent(this, test.class);
-        startActivity(intent);
-    }
+        //tts test
+        tts.speak("음성인식 테스트 입니다.",TextToSpeech.QUEUE_FLUSH, null, null);
 
-    public void onClickSetting(View v){
-        Intent intent = new Intent(this, Setting.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, test.class);
+        //startActivity(intent);
     }
 }
