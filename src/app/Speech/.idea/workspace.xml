@@ -87,7 +87,7 @@
     <session id="-1736443896">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
@@ -102,51 +102,83 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="6" />
+          <entry key="class" value="11" />
           <entry key="gradle" value="4" />
-          <entry key="java" value="35" />
+          <entry key="java" value="43" />
           <entry key="json" value="3" />
-          <entry key="xml" value="42" />
+          <entry key="xml" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="6" />
+          <entry key="CLASS" value="11" />
           <entry key="Groovy" value="4" />
-          <entry key="JAVA" value="35" />
+          <entry key="JAVA" value="43" />
           <entry key="JSON" value="3" />
-          <entry key="XML" value="42" />
+          <entry key="XML" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="91" />
-          <entry key="java" value="4846" />
-          <entry key="xml" value="1240" />
+          <entry key="java" value="7238" />
+          <entry key="xml" value="1371" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="91" />
-          <entry key="JAVA" value="4846" />
-          <entry key="XML" value="1240" />
+          <entry key="JAVA" value="7238" />
+          <entry key="XML" value="1371" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="418" column="5" lean-forward="true" selection-start-line="418" selection-start-column="5" selection-end-line="418" selection-end-column="5" />
+            <state relative-caret-position="2657">
+              <caret line="422" column="43" lean-forward="true" selection-start-line="422" selection-start-column="43" selection-end-line="422" selection-end-column="43" />
               <folding>
                 <element signature="e#0#13154#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#4654#4825#0" expanded="true" />
-                <element signature="e#4824#4825#0" expanded="true" />
+                <element signature="e#8762#9836#0" expanded="true" />
+                <element signature="e#9835#9836#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/TTS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+              <folding>
+                <element signature="e#898#1561#0" expanded="true" />
+                <element signature="e#1560#1561#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tts.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/VoiceRecorder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-228">
+              <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -161,12 +193,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+            <state relative-caret-position="-323">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+              <folding>
+                <element signature="e#2092#2132#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/SpeechService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3761">
+              <caret line="271" column="16" selection-start-line="271" selection-start-column="16" selection-end-line="271" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -182,19 +229,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hearing</find>
-      <find>show</find>
-      <find>mvoicecallb</find>
-      <find>stopvoice</find>
-      <find>mlisteners</find>
-      <find>recognize</find>
-      <find>recognizeresponse</find>
-      <find>onspeechrecogn</find>
-      <find>mresults</find>
-      <find>resultadapter</find>
-      <find>madapter</find>
-      <find>showstatus</find>
-      <find>voicerecorder</find>
       <find>mapsacti</find>
       <find>test</find>
       <find>setD</find>
@@ -212,6 +246,19 @@
       <find>gps_provider</find>
       <find>check</find>
       <find>send</find>
+      <find>outState</find>
+      <find>bundle</find>
+      <find>viewholder</find>
+      <find>mspeechservice</find>
+      <find>onvoice</find>
+      <find>startvoicerecorder</find>
+      <find>stopvoic</find>
+      <find>onrequestpermissionsresult</find>
+      <find>recognize</find>
+      <find>resultadapter</find>
+      <find>mresult</find>
+      <find>mvoicecall</find>
+      <find>madapter</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -3640,12 +3687,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/Network.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/EnrollNode.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_enroll_node.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_tts.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/TTS.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -3824,11 +3873,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="781" height="830" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.445215" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.5492372" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -3840,7 +3888,7 @@
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32954547" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.38002774" side_tool="true" weight="0.32471263" />
-      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.6199723" weight="0.23850575" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.6199723" weight="0.2413793" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49932885" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="8" />
@@ -3853,7 +3901,7 @@
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.445215" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.5492372" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -3865,7 +3913,7 @@
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32954547" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.38002774" side_tool="true" weight="0.32471263" />
-      <window_info active="true" anchor="bottom" id="Build" order="5" sideWeight="0.6199723" visible="true" weight="0.23850575" />
+      <window_info active="true" anchor="bottom" id="Build" order="5" sideWeight="0.6199723" visible="true" weight="0.2413793" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49932885" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="8" />
@@ -3880,57 +3928,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java</url>
-          <line>293</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java</url>
-          <line>274</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MessageDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.android/build-cache/c0844ff691296c65d45d3c3949e9c684a82fc836/output/jars/classes.jar!/android/support/v7/widget/RecyclerView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="5844" column="26" selection-start-line="5844" selection-start-column="26" selection-end-line="5844" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.android/build-cache/2cbc547270f2cd0a35e017df5c63c6fe5554aed4/output/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="101" column="58" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.android/build-cache/ee1da32e481006c1ff7df8c071cf3f95eade2d23/output/jars/classes.jar!/android/support/v4/app/ActivityCompat.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1957">
           <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/VoiceRecorder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1900">
-          <caret line="119" column="34" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -3959,13 +3961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="489" column="19" selection-start-line="489" selection-start-column="19" selection-end-line="489" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-25/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-344">
-          <caret line="560" column="19" selection-start-line="560" selection-start-column="19" selection-end-line="560" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -4153,13 +4148,6 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/SpeechService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5073">
-          <caret line="352" column="34" selection-start-line="352" selection-start-column="34" selection-end-line="352" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/raw/credential.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -4190,15 +4178,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java">
+    <entry file="jar://$USER_HOME$/.android/build-cache/1d7c3f7c25e89bfadbeee8b015c20fd20e718c12/output/jars/classes.jar!/android/support/v4/app/FragmentActivity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="418" column="5" lean-forward="true" selection-start-line="418" selection-start-column="5" selection-end-line="418" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="159" column="19" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-25/android/view/MenuInflater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/2cbc547270f2cd0a35e017df5c63c6fe5554aed4/output/jars/classes.jar!/android/support/v7/app/AppCompatDelegate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/2cbc547270f2cd0a35e017df5c63c6fe5554aed4/output/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="82" column="44" lean-forward="true" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
           <folding>
-            <element signature="e#0#13154#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#4654#4825#0" expanded="true" />
-            <element signature="e#4824#4825#0" expanded="true" />
+            <element signature="e#2865#2866#0" expanded="true" />
+            <element signature="e#2924#2925#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-25/android/content/ContextWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="646" column="16" selection-start-line="646" selection-start-column="16" selection-end-line="646" selection-end-column="16" />
+          <folding>
+            <element signature="e#18589#18590#0" expanded="true" />
+            <element signature="e#18630#18631#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4206,8 +4224,74 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+        <state relative-caret-position="-323">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding>
+            <element signature="e#2092#2132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/VoiceRecorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-228">
+          <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/SpeechService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3761">
+          <caret line="271" column="16" selection-start-line="271" selection-start-column="16" selection-end-line="271" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tts.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-25/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="560" column="19" selection-start-line="560" selection-start-column="19" selection-end-line="560" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/c0844ff691296c65d45d3c3949e9c684a82fc836/output/jars/classes.jar!/android/support/v7/widget/RecyclerView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1348">
+          <caret line="5844" column="26" selection-start-line="5844" selection-start-column="26" selection-end-line="5844" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/TTS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+          <folding>
+            <element signature="e#898#1561#0" expanded="true" />
+            <element signature="e#1560#1561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/cloud/android/speech/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2657">
+          <caret line="422" column="43" lean-forward="true" selection-start-line="422" selection-start-column="43" selection-end-line="422" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#13154#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#8762#9836#0" expanded="true" />
+            <element signature="e#9835#9836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -24,6 +24,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
+
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -44,8 +45,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static android.speech.tts.TextToSpeech.ERROR;
-
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
 
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
@@ -55,10 +54,11 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
 
     private SpeechService mSpeechService;
-
     private VoiceRecorder mVoiceRecorder;
+
     private final VoiceRecorder.Callback mVoiceCallback = new VoiceRecorder.Callback() {
 
+        //voiceRecorder Overriding
         @Override
         public void onVoiceStart() {
             showStatus(true);
@@ -94,9 +94,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private ResultAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    public String s; // 문구
+    public boolean[][] check;
 
-    private TextToSpeech tts; //Text To Speech
+    public String s; // 문구
+    public String prev;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //STT
         final Resources resources = getResources();
         final Resources.Theme theme = getTheme();
         mColorHearing = ResourcesCompat.getColor(resources, R.color.status_hearing, theme);
@@ -135,21 +137,16 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         mAdapter = new ResultAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
 
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-           @Override
-           public void onInit(int status){
-               if(status == TextToSpeech.SUCCESS){
-                   int result = tts.setLanguage(Locale.KOREA);
-                   if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
-                       Toast.makeText(MainActivity.this, "이 언어는 지원하지 않습니다.", Toast.LENGTH_SHORT).show();
-                   }
-                   else{
-                       tts.setPitch(1.0f);
-                       tts.setSpeechRate(1.0f);
-                   }
-               }
-           }
-        });
+        //
+        check = new boolean[5][];
+        check[0] = new boolean[2];
+        check[1] = new boolean[1];
+        check[2] = new boolean[1];
+        check[3] = new boolean[1];
+        check[4] = new boolean[1];
+
+        //
+        prev = "";
     }
 
     @Override
@@ -159,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         // Prepare Cloud Speech API
         bindService(new Intent(this, SpeechService.class), mServiceConnection, BIND_AUTO_CREATE);
 
+        //음성인식 사용해도 되는지 확인창
         // Start listening to voices
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -186,16 +184,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         super.onStop();
     }
 
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        if(tts != null){
-            tts.stop();
-            tts.shutdown();
-        }
-    }
-
-
+    //종료 되기 전에 데이터 저장
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -290,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                                     mText.setText(null);
                                     mAdapter.addResult(text);
                                     //s = text;
-                                    recognizeSpeaking(text);
+                                    recognizeSpeaking(text); // SST 기능 활성화
                                     mRecyclerView.smoothScrollToPosition(0);
                                 } else {
                                     mText.setText(text);
@@ -309,7 +298,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             super(inflater.inflate(R.layout.item_result, parent, false));
             text = (TextView) itemView.findViewById(R.id.text);
         }
-
     }
 
     private static class ResultAdapter extends RecyclerView.Adapter<ViewHolder> {
@@ -350,40 +338,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     ////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
-    //Yong tae Zone//////////////////////////////////////////////////////////////
-
-    public void recognizeSpeaking(String s){
-
-        String setDestinationString = "목적지 설정";
-        String cancelPathString = "경로 취소";
-        String enrollNodeString = "노드 등록";
-        String modifiedNodeString = "노드 수정";
-        String privacyLocationString = "이름 등록";
-
-        if(s.contentEquals(setDestinationString)){
-            Intent intent = new Intent(this, SetDestination.class);
-            startActivity(intent);
-        }
-        else if(s.contentEquals(cancelPathString)){
-            Intent intent = new Intent(this, CancelPath.class);
-            startActivity(intent);
-        }
-        else if(s.contentEquals(enrollNodeString)){
-            Intent intent = new Intent(this, EnrollNode.class);
-            startActivity(intent);
-        }
-        else if(s.contentEquals(modifiedNodeString)){
-            Intent intent = new Intent(this, ModifiedNode.class);
-            startActivity(intent);
-        }
-        else if(s.contentEquals(privacyLocationString)){
-            Intent intent = new Intent(this, PrivacyLocation.class);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(this, "메뉴에 없는 말이다.", Toast.LENGTH_SHORT).show(); //음성인식 테스트
-        }
-    }
+    // Making UI //////////////////////////////////////////////////////////////
 
     public void onClickSetDestination(View v){
         Intent intent = new Intent(this, SetDestination.class);
@@ -412,9 +367,93 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     public void onClickTest(View v){
         //tts test
-        tts.speak("음성인식 테스트 입니다.",TextToSpeech.QUEUE_FLUSH, null, null);
+        textToSpeech("테스트 화면 입니다.");
 
         //Intent intent = new Intent(this, test.class);
         //startActivity(intent);
+    }
+
+    public void textToSpeech(String sentence){
+        Intent intent = new Intent(this, TTS.class);
+
+        intent.putExtra("sentence", sentence);
+
+        startActivity(intent);
+    }
+
+    public void sleep(int time){
+        try{
+            Thread.sleep(time);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void recognizeSpeaking(String sentence){
+
+        switch(sentence){
+            case "목적지 설정" : check[0][0] = true; break;
+                case "테스트" : check[0][1] = true; break;
+
+            case "경로 취소" :  check[1][0] = true; break;
+
+
+            case "노드 등록" : check[2][0] = true; break;
+
+
+            case "노드 수정" : check[3][0] = true; break;
+
+
+            case "이름 등록" : check[4][0] = true; break;
+
+        }
+
+//        String setDestinationString = "목적지 설정";
+//        String cancelPathString = "경로 취소";
+//        String enrollNodeString = "노드 등록";
+//        String modifiedNodeString = "노드 수정";
+//        String privacyLocationString = "이름 등록";
+
+
+        if(check[0][0]){
+            //Intent intent = new Intent(this, SetDestination.class);
+            //startActivity(intent);
+            Toast.makeText(MainActivity.this, "목적지 설정 OK",  Toast.LENGTH_SHORT).show();
+
+            mSpeechService.finishRecognizing();
+
+            textToSpeech("테스트라고 외쳐보세요");
+
+            mSpeechService.startRecognizing(mVoiceRecorder.getSampleRate());
+            check[0][0] = false;
+        }
+        else if(check[0][1]){
+            Toast.makeText(MainActivity.this, "테스트 OK",  Toast.LENGTH_SHORT).show();
+            check[0][0] = false; check[0][1] = false;
+        }
+        else if(check[1][0]){
+            Intent intent = new Intent(this, CancelPath.class);
+            startActivity(intent);
+            check[1][0] = false;
+        }
+        else if(check[2][0]){
+            Intent intent = new Intent(this, EnrollNode.class);
+            startActivity(intent);
+            check[2][0] = false;
+        }
+        else if(check[3][0]){
+            Intent intent = new Intent(this, ModifiedNode.class);
+            startActivity(intent);
+            check[3][0] = false;
+        }
+        else if(check[4][0]){
+            Intent intent = new Intent(this, PrivacyLocation.class);
+            startActivity(intent);
+            check[4][0] = false;
+        }
+        else{
+            Toast.makeText(this, "메뉴에 없는 말이다.", Toast.LENGTH_SHORT).show(); //음성인식 테스트
+        }
+
     }
 }

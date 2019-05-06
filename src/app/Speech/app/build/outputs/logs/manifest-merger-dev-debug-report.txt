@@ -66,10 +66,10 @@ MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\
 		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:18:9-43
 	android:theme
 		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:21:9-44
-activity#com.google.cloud.android.speech.Setting
-ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-54
+activity#com.google.cloud.android.speech.TTS
+ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-50
 	android:name
-		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:19-42
+		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:19-38
 meta-data#com.google.android.geo.API_KEY
 ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:32:9-34:71
 	android:value

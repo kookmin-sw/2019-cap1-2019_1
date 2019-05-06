@@ -32,12 +32,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_play_arrow_grey600_48.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\notification_bg_normal.9.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\quantum_ic_art_track_grey600_48.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_art_track_grey600_48.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\notification_bg_normal.9.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\ic_audiotrack_dark.png",
@@ -76,24 +76,24 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_star_black_36dp.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\notification_bg_normal.9.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\quantum_ic_replay_30_grey600_36.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_replay_30_grey600_36.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\powered_by_google_dark.png",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_star_half_black_36dp.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_36dp.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\ic_vol_type_tv_dark.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\08b0ad0765a278855e2b0bdbdeddfea20cfab7dd\\output\\res\\drawable-hdpi-v4\\ic_vol_type_tv_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_star_half_black_36dp.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
@@ -188,12 +188,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_skip_next_grey600_36.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\quantum_ic_skip_previous_grey600_36.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_skip_previous_grey600_36.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png",
@@ -284,12 +284,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\9bbf9d170d9ba9091c47b0f1dcc03d0cf8341593\\output\\res\\drawable-hdpi-v4\\powered_by_google_light.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_star_black_48dp.png",
@@ -332,12 +332,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\cast_abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_015.png",
@@ -364,12 +364,12 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\3add5a0fda8462faef76c864a4c4c3bfe84ec4a8\\output\\res\\drawable-hdpi-v4\\quantum_ic_replay_white_24.png"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png",
