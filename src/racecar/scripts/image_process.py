@@ -101,10 +101,11 @@ class ImageProcessor:
         for i in self.dbscan.labels_:
             if i != -1:
                 count[i] += 1
-        main_label = count.argmax(count)
+
+        main_label = np.argmax(count)
 
         main_lines = []
-        for i in range(lines):
+        for i in range(len(lines)):
             if self.dbscan.labels_[i] == main_label:
                 main_lines.append(lines[i])
         return main_lines
