@@ -86,18 +86,11 @@ def main():
         # edges_img = cv2.Canny(warp_img, 300, 500, apertureSize=5)
         edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
         cv2.imshow('edges', edges_img)
-        # img1, x_location = process_image(yellow_img)
-        lines_img, lines = processor.find_line(edges_img)
         cv2.imshow('lines', lines_img)
         cluster_img = edges_img.copy()
         processor.clustering(lines, cluster_img, op='theta')
         cv2.imshow('cluster', cluster_img)
-        # rights_ht, rights_ab = processor.get_right_lines(lines, lines_img, draw_mean_line=True)
 
-        # rights_img = warp_img.copy()
-        # processor.draw_line(rights_img, rights_ht, 255)
-        # cv2.imshow('rights', rights_img)
-        #
         # x_location = processor.cal_x_location(rights_ab)
         # if x_location is not None:
         #     img_x_location = warp_img.copy()

@@ -92,36 +92,6 @@ class ImageProcessor:
 
             cv2.line(img, (x1, y1), (x2, y2), color, 2)
 
-    @staticmethod
-    def get_right_lines(lines, img, draw_mean_line=False):
-        if lines is None:
-            return None, None
-
-        rights_ht = []
-        rights_ab = []
-        r = lines.T[0]
-        theta = lines.T[1]
-        a = - np.tan(theta)
-        b = r / np.cos(theta)
-        top = 0
-        mid = img.shape[0] / 2
-        bot = img.shape[0]
-        mean_top = np.mean(a * top + b)
-        mean_mid = np.mean(a * mid + b)
-        mean_bot = np.mean(a * bot + b)
-
-        if draw_mean_line:
-            cv2.line(img, (mean_top, top), (mean_bot, bot), 128, 2)
-            cv2.imshow('mean_line', img)
-
-        for line in lines:
-            slope = - np.tan(line[0][1])
-            bias = line[0][0] / np.cos(line[0][1])
-            if (mean_top < slope * top + bias) and (mean_mid < slope * mid + bias) and (mean_bot < slope * bot + bias):
-                rights_ht.append(line)
-                rights_ab.append([slope, bias])
-
-        return np.array(rights_ht), np.array(rights_ab)
 
     @staticmethod
     def cal_x_location(lines_ab):
