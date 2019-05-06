@@ -17,7 +17,7 @@ class ImageProcessor:
 
         self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
 
-        self.dbscan = DBSCAN(eps=7, min_samples=3)
+        self.dbscan = DBSCAN(eps=10, min_samples=3)
 
     def yellow_mask(self, frame, blurring=False):
         if blurring:
@@ -37,7 +37,7 @@ class ImageProcessor:
 
     def find_line(self, edges_img):
         # find lines using houghlines and show them
-        lines = cv2.HoughLines(edges_img, 1, np.pi / 180, 200)
+        lines = cv2.HoughLines(edges_img, 1, np.pi / 180, 100)
         img = edges_img.copy()
         self.draw_line(img, lines, 255)
         return img, lines
@@ -55,7 +55,11 @@ class ImageProcessor:
         cartesian = np.array(cartesian)
 
         self.dbscan.fit(cartesian)
-        step = 128 / np.max(self.dbscan.labels_)
+        print(self.dbscan.labels_)
+        if max(self.dbscan.labels_) == 0:
+            step = 0
+        else:
+            step = 128 / np.max(self.dbscan.labels_)
         for i in range(len(lines)):
             if self.dbscan.labels_[i] == -1:
                 continue
@@ -136,6 +140,7 @@ class ImageProcessor:
         img = frame.copy()
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
 
+        print(circles)
         # show circles
         if circles is not None:
             circles = np.uint16(np.around(circles))
