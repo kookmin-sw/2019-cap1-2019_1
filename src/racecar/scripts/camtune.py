@@ -74,7 +74,7 @@ def main():
         global height
         height = cv_image.shape[0]
         # cv2.imshow('origin', cv_image)
-        yellow_img = processor.yellow_mask(cv_image, blurring=False)
+        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
         # edges_img = cv2.Canny(gray_img, 300, 500, apertureSize=5)
         # cv2.imshow('edges', edges_img)

@@ -19,7 +19,7 @@ class ImageProcessor:
 
         self.dbscan = DBSCAN(eps=10, min_samples=3)
 
-    def yellow_mask(self, frame, blurring=False):
+    def yellow_mask(self, frame, blurring=False, morphology=False):
         if blurring:
             img = cv2.GaussianBlur(frame, (5, 5), 0)
         else:
@@ -29,8 +29,11 @@ class ImageProcessor:
 
         # create mask using color range
         mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+
+        if morphology:
+            mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+
         img_res = cv2.bitwise_and(img, img, mask=mask)
         cv2.imshow("mask", img_res)
         return img_res
