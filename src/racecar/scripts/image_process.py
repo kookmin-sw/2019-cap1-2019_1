@@ -46,7 +46,7 @@ class ImageProcessor:
         # find lines using houghlines and show them
         lines = cv2.HoughLines(edges_img, 1, np.pi / 180, 100)
         img = edges_img.copy()
-        self.draw_line(img, lines, 255)
+        self.draw_lines(img, lines, 255)
         return img, lines
 
     def clustering(self, lines, img, op='pos'):
@@ -127,22 +127,25 @@ class ImageProcessor:
         return np.mean(lines_ab.T[0] * y + lines_ab.T[1])
 
     @staticmethod
-    def draw_line(img, lines, color=None):
+    def draw_line(img, line, color=255):
+        for rho, theta in line:
+            a = np.cos(theta)
+            b = np.sin(theta)
+            x0 = a * rho
+            y0 = b * rho
+            x1 = int(x0 + 1000 * (-b))
+            y1 = int(y0 + 1000 * (a))
+            x2 = int(x0 - 1000 * (-b))
+            y2 = int(y0 - 1000 * (a))
+
+            cv2.line(img, (x1, y1), (x2, y2), color, 2)
+
+    def draw_lines(self, img, lines, color=None):
         if color is None:
             color = 255
         if lines is not None:
             for line, i in zip(lines, range(len(lines))):
-                for rho, theta in line:
-                    a = np.cos(theta)
-                    b = np.sin(theta)
-                    x0 = a * rho
-                    y0 = b * rho
-                    x1 = int(x0 + 1000 * (-b))
-                    y1 = int(y0 + 1000 * (a))
-                    x2 = int(x0 - 1000 * (-b))
-                    y2 = int(y0 - 1000 * (a))
-
-                    cv2.line(img, (x1, y1), (x2, y2), color, 2)
+                self.draw_line(img, line, color)
 
     @staticmethod
     def find_circle(frame):

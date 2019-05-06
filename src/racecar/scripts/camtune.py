@@ -103,7 +103,7 @@ def main():
 
         main_lines_img = preprocessed_img.copy()
         main_lines = processor.get_main_lines(lines)
-        processor.draw_line(main_lines_img, main_lines)
+        processor.draw_lines(main_lines_img, main_lines)
         cv2.imshow('main_lines', main_lines_img)
 
         # x_location = processor.cal_x_location(rights_ab)
