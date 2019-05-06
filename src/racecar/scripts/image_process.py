@@ -111,6 +111,14 @@ class ImageProcessor:
         return main_lines
 
     @staticmethod
+    def polar2ab(line):
+        r = line[0][0]
+        theta = line[0][1]
+        a = - np.tan(theta)
+        b = r / np.cos(theta)
+        return [a, b]
+
+    @staticmethod
     def cal_x_location(lines_ab):
         if lines_ab is None or len(lines_ab) == 0:
             return None
