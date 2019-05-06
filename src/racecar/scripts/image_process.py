@@ -52,24 +52,24 @@ class ImageProcessor:
     def clustering(self, lines, img, op='pos'):
         if lines is None:
             return
-        cartesian = []
+        data = []
         for line in lines:
             if self.clustering_op == 'pos':
                 r = line[0][0]
                 theta = line[0][1]
                 x = np.cos(theta) * r
                 y = np.sin(theta) * r
-                cartesian.append([x, y])
+                data.append([x, y])
             elif self.clustering_op == 'theta':
                 theta = line[0][1] - np.pi / 2
                 if theta < 0:
                     theta += np.pi
-                cartesian.append(theta)
-        cartesian = np.array(cartesian)
+                data.append(theta)
+        data = np.array(data)
         if self.clustering_op == 'theta':
-            cartesian = cartesian.reshape(-1, 1)
+            data = data.reshape(-1, 1)
 
-        self.dbscan.fit(cartesian)
+        self.dbscan.fit(data)
         print(self.dbscan.labels_)
         if max(self.dbscan.labels_) == 0:
             step = 0
