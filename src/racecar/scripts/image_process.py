@@ -92,6 +92,19 @@ class ImageProcessor:
 
             cv2.line(img, (x1, y1), (x2, y2), color, 2)
 
+    def get_main_lines(self, lines):
+        n = len(self.dbscan.core_sample_indices_)
+        count = np.zeros(n)
+        for i in self.dbscan.labels_:
+            if i != -1:
+                count[i] += 1
+        main_label = count.argmax(count)
+
+        main_lines = []
+        for i in range(lines):
+            if self.dbscan.labels_[i] == main_label:
+                main_lines.append(lines[i])
+        return main_lines
 
     @staticmethod
     def cal_x_location(lines_ab):

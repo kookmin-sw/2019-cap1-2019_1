@@ -74,30 +74,45 @@ def main():
         global height
         height = cv_image.shape[0]
         cv2.imshow('origin', cv_image)
+
         yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
         # gray_img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+
         # edges_img = cv2.Canny(gray_img, 300, 500, apertureSize=5)
         # cv2.imshow('edges', edges_img)
         # warp_img = warper.warp(edges_img)
         # cv2.imshow('warp', warp_img)
+
         warp_img = warper.warp(gray_img)
         cv2.imshow('warp', warp_img)
+
         # edges_img = cv2.Canny(warp_img, 300, 500, apertureSize=5)
         edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
         cv2.imshow('edges', edges_img)
+
+        # preprocessed_img = warp_img
+        preprocessed_img = edges_img
+
+        lines_img, lines = processor.find_line(preprocessed_img)
         cv2.imshow('lines', lines_img)
-        cluster_img = edges_img.copy()
+
+        cluster_img = preprocessed_img.copy()
         processor.clustering(lines, cluster_img, op='theta')
         cv2.imshow('cluster', cluster_img)
 
+        main_lines_img = preprocessed_img.copy()
+        main_lines = processor.get_main_lines(lines)
+        processor.draw_line(main_lines_img, main_lines)
+        cv2.imshow('main_lines', main_lines_img)
+
         # x_location = processor.cal_x_location(rights_ab)
         # if x_location is not None:
-        #     img_x_location = warp_img.copy()
+        #     img_x_location = preprocessed_img.copy()
         #     cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
         #     cv2.imshow('x_location', img_x_location)
         #     x_location += width * 0.175
-        #
+
         img_circles, circles = processor.find_circle(warp_img)
         cv2.imshow("circles", img_circles)
 
