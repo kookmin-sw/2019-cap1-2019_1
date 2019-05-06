@@ -111,12 +111,13 @@ def main():
         processor.draw_line(right_line_img, right_line)
         cv2.imshow('right_line', right_line_img)
 
-        # x_location = processor.cal_x_location(rights_ab)
-        # if x_location is not None:
-        #     img_x_location = preprocessed_img.copy()
-        #     cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
-        #     cv2.imshow('x_location', img_x_location)
-        #     x_location += width * 0.175
+        right_ab = processor.polar2ab(right_line)
+        x_location = processor.cal_x_location(right_ab)
+        if x_location is not None:
+            img_x_location = preprocessed_img.copy()
+            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
+            cv2.imshow('x_location', img_x_location)
+            x_location += width * 0.175
 
         img_circles, circles = processor.find_circle(warp_img)
         cv2.imshow("circles", img_circles)

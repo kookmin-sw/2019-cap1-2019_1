@@ -126,6 +126,8 @@ class ImageProcessor:
 
     @staticmethod
     def polar2ab(line):
+        if line is None:
+            return None
         r = line[0][0]
         theta = line[0][1]
         a = - np.tan(theta)
@@ -138,7 +140,7 @@ class ImageProcessor:
             return None
 
         y = 340
-        return np.mean(lines_ab.T[0] * y + lines_ab.T[1])
+        return np.mean(lines_ab[0] * y + lines_ab[1])
 
     @staticmethod
     def draw_line(img, line, color=255):
