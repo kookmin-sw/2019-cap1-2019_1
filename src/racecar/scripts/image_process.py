@@ -142,6 +142,8 @@ class ImageProcessor:
 
     @staticmethod
     def draw_line(img, line, color=255):
+        if line is None:
+            return
         for rho, theta in line:
             a = np.cos(theta)
             b = np.sin(theta)
