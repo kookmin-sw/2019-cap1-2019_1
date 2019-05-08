@@ -1,21 +1,48 @@
 package com.example.bluetoothtest;
+
+//import android.support.v7.app.AppCompatActivity;
+//import android.os.Bundle;
+//import android.view.View;
+//import android.widget.Toast;
+//
+//public class MainActivity extends AppCompatActivity {
+//
+//    public String s = "check";
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//    }
+//
+//    public void onButton(View v){
+//        Toast.makeText(this, "전송함", Toast.LENGTH_SHORT).show();
+//        //전송하는 메소드 호출 s
+//    }
+//}
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity
@@ -47,6 +74,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
         mConnectionStatus = (TextView)findViewById(R.id.connection_status_textview);
         mInputEditText = (EditText)findViewById(R.id.input_string_edittext);
         ListView mMessageListview = (ListView) findViewById(R.id.message_listview);
@@ -54,7 +82,6 @@ public class MainActivity extends AppCompatActivity
         mConversationArrayAdapter = new ArrayAdapter<>( this,
                 android.R.layout.simple_list_item_1 );
         mMessageListview.setAdapter(mConversationArrayAdapter);
-
 
         Log.d( TAG, "Initalizing Bluetooth adapter...");
 
@@ -85,6 +112,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     private class ConnectTask extends AsyncTask<Void, Void, Boolean>
     {
 
@@ -95,7 +123,7 @@ public class MainActivity extends AppCompatActivity
             mBluetoothDevice = bluetoothDevice;
             mConnectedDeviceName = bluetoothDevice.getName();
 
-            // SPP
+            //SPP
             UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
             try {
@@ -152,10 +180,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     public void connected( BluetoothSocket socket ) {
         mConnectedTask = new ConnectedTask(socket);
         mConnectedTask.execute();
     }
+
+
 
     private class ConnectedTask extends AsyncTask<Void, String, Boolean> {
 
@@ -318,6 +349,8 @@ public class MainActivity extends AppCompatActivity
         builder.create().show();
     }
 
+
+
     public void showErrorDialog(String message)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -355,6 +388,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     void sendMessage(String msg){
+
         if ( mConnectedTask != null ) {
             mConnectedTask.write(msg);
             Log.d(TAG, "send message: " + msg);
@@ -362,8 +396,19 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode == REQUEST_BLUETOOTH_ENABLE){
+            if (resultCode == RESULT_OK){
+                //BlueTooth is now Enabled
+                showPairedDevicesListDialog();
+            }
+            if(resultCode == RESULT_CANCELED){
+                showQuitDialog( "You need to enable bluetooth");
+            }
+        }
     }
 
 
