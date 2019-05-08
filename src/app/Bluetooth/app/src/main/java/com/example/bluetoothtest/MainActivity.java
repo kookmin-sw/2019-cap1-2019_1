@@ -32,22 +32,59 @@ public class MainActivity extends AppCompatActivity
     static boolean isConnectionError = false;
     private static final String TAG = "BluetoothClient";
 
-    private class ConnectTask extends AsyncTask<Void, Void, Boolean> {
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        private BluetoothSocket mBluetoothSocket = null;
-        private BluetoothDevice mBluetoothDevice = null;
+        Button sendButton = (Button)findViewById(R.id.send_button);
+        sendButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                String sendMessage = mInputEditText.getText().toString();
+                if ( sendMessage.length() > 0 ) {
+                    sendMessage(sendMessage);
+                }
+            }
+        });
+        mConnectionStatus = (TextView)findViewById(R.id.connection_status_textview);
+        mInputEditText = (EditText)findViewById(R.id.input_string_edittext);
+        ListView mMessageListview = (ListView) findViewById(R.id.message_listview);
 
-        ConnectTask(BluetoothDevice bluetoothDevice) {
+        mConversationArrayAdapter = new ArrayAdapter<>( this,
+                android.R.layout.simple_list_item_1 );
+        mMessageListview.setAdapter(mConversationArrayAdapter);
+
+
+        Log.d( TAG, "Initalizing Bluetooth adapter...");
+
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            showErrorDialog("This device is not implement Bluetooth.");
+            return;
         }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent, REQUEST_BLUETOOTH_ENABLE);
         }
+        else {
+            Log.d(TAG, "Initialisation successful.");
 
-        @Override
-        protected void onPostExecute(Boolean isSucess) {
+            showPairedDevicesListDialog();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if ( mConnectedTask != null ) {
+
+            mConnectedTask.cancel(true);
+        }
+    }
+
 
 
     public void connected( BluetoothSocket socket ) {
