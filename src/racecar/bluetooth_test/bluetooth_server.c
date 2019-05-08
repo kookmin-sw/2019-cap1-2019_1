@@ -150,6 +150,17 @@ sdp_session_t *register_service(uint8_t rfcomm_channel) {
     return session;
 }
 
-char *read_server(int client);
+char *read_server(int client) {
+    // read data from the client
+    int bytes_read;
+    bytes_read = read(client, input, sizeof(input));
+    if (bytes_read > 0) {
+        printf("received [%s]\n", input);
+        return input;
+    } else {
+        return NULL;
+    }
+}
+
 void write_server(int client, char *message);
 int main();
