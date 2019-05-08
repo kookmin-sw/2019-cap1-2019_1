@@ -224,3 +224,30 @@ int main()
     }
 
 }
+
+void *ThreadMain(void *argument)
+{
+    char buf[1024];
+
+    pthread_detach(pthread_self());
+    int client = (int)argument;
+
+
+    while(1)
+    {
+        char *recv_message = read_server(client);
+        if ( recv_message == NULL ){
+            printf("client disconnected\n");
+            break;
+        }
+
+        printf("%s\n", recv_message);
+
+        write_server(client, recv_message);
+    }
+
+    printf("disconnected\n" );
+    close(client);
+
+    return 0;
+}
