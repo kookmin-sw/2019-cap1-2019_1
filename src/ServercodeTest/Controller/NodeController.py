@@ -132,10 +132,12 @@ def modifyNode():
 @NodeController_index.route('/removeNode', methods=['POST'])
 def removeNode():
     request_json = request.get_json()
+
     node_id=0
 
     for firstkey,value in request_json.items():
-        node_id=value;
+        if firstkey=="node_id":
+            node_id=value;
 
     nodeServiceLogic.removeNode(node_id)
 
