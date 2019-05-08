@@ -174,4 +174,53 @@ void write_server(int client, char *message) {
     }
 }
 
-int main();
+int main()
+{
+
+    pthread_t thread_id;
+
+    signal( SIGPIPE, SIG_IGN );
+
+
+    int port = 3, result, sock, client, bytes_read, bytes_sent;
+    struct sockaddr_rc loc_addr = { 0 }, rem_addr = { 0 };
+    char buffer[1024] = { 0 };
+    socklen_t opt = sizeof(rem_addr);
+
+    // local bluetooth adapter
+    loc_addr.rc_family = AF_BLUETOOTH;
+    loc_addr.rc_bdaddr = bdaddr_any;
+    loc_addr.rc_channel = (uint8_t) port;
+
+    // register service
+    sdp_session_t *session = register_service(port);
+    // allocate socket
+    sock = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
+    printf("socket() returned %d\n", sock);
+
+    // bind socket to port 3 of the first available
+    result = bind(sock, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
+    printf("bind() on channel %d returned %d\n", port, result);
+
+    // put socket into listening mode
+    result = listen(sock, 1);
+    printf("listen() returned %d\n", result);
+
+    //sdpRegisterL2cap(port);
+
+
+    while(1)
+    {
+        // accept one connection
+        printf("calling accept()\n");
+        client = accept(sock, (struct sockaddr *)&rem_addr, &opt);
+        printf("accept() returned %d\n", client);
+
+        ba2str(&rem_addr.rc_bdaddr, buffer);
+        fprintf(stderr, "accepted connection from %s\n", buffer);
+        memset(buffer, 0, sizeof(buffer));
+
+        pthread_create( &thread_id, NULL, ThreadMain, (void*)client);
+    }
+
+}
