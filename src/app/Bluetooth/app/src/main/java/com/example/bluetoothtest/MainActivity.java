@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void connected( BluetoothSocket socket ) {
+        mConnectedTask = new ConnectedTask(socket);
+        mConnectedTask.execute();
     }
-
-
 
 //    private class ConnectedTask extends AsyncTask<Void, String, Boolean> {
 //
