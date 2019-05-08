@@ -75,7 +75,7 @@ def main():
         height = cv_image.shape[0]
         cv2.imshow('origin', cv_image)
 
-        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False)
+        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False, show=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
         # gray_img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
 
@@ -94,12 +94,10 @@ def main():
         # preprocessed_img = warp_img
         preprocessed_img = edges_img
 
-        lines_img, lines = processor.find_line(preprocessed_img)
-        cv2.imshow('lines', lines_img)
+        lines_img, lines = processor.find_line(preprocessed_img, show=True)
 
         cluster_img = preprocessed_img.copy()
-        processor.clustering(lines, cluster_img, op='theta')
-        cv2.imshow('cluster', cluster_img)
+        processor.clustering(lines, cluster_img, show=True)
 
         main_lines_img = preprocessed_img.copy()
         main_lines = processor.get_main_lines(lines)
@@ -119,8 +117,7 @@ def main():
             cv2.imshow('x_location', img_x_location)
             x_location += width * 0.175
 
-        img_circles, circles = processor.find_circle(warp_img)
-        cv2.imshow("circles", img_circles)
+        circles = processor.find_circle(warp_img, show=True)
 
         # if x_location is not None:
         #     pid = round(pidcal.pid_control(int(x_location)), 6)

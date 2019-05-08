@@ -35,7 +35,7 @@ class ImageProcessor:
             eps = np.pi / 12
         self.dbscan = DBSCAN(eps=eps, min_samples=3)
 
-    def yellow_mask(self, frame, blurring=False, morphology=False):
+    def yellow_mask(self, frame, blurring=False, morphology=False, show=False, window_name='mask'):
         if blurring:
             img = cv2.GaussianBlur(frame, (5, 5), 0)
         else:
@@ -51,17 +51,20 @@ class ImageProcessor:
             mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
 
         img_res = cv2.bitwise_and(img, img, mask=mask)
-        cv2.imshow("mask", img_res)
+        if show:
+            cv2.imshow(window_name, img_res)
         return img_res
 
-    def find_line(self, edges_img):
+    def find_line(self, edges_img, show=False, window_name='lines'):
         # find lines using houghlines and show them
         lines = cv2.HoughLines(edges_img, 2, np.pi / 180, 150)
-        img = edges_img.copy()
-        self.draw_lines(img, lines, 255)
-        return img, lines
+        if show:
+            img = edges_img.copy()
+            self.draw_lines(img, lines, 255)
+            cv2.imshow(window_name, img)
+        return lines
 
-    def clustering(self, lines, img, op='pos'):
+    def clustering(self, lines, img, show=False, window_name='clustering'):
         if lines is None:
             return
         data = []
@@ -82,27 +85,18 @@ class ImageProcessor:
             data = data.reshape(-1, 1)
 
         self.dbscan.fit(data)
-        print(self.dbscan.labels_)
-        if max(self.dbscan.labels_) == 0:
-            step = 0
-        else:
-            step = 128 / np.max(self.dbscan.labels_)
-        for i in range(len(lines)):
-            if self.dbscan.labels_[i] == -1:
-                continue
-            rho = lines[i][0][0]
-            theta = lines[i][0][1]
-            color = 127 + step * self.dbscan.labels_[i]
-            a = np.cos(theta)
-            b = np.sin(theta)
-            x0 = a * rho
-            y0 = b * rho
-            x1 = int(x0 + 1000 * (-b))
-            y1 = int(y0 + 1000 * (a))
-            x2 = int(x0 - 1000 * (-b))
-            y2 = int(y0 - 1000 * (a))
+        if show:
+            if max(self.dbscan.labels_) == 0:
+                step = 0
+            else:
+                step = 128 / np.max(self.dbscan.labels_)
+            for i in range(len(lines)):
+                if self.dbscan.labels_[i] == -1:
+                    continue
+                color = 127 + step * self.dbscan.labels_[i]
+                self.darw_line(lines[i], color=color)
 
-            cv2.line(img, (x1, y1), (x2, y2), color, 2)
+                cv2.imshow(window_name, img)
 
     def get_main_lines(self, lines):
         if lines is None:
@@ -166,15 +160,17 @@ class ImageProcessor:
                 self.draw_line(img, line, color)
 
     @staticmethod
-    def find_circle(frame):
+    def find_circle(frame, show=False, window_name='circles'):
         # find circle using houghcircle
-        img = frame.copy()
-        circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
+        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
 
-        # show circles
-        if circles is not None:
-            circles = np.uint16(np.around(circles))
-            for i in circles[0, :]:
-                cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
-                cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
-        return img, circles
+        if show:
+            img = frame.copy()
+            # show circles
+            if circles is not None:
+                circles = np.uint16(np.around(circles))
+                for i in circles[0, :]:
+                    cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
+                    cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
+            cv2.imshow(window_name, img)
+        return circles
