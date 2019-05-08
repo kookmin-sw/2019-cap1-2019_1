@@ -13,11 +13,10 @@
 #include <signal.h>
 
 
-char input[1024] = { 0 };
+void *ThreadMain(void *argument);
 bdaddr_t bdaddr_any = {0, 0, 0, 0, 0, 0};
 bdaddr_t bdaddr_local = {0, 0, 0, 0xff, 0xff, 0xff};
 
-void *ThreadMain(void *argument);
 int _str2uuid( const char *uuid_str, uuid_t *uuid ) {
     /* This is from the pybluez stack */
 
@@ -71,7 +70,10 @@ int _str2uuid( const char *uuid_str, uuid_t *uuid ) {
 
 }
 
+
+
 sdp_session_t *register_service(uint8_t rfcomm_channel) {
+
     const char *service_name = "Armatus Bluetooth server";
     const char *svc_dsc = "A HERMIT server that interfaces with the Armatus Android app";
     const char *service_prov = "Armatus";
@@ -150,6 +152,9 @@ sdp_session_t *register_service(uint8_t rfcomm_channel) {
     return session;
 }
 
+
+
+char input[1024] = { 0 };
 char *read_server(int client) {
     // read data from the client
     int bytes_read;
@@ -224,6 +229,7 @@ int main()
     }
 
 }
+
 
 void *ThreadMain(void *argument)
 {
