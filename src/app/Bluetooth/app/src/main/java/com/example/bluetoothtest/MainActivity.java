@@ -85,7 +85,72 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private class ConnectTask extends AsyncTask<Void, Void, Boolean>
+    {
 
+        private BluetoothSocket mBluetoothSocket = null;
+        private BluetoothDevice mBluetoothDevice = null;
+
+        ConnectTask(BluetoothDevice bluetoothDevice) {
+            mBluetoothDevice = bluetoothDevice;
+            mConnectedDeviceName = bluetoothDevice.getName();
+
+            // SPP
+            UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+
+            try {
+                mBluetoothSocket = mBluetoothDevice.createRfcommSocketToServiceRecord(uuid);
+                Log.d( TAG, "create socket for "+mConnectedDeviceName);
+
+            } catch (IOException e) {
+                Log.e( TAG, "socket create failed " + e.getMessage());
+            }
+
+            mConnectionStatus.setText("connecting...");
+        }
+
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            // Always cancel discovery because it will slow down a connection
+            mBluetoothAdapter.cancelDiscovery();
+
+            // Make a connection to the BluetoothSocket
+            try {
+                // This is a blocking call and will only return on a
+                // successful connection or an exception
+                mBluetoothSocket.connect();
+            } catch (IOException e) {
+                // Close the socket
+                try {
+                    mBluetoothSocket.close();
+                } catch (IOException e2) {
+                    Log.e(TAG, "unable to close() " +
+                            " socket during connection failure", e2);
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+
+        @Override
+        protected void onPostExecute(Boolean isSucess) {
+
+            if ( isSucess ) {
+                connected(mBluetoothSocket);
+            }
+            else{
+
+                isConnectionError = true;
+                Log.d( TAG,  "Unable to connect device");
+                showErrorDialog("Unable to connect device");
+            }
+        }
+    }
 
     public void connected( BluetoothSocket socket ) {
     }
