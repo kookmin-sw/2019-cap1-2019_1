@@ -355,9 +355,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     void sendMessage(String msg){
-
+        if ( mConnectedTask != null ) {
+            mConnectedTask.write(msg);
+            Log.d(TAG, "send message: " + msg);
+            mConversationArrayAdapter.insert("Me:  " + msg, 0);
+        }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
