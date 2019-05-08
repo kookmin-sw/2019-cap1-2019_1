@@ -288,20 +288,74 @@ public class MainActivity extends AppCompatActivity
 
     public void showPairedDevicesListDialog()
     {
+        Set<BluetoothDevice> devices = mBluetoothAdapter.getBondedDevices();
+        final BluetoothDevice[] pairedDevices = devices.toArray(new BluetoothDevice[0]);
+
+        if ( pairedDevices.length == 0 ){
+            showQuitDialog( "No devices have been paired.\n"
+                    +"You must pair it with another device.");
+            return;
+        }
+
+        String[] items;
+        items = new String[pairedDevices.length];
+        for (int i=0;i<pairedDevices.length;i++) {
+            items[i] = pairedDevices[i].getName();
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select device");
+        builder.setCancelable(false);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                ConnectTask task = new ConnectTask(pairedDevices[which]);
+                task.execute();
+            }
+        });
+        builder.create().show();
     }
-
-
 
     public void showErrorDialog(String message)
     {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Quit");
+        builder.setCancelable(false);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                if ( isConnectionError  ) {
+                    isConnectionError = false;
+                    finish();
+                }
+            }
+        });
+        builder.create().show();
     }
 
 
     public void showQuitDialog(String message)
     {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Quit");
+        builder.setCancelable(false);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.create().show();
     }
 
     void sendMessage(String msg){
+
     }
 
 
