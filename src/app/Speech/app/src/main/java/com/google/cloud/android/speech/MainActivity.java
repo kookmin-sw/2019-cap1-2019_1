@@ -225,6 +225,13 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 1){
+            startVoiceRecorder();
+        }
+    }
+
     private void startVoiceRecorder() {
         if (mVoiceRecorder != null) {
             mVoiceRecorder.stop();
@@ -367,18 +374,19 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     public void onClickTest(View v){
         //tts test
-        textToSpeech("테스트 화면 입니다.");
-
+        //textToSpeech("테스트 화면 입니다.");
+        stopVoiceRecorder();
         //Intent intent = new Intent(this, test.class);
         //startActivity(intent);
     }
 
     public void textToSpeech(String sentence){
+        stopVoiceRecorder();
         Intent intent = new Intent(this, TTS.class);
 
         intent.putExtra("sentence", sentence);
 
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 
     public void sleep(int time){
@@ -420,11 +428,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             //startActivity(intent);
             Toast.makeText(MainActivity.this, "목적지 설정 OK",  Toast.LENGTH_SHORT).show();
 
-            mSpeechService.finishRecognizing();
-
             textToSpeech("테스트라고 외쳐보세요");
 
-            mSpeechService.startRecognizing(mVoiceRecorder.getSampleRate());
             check[0][0] = false;
         }
         else if(check[0][1]){

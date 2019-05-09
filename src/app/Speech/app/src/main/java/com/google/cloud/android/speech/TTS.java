@@ -47,6 +47,7 @@ public class TTS extends AppCompatActivity {
         });
     }
 
+
     public void sleep(int time){
         try{
             Thread.sleep(time);
@@ -62,8 +63,9 @@ public class TTS extends AppCompatActivity {
             speakingEnd = tts.isSpeaking();
         } while(speakingEnd);
 
-        sleep(1000);
-
+        if(!tts.isSpeaking()){
+            sleep(500);
+        }
         finish();
     }
 
@@ -75,5 +77,11 @@ public class TTS extends AppCompatActivity {
             tts.stop();
             tts.shutdown();
         }
+    }
+
+    @Override
+    protected void onStop(){
+        setResult(1);
+        super.onStop();
     }
 }
