@@ -52,7 +52,7 @@ def img_callback(data):
 def auto_drive(pid):
     global car_run_speed
     w = 0
-    if -0.065 < pid and pid < 0.065:
+    if -0.065 < pid < 0.065:
         w = 1
     else:
         w = 0.3
