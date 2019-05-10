@@ -72,6 +72,15 @@ def auto_drive(pid):
     print(car_run_speed)
 
 
+def stop():
+    ack_msg = AckermannDriveStamped()
+    ack_msg.header.stamp = rospy.Time.now()
+    ack_msg.header.frame_id = ''
+    ack_msg.drive.steering_angle = 0
+    ack_msg.drive.speed = 0
+    ack_publisher.publish(ack_msg)
+
+
 def main():
     global cv_image
     global ack_publisher
