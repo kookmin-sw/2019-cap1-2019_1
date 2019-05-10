@@ -63,9 +63,6 @@ public class TTS extends AppCompatActivity {
             speakingEnd = tts.isSpeaking();
         } while(speakingEnd);
 
-        if(!tts.isSpeaking()){
-            sleep(500);
-        }
         finish();
     }
 

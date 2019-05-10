@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 mSpeechService.finishRecognizing();
             }
         }
-
     };
 
     // Resource caches
@@ -99,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     public String s; // 문구
     public String prev;
 
+    //
+    public int stage;
+
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -107,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             mSpeechService.addListener(mSpeechServiceListener);
             mStatus.setVisibility(View.VISIBLE);
         }
-
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             mSpeechService = null;
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        stage = 0;
 
         //STT
         final Resources resources = getResources();
@@ -160,7 +163,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         // Start listening to voices
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
-            startVoiceRecorder();
+            //startVoiceRecorder();
+            UI(); //여기서 시작
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.RECORD_AUDIO)) {
             showPermissionMessageDialog();
@@ -389,76 +393,36 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         startActivityForResult(intent, 0);
     }
 
-    public void sleep(int time){
-        try{
-            Thread.sleep(time);
-        } catch(Exception e){
-            e.printStackTrace();
+    public void recognizeSpeaking(String sentence){
+        if(stage==0){
+            switch(sentence){
+                case "설명 듣기" :
+                    textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요");
+                    break;
+
+                case "도우미 버전" :
+                    textToSpeech("음성 안내 모드를 종료하겠습니다.");
+                    break;
+
+                case "위치 저장" :
+                    stage = 10;
+                    textToSpeech("저장하실 장소명을 말해주세요.");
+                    break;
+
+                case "길 안내" :
+                    stage = 100;
+                    textToSpeech("길안내 시스템을 시작하겠습니다. 현재 계신곳을 말해주세요.");
+                    break;
+            }
         }
     }
 
-    public void recognizeSpeaking(String sentence){
-
-        switch(sentence){
-            case "목적지 설정" : check[0][0] = true; break;
-                case "테스트" : check[0][1] = true; break;
-
-            case "경로 취소" :  check[1][0] = true; break;
-
-
-            case "노드 등록" : check[2][0] = true; break;
-
-
-            case "노드 수정" : check[3][0] = true; break;
-
-
-            case "이름 등록" : check[4][0] = true; break;
-
-        }
-
-//        String setDestinationString = "목적지 설정";
-//        String cancelPathString = "경로 취소";
-//        String enrollNodeString = "노드 등록";
-//        String modifiedNodeString = "노드 수정";
-//        String privacyLocationString = "이름 등록";
-
-
-        if(check[0][0]){
-            //Intent intent = new Intent(this, SetDestination.class);
-            //startActivity(intent);
-            Toast.makeText(MainActivity.this, "목적지 설정 OK",  Toast.LENGTH_SHORT).show();
-
-            textToSpeech("테스트라고 외쳐보세요");
-
-            check[0][0] = false;
-        }
-        else if(check[0][1]){
-            Toast.makeText(MainActivity.this, "테스트 OK",  Toast.LENGTH_SHORT).show();
-            check[0][0] = false; check[0][1] = false;
-        }
-        else if(check[1][0]){
-            Intent intent = new Intent(this, CancelPath.class);
-            startActivity(intent);
-            check[1][0] = false;
-        }
-        else if(check[2][0]){
-            Intent intent = new Intent(this, EnrollNode.class);
-            startActivity(intent);
-            check[2][0] = false;
-        }
-        else if(check[3][0]){
-            Intent intent = new Intent(this, ModifiedNode.class);
-            startActivity(intent);
-            check[3][0] = false;
-        }
-        else if(check[4][0]){
-            Intent intent = new Intent(this, PrivacyLocation.class);
-            startActivity(intent);
-            check[4][0] = false;
-        }
-        else{
-            Toast.makeText(this, "메뉴에 없는 말이다.", Toast.LENGTH_SHORT).show(); //음성인식 테스트
-        }
-
+    //startVoiceRecorder()
+    //stopVoiceRecorder()
+    //textToSpeech("하고싶은말")
+    //recognizeSpeaking()
+    public void UI(){
+        textToSpeech("어떠 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요.");
+        startVoiceRecorder();
     }
 }
