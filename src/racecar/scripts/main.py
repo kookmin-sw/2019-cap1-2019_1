@@ -19,9 +19,11 @@ import rostopic
 import rosservice
 from rosservice import ROSServiceException
 
+from image_process import *
 from slidewindow import SlideWindow
 from warper import Warper
 from pidcal import PidCal
+from obstacle import detect_obstacle
 
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
@@ -32,6 +34,7 @@ from ackermann_msgs.msg import AckermannDriveStamped
 warper = Warper()
 slidewindow = SlideWindow()
 pidcal = PidCal()
+processor = ImageProcessor(clustering_op='theta')
 
 q1 = que.Queue()
 bridge = CvBridge()
@@ -47,6 +50,58 @@ def img_callback(data):
         cv_image = bridge.imgmsg_to_cv2(data, "bgr8")
     except CvBridgeError as e:
         print(e)
+
+
+def is_turning_point():
+    pass
+
+
+def drive():
+    global cv_image
+    circles = 0
+    while cv_image is not None and not is_turning_point():
+        if detect_obstacle():
+            # TODO send message
+            continue
+
+        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False, show=False)
+        gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
+
+        warp_img = warper.warp(gray_img)
+        # cv2.imshow('warp', warp_img)
+
+        edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
+        # cv2.imshow('edges', edges_img)
+
+        preprocessed_img = edges_img
+
+        lines_img, lines = processor.find_line(preprocessed_img, show=True)
+
+        cluster_img = preprocessed_img.copy()
+        processor.clustering(lines, cluster_img, show=True)
+
+        main_lines = processor.get_main_lines(lines)
+        # main_lines_img = preprocessed_img.copy()
+        # processor.draw_lines(main_lines_img, main_lines)
+        # cv2.imshow('main_lines', main_lines_img)
+
+        right_line = (main_lines)
+        # right_line_img = preprocessed_img.copy()
+        # processor.draw_line(right_line_img, right_line)
+        # cv2.imshow('right_line', right_line_img)
+
+        right_ab = processor.polar2ab(right_line)
+        x_location = processor.cal_x_location(right_ab)
+
+        if x_location is not None:
+            img_x_location = preprocessed_img.copy()
+            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
+            cv2.imshow('x_location', img_x_location)
+            x_location += cv_image.shape[1] * 0.175
+            pid = round(pidcal.pid_control(int(x_location)), 6)
+            auto_drive(pid)
+
+        circles = processor.find_circle(warp_img, show=True)
 
 
 def auto_drive(pid):
