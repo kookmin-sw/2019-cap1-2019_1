@@ -7,7 +7,7 @@ def register_service():
     service_prov = "Armatus"
 
     svc_uuid_str = "00001101-0000-1000-8000-00805F9B34FB"
-    svc_uuid = uuid.UUID(svc_uuid_str)
+    #svc_uuid = uuid.UUID(svc_uuid_str)
     print("Registering UUID %s" % svc_uuid_str)
 
     bluetooth.advertise_service(server_sock, "HelloWorld",\
@@ -18,25 +18,26 @@ def register_service():
 def read_server(client_sock):
     # read data from the client
     data = client_sock.recv(1024)
-    print("received [%s]" % data)
+    data = data.decode("utf-8")
+    print("received :", data)
     return data
 
 def write_server(client_sock):
     # send data to the client
     msg = input("input msg : ")
     client_sock.send(msg)
-    print("sent [%s]" % msg)
+    print("sent :", msg)
 
 def ThreadMain(client_sock):
-    id=0
+    # id=0
     while True:
-        print("Thread", id); id+=1
+        # print("Thread", id); id+=1
         recv_message = read_server(client_sock)
         if recv_message is None:
             print("client disconnected")
             break
-        print(recv_message)
-        write_server(client_sock)
+        # print(recv_message)
+        # write_server(client_sock)
     print("disconnected")
     client.close()
     return 0
