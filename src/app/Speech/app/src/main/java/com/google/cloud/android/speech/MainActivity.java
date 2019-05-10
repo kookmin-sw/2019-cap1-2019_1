@@ -93,10 +93,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private ResultAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    public boolean[][] check;
-
-    public String s; // 문구
-    public String prev;
+    private String guideCurrentPosition;
+    private String guideDestinationPosition;
 
     //
     public int stage;
@@ -140,16 +138,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         mAdapter = new ResultAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
 
-        //
-        check = new boolean[5][];
-        check[0] = new boolean[2];
-        check[1] = new boolean[1];
-        check[2] = new boolean[1];
-        check[3] = new boolean[1];
-        check[4] = new boolean[1];
+        guideCurrentPosition = "";
+        guideDestinationPosition = "";
 
-        //
-        prev = "";
+        UI();
     }
 
     @Override
@@ -163,8 +155,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         // Start listening to voices
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
-            //startVoiceRecorder();
-            UI(); //여기서 시작
+            startVoiceRecorder();
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.RECORD_AUDIO)) {
             showPermissionMessageDialog();
@@ -226,13 +217,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == 1){
-            startVoiceRecorder();
         }
     }
 
@@ -347,13 +331,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////
-    // Making UI //////////////////////////////////////////////////////////////
 
-    public void onClickSetDestination(View v){
-        Intent intent = new Intent(this, SetDestination.class);
-        startActivity(intent);
+    //Button
+    public void onClickGuidePath(View v){
+        guidePath(" ", " ");
     }
 
     public void onClickCancelPath(View v){
@@ -377,12 +358,11 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     }
 
     public void onClickTest(View v){
-        //tts test
-        //textToSpeech("테스트 화면 입니다.");
         stopVoiceRecorder();
         //Intent intent = new Intent(this, test.class);
         //startActivity(intent);
     }
+    //Button
 
     public void textToSpeech(String sentence){
         stopVoiceRecorder();
@@ -397,11 +377,12 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         if(stage==0){
             switch(sentence){
                 case "설명 듣기" :
-                    textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요");
+                    textToSpeech("사용하실수 있는 기능으로 길 안내, 위치 저장, 도우미 버전 이 있습니다.");
                     break;
 
                 case "도우미 버전" :
                     textToSpeech("음성 안내 모드를 종료하겠습니다.");
+                    stopVoiceRecorder();
                     break;
 
                 case "위치 저장" :
@@ -415,6 +396,51 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     break;
             }
         }
+        else if(stage>=100){
+            if(stage==100){
+                String s = "현재 계신곳이 \'" + sentence + "\'이 맞으시다면 네 라고 말해주세요";
+                textToSpeech(s);
+                guideCurrentPosition = sentence;
+                stage = 101;
+            }
+            else if(stage==101){
+                if(sentence.contentEquals("네") ||
+                        sentence.contentEquals("맞아요") ||
+                        sentence.contentEquals("네 맞아요")){
+
+                    textToSpeech("목적지를 말해주세요");
+
+                    stage = 102;
+                }
+                else{
+                    textToSpeech("현재 계신곳을 천천히 말해주세요.");
+                    stage = 100;
+                }
+            }
+            else if(stage==102){
+                String s = "목적지가 \'" + sentence + "\'이 맞으시다면 네 라고 말해주세요";
+                textToSpeech(s);
+                guideDestinationPosition = sentence;
+                stage = 103;
+            }
+            else if(stage==103){
+                if(sentence.contentEquals("네") ||
+                        sentence.contentEquals("맞아요") ||
+                        sentence.contentEquals("네 맞아요")){
+
+                    textToSpeech("경로 탐색을 시작하겠습니다. 잠시만 기다려주세요.");
+                    guidePath(guideCurrentPosition, guideDestinationPosition);
+                    stage = 0;
+                }
+                else{
+                    textToSpeech("목적지를 천천히 말해주세요.");
+                    stage = 102;
+                }
+            }
+        }
+        else if(stage>=10){
+
+        }
     }
 
     //startVoiceRecorder()
@@ -422,7 +448,22 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     //textToSpeech("하고싶은말")
     //recognizeSpeaking()
     public void UI(){
-        textToSpeech("어떠 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요.");
-        startVoiceRecorder();
+        textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요.");
+    }
+
+    public void guidePath(String curPos, String destPos){
+        Intent intent = new Intent(this, SetDestination.class);
+
+        intent.putExtra("currentPosition", curPos);
+        intent.putExtra("destinationPosition", destPos);
+
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 1){
+            startVoiceRecorder();
+        }
     }
 }
