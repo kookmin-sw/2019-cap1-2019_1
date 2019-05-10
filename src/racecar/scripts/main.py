@@ -153,6 +153,7 @@ def turn_left():
 def main():
     global cv_image
     global ack_publisher
+    global op
     rospy.sleep(3)
     bridge = CvBridge()
     image_sub = rospy.Subscriber("/usb_cam/image_raw/", Image, img_callback)
