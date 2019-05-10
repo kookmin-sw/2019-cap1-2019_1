@@ -43,6 +43,8 @@ cv_image = None
 ack_publisher = None
 car_run_speed = 0.5
 
+op = None
+
 
 def img_callback(data):
     global cv_image
@@ -136,6 +138,18 @@ def stop():
     ack_publisher.publish(ack_msg)
 
 
+def go_strait():
+    pass
+
+
+def turn_right():
+    pass
+
+
+def turn_left():
+    pass
+
+
 def main():
     global cv_image
     global ack_publisher
@@ -147,24 +161,20 @@ def main():
 
     # ack_publisher = rospy.Publisher('vesc/low_level/ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
     ack_publisher = rospy.Publisher('ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
-    # record the origin
-    # out = cv2.VideoWriter('/home/nvidia/Desktop/outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 30, (640,480))
-
-    # record the processed
-    # out2 = cv2.VideoWriter('/home/nvidia/Desktop/oripy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 30, (640,480))
 
     while cv_image is not None:
-        img1, x_location = process_image(cv_image)
-        cv2.imshow('result', img1)
-        if x_location is not None:
-            pid = round(pidcal.pid_control(int(x_location)), 6)
-            print(pid)
-            auto_drive(pid)
+        if op == 'drive':
+            drive()
+        elif op == 'strait':
+            go_strait()
+        elif op == 'right':
+            turn_right()
+        elif op == 'left':
+            turn_left()
+        elif op == 'quit':
+            break
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        cv2.imshow("origin", cv_image)
-        # out.write(img1)
-        # out2.write(cv_image)
 
     try:
         rospy.spin()
