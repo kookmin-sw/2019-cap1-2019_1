@@ -15,6 +15,8 @@ NodeController_index=Blueprint('NodeController_index',__name__)
 #import Node
 from Domain.Node import Node
 
+from urllib import parse
+
 nodeServiceLogic = NodeServiceLogic()
 
 #전체노드불러오기(검증완료)
@@ -71,7 +73,7 @@ def registerOwnNodeName():
         elif firstkey == "node_id":
             phone_origin_number_and_node['node_id'] = value
         elif firstkey == "own_node_name":
-            phone_origin_number_and_node['own_node_name'] = value
+            phone_origin_number_and_node['own_node_name'] = parse.unquote((value))
 
     nodeServiceLogic.registerOwnNodeName(phone_origin_number_and_node)
 
@@ -85,9 +87,9 @@ def addNewNode():
     node_data = {}
     for firstkey, value in request_json.items():
         if firstkey == "node_type":
-            node_data['node_type'] = value
+            node_data['node_type'] = parse.unquote((value))
         elif firstkey == "node_name":
-            node_data['node_name'] = value
+            node_data['node_name'] = parse.unquote((value))
         elif firstkey == "pos_x":
             node_data['pos_x'] = value
         elif firstkey == "pos_y":
@@ -97,7 +99,7 @@ def addNewNode():
         elif firstkey == "indoor":
             node_data['indoor'] = value
         elif firstkey == "floor":
-            node_data['floor'] = value
+            node_data['floor'] = parse.unquote((value))
 
     nodeServiceLogic.addNewNode(node_data)
 
@@ -114,15 +116,15 @@ def modifyNode():
         if firstkey=="node_id":
             node_data['node_id']=value
         elif firstkey=="node_type":
-            node_data['node_type']=value
+            node_data['node_type']=parse.unquote((value))
         elif firstkey=="node_name":
-            node_data['node_name']=value
+            node_data['node_name']=parse.unquote((value))
         elif firstkey=="node_neighbors":
             node_data['node_neighbors']=value
         elif firstkey=="indoor":
             node_data['indoor']=value
         elif firstkey=="floor":
-            node_data['floor']=value
+            node_data['floor']=parse.unquote((value))
 
     nodeServiceLogic.modifyNode(node_data)
 

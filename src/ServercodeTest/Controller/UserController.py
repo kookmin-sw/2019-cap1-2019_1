@@ -15,8 +15,8 @@ userServiceLogic=UserServiceLogic()
 #사용자등록
 @UserController_index.route('/registerUser', methods=['POST'])
 def registerUser():
-    request_json = request.get_json()
 
+    request_json = request.get_json()
     user_data = {}
 
     for firstkey, value in request_json.items():
