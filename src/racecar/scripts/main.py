@@ -75,29 +75,36 @@ def drive():
 
         yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False, show=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
+        cv2.imshow('yellow', yellow_img)
 
-        warp_img = warper.warp(gray_img)
+        edges_img = cv2.Canny(gray_img, 100, 200, apertureSize=3)
+        cv2.imshow('edges', edges_img)
+        warp_img = warper.warp(edges_img)
+        cv2.imshow('warp', warp_img)
+
+        # warp_img = warper.warp(gray_img)
         # cv2.imshow('warp', warp_img)
-
-        edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
+        #
+        # edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
         # cv2.imshow('edges', edges_img)
 
-        preprocessed_img = edges_img
+        preprocessed_img = warp_img
+        # preprocessed_img = edges_img
 
-        lines_img, lines = processor.find_line(preprocessed_img, show=True)
+        lines = processor.find_line(preprocessed_img, show=True)
 
         cluster_img = preprocessed_img.copy()
         processor.clustering(lines, cluster_img, show=True)
 
         main_lines = processor.get_main_lines(lines)
-        # main_lines_img = preprocessed_img.copy()
-        # processor.draw_lines(main_lines_img, main_lines)
-        # cv2.imshow('main_lines', main_lines_img)
+        main_lines_img = preprocessed_img.copy()
+        processor.draw_lines(main_lines_img, main_lines)
+        cv2.imshow('main_lines', main_lines_img)
 
-        right_line = (main_lines)
-        # right_line_img = preprocessed_img.copy()
-        # processor.draw_line(right_line_img, right_line)
-        # cv2.imshow('right_line', right_line_img)
+        right_line = processor.get_right_line(main_lines)
+        right_line_img = preprocessed_img.copy()
+        processor.draw_line(right_line_img, right_line)
+        cv2.imshow('right_line', right_line_img)
 
         right_ab = processor.polar2ab(right_line)
         x_location = processor.cal_x_location(right_ab)
@@ -112,6 +119,27 @@ def drive():
 
         circles = processor.find_circle(warp_img, show=True)
 
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            op = 'quit'
+            break
+
+
+def drive_():
+    global cv_image
+    global op
+    while cv_image is not None:
+        cv2.imshow("origin", cv_image)
+        img1, x_location = process_image(cv_image)
+        cv2.imshow('result', img1)
+
+        if x_location is not None:
+            pid = round(pidcal.pid_control(int(x_location)), 6)
+            # auto_drive(pid)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            op = 'quit'
+            break
 
 def auto_drive(pid):
     global car_run_speed
@@ -170,9 +198,10 @@ def main():
     # ack_publisher = rospy.Publisher('vesc/low_level/ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
     ack_publisher = rospy.Publisher('ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
 
+    op = 'drive'
     while cv_image is not None:
         if op == 'drive':
-            drive()
+            drive_()
         elif op == 'strait':
             go_strait()
         elif op == 'right':
@@ -194,14 +223,15 @@ def main():
 
 
 def process_image(frame):
+    # yellow_img = processor.yellow_mask(frame, blurring=False, morphology=False, show=True)
     # grayscle
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # blur
     kernel_size = 5
     blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
     # canny edge
-    low_threshold = 60  # 60
-    high_threshold = 70  # 70
+    low_threshold = 30  # 60
+    high_threshold = 50  # 70
     edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
     # warper
     img = warper.warp(edges_img)
