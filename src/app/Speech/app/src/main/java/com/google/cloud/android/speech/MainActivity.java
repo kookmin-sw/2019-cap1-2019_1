@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
-    private static final String STATE_RESULTS = "results";
+    private static
+    final String STATE_RESULTS = "results";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
 
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     //
     public int stage;
+    Bluetooth bluetooth;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         guideCurrentPosition = "";
         guideDestinationPosition = "";
 
+        //bluetooth = new Bluetooth();
         UI();
     }
 
@@ -395,6 +398,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             }
         }
         else if(stage>=100){
+            //bluetooth.sendCommand(sentence);
             if(stage==100){
                 String s = "현재 계신곳이 \'" + sentence + "\' 맞으시다면 네 라고 말해주세요";
                 textToSpeech(s);
