@@ -94,7 +94,7 @@ def main():
         # preprocessed_img = warp_img
         preprocessed_img = edges_img
 
-        lines_img, lines = processor.find_line(preprocessed_img, show=True)
+        lines = processor.find_line(preprocessed_img, show=True)
 
         cluster_img = preprocessed_img.copy()
         processor.clustering(lines, cluster_img, show=True)

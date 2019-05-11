@@ -5,18 +5,6 @@ from sklearn.cluster import DBSCAN
 from slidewindow import SlideWindow
 
 
-def get_right_line(lines):
-    if lines is None:
-        return None
-    max_value = 0
-    max_idx = 0
-    for i in range(len(lines)):
-        if abs(lines[i][0][0]) > max_value:
-            max_value = abs(lines[i][0][0])
-            max_idx = i
-    return lines[max_idx]
-
-
 class ImageProcessor:
     def __init__(self, clustering_op='theta'):
         self.slidewindow = SlideWindow()
@@ -57,7 +45,7 @@ class ImageProcessor:
 
     def find_line(self, edges_img, show=False, window_name='lines'):
         # find lines using houghlines and show them
-        lines = cv2.HoughLines(edges_img, 2, np.pi / 180, 150)
+        lines = cv2.HoughLines(edges_img, 2, np.pi / 180, 200)
         if show:
             img = edges_img.copy()
             self.draw_lines(img, lines, 255)
@@ -94,7 +82,7 @@ class ImageProcessor:
                 if self.dbscan.labels_[i] == -1:
                     continue
                 color = 127 + step * self.dbscan.labels_[i]
-                self.darw_line(lines[i], color=color)
+                self.draw_line(img, lines[i], color=color)
 
                 cv2.imshow(window_name, img)
 
@@ -117,6 +105,17 @@ class ImageProcessor:
             if self.dbscan.labels_[i] == main_label:
                 main_lines.append(lines[i])
         return main_lines
+
+    def get_right_line(self, lines):
+        if lines is None:
+            return None
+        max_value = 0
+        max_idx = 0
+        for i in range(len(lines)):
+            if self.cal_x_location(self.polar2ab(lines[i])) > max_value:
+                max_value = abs(lines[i][0][0])
+                max_idx = i
+        return lines[max_idx]
 
     @staticmethod
     def polar2ab(line):

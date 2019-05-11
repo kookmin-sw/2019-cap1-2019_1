@@ -41,7 +41,8 @@ bridge = CvBridge()
 
 cv_image = None
 ack_publisher = None
-car_run_speed = 0.5
+max_speed = 0.0
+car_run_speed = max_speed * 0.5
 
 op = None
 
@@ -60,11 +61,17 @@ def is_turning_point():
 
 def drive():
     global cv_image
+    global op
     circles = 0
-    while cv_image is not None and not is_turning_point():
-        if detect_obstacle():
-            # TODO send message
-            continue
+    while cv_image is not None:
+        if is_turning_point():
+            # TODO send arrive turning_point massage
+            break
+        # if detect_obstacle():
+        #     # TODO send obstacle detecting message
+        #     continue
+
+        cv2.imshow('origin', cv_image)
 
         yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False, show=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
@@ -112,9 +119,9 @@ def auto_drive(pid):
     if -0.065 < pid < 0.065:
         w = 1
     else:
-        w = 0.3
+        w = 0.7
 
-    if car_run_speed < 1.0 * w:
+    if car_run_speed < max_speed * w:
         car_run_speed += 0.002 * 10
     else:
         car_run_speed -= 0.003 * 10
@@ -173,8 +180,10 @@ def main():
         elif op == 'left':
             turn_left()
         elif op == 'quit':
+            stop()
             break
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            stop()
             break
 
     try:
