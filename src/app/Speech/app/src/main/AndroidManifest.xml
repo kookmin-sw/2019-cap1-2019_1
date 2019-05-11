@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Speech"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TTS"></activity>
+        <activity android:name=".Bluetooth"></activity>
+        <activity android:name=".TTS" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,7 +36,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCOyg16eZTzqZ-fnG_Pp_0n9a25tMpQBWU" />
 
-        <activity android:name=".test" />
         <activity android:name=".PrivacyLocation" />
         <activity android:name=".ModifiedNode" />
         <activity android:name=".EnrollNode" />

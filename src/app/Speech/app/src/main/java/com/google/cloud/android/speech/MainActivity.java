@@ -24,8 +24,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
-
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
@@ -40,11 +38,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
+//layout.setVisibility(View.VISIBLE); //View.INVISIBLE, View.GONE
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
 
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
@@ -55,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     private SpeechService mSpeechService;
     private VoiceRecorder mVoiceRecorder;
-
     private final VoiceRecorder.Callback mVoiceCallback = new VoiceRecorder.Callback() {
 
         //voiceRecorder Overriding
@@ -88,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     private int mColorNotHearing;
 
     // View references
+    private TextView progress;
     private TextView mStatus;
     private TextView mText;
     private ResultAdapter mAdapter;
@@ -130,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         mStatus = (TextView) findViewById(R.id.status);
         mText = (TextView) findViewById(R.id.text);
+        progress = (TextView) findViewById(R.id.progress);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -342,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         startActivity(intent);
     }
 
-    public void onClickEnrollNdoe(View v){
+    public void onClickEnrollNode(View v){
         Intent intent = new Intent(this, EnrollNode.class);
         startActivity(intent);
     }
@@ -393,13 +390,15 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 case "길 안내" :
                     stage = 100;
                     textToSpeech("길안내 시스템을 시작하겠습니다. 현재 계신곳을 말해주세요.");
+                    progress.setText("길안내 시스템");
                     break;
             }
         }
         else if(stage>=100){
             if(stage==100){
-                String s = "현재 계신곳이 \'" + sentence + "\'이 맞으시다면 네 라고 말해주세요";
+                String s = "현재 계신곳이 \'" + sentence + "\' 맞으시다면 네 라고 말해주세요";
                 textToSpeech(s);
+                progress.setText("현재 계신 곳 : " + sentence);
                 guideCurrentPosition = sentence;
                 stage = 101;
             }
@@ -407,7 +406,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 if(sentence.contentEquals("네") ||
                         sentence.contentEquals("맞아요") ||
                         sentence.contentEquals("네 맞아요")){
-
                     textToSpeech("목적지를 말해주세요");
 
                     stage = 102;
@@ -420,6 +418,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             else if(stage==102){
                 String s = "목적지가 \'" + sentence + "\'이 맞으시다면 네 라고 말해주세요";
                 textToSpeech(s);
+                progress.setText("목적지 : " + sentence);
                 guideDestinationPosition = sentence;
                 stage = 103;
             }
@@ -431,6 +430,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     textToSpeech("경로 탐색을 시작하겠습니다. 잠시만 기다려주세요.");
                     guidePath(guideCurrentPosition, guideDestinationPosition);
                     stage = 0;
+                    progress.setText("...");
                 }
                 else{
                     textToSpeech("목적지를 천천히 말해주세요.");
@@ -448,7 +448,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     //textToSpeech("하고싶은말")
     //recognizeSpeaking()
     public void UI(){
-        textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요.");
+        textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요. ");
     }
 
     public void guidePath(String curPos, String destPos){

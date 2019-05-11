@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="300dp"
-        android:onClick="onClickSetDestination"
+        android:onClick="onClickGuidePath"
         android:text="목적지 설정" />
 
     <Button
