@@ -30,9 +30,14 @@ class NodeServiceLogic:
     #자기만의 노드이름등록
     def registerOwnNodeName(self, phone_origin_number_and_node):
 
-        return nodeStoreLogic.insertOwnNodeName(phone_origin_number_and_node['phone_origin_number']
-                                                , phone_origin_number_and_node['node_id']
-                                                , phone_origin_number_and_node['own_node_name'])
+        if len(nodeStoreLogic.selectOwnNodeNameByNodeId(phone_origin_number_and_node['node_id'],phone_origin_number_and_node['phone_origin_number']))!=0:
+            return nodeStoreLogic.updateOwnNodeName(phone_origin_number_and_node['phone_origin_number']
+                                                    , phone_origin_number_and_node['node_id']
+                                                    , phone_origin_number_and_node['own_node_name'])
+        else:
+            return nodeStoreLogic.insertOwnNodeName(phone_origin_number_and_node['phone_origin_number']
+                                                    , phone_origin_number_and_node['node_id']
+                                                    , phone_origin_number_and_node['own_node_name'])
 
     #노드추가
     def addNewNode(self,node_data_):
