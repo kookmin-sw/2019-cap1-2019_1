@@ -23,6 +23,4 @@ def registerUser():
         if firstkey == "phone_origin_number":
             user_data['phone_origin_number'] = value
 
-    userServiceLogic.registerUser(user_data)
-
-    return 'success'
+    return userServiceLogic.registerUser(user_data)
