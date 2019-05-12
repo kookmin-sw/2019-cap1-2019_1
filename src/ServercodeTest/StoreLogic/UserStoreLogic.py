@@ -11,11 +11,14 @@ class UserStoreLogic:
 
         sql = "insert into USER_TB(user_id,phone_origin_number)" + \
               "values ((SELECT NVL(MAX(USER_ID),0)+1 FROM USER_TB),:phone_origin_number)"
-
-        print(user_data_['phone_origin_number'])
-        #user_data_['phone_origin_number']=user_data_['phone_origin_number'].encode('utf-8')
-
         db.execute(sql, user_data_)
         con.commit()
 
         return 'success'
+
+    def selectUserIdByPhoneOriginNumber(self,phone_origin_number_):
+
+        sql = "SELECT user_id FROM USER_TB WHERE PHONE_ORIGIN_NUMBER= :phone_origin_number"
+        db.execute(sql, {"phone_origin_number": phone_origin_number_})
+        records = db.fetchall()
+        return records
