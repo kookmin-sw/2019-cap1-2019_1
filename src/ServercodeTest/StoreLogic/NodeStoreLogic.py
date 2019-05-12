@@ -90,6 +90,23 @@ class NodeStoreLogic:
 
         return 'success'
 
+    #이미 있는 자기만의 노드 이름 수정
+    def updateOwnNodeName(self,phone_origin_number_,node_id_,own_node_name_):
+
+        sql = "UPDATE NODE_USER_TB SET PHONE_ORIGIN_NUMBER= :phone_origin_number, OWN_NODE_NAME= :own_node_name WHERE NODE_ID= :node_id"
+        db.execute(sql, {'node_id':node_id_, 'phone_origin_number':phone_origin_number_,'own_node_name': own_node_name_})
+        con.commit()
+
+    #노드 이미 있는지 체크
+    def selectOwnNodeNameByNodeId(self,node_id_,phone_origin_number_):
+
+        print(node_id_)
+        print(phone_origin_number_)
+        sql = "SELECT own_node_name FROM NODE_USER_TB WHERE NODE_ID= :node_id AND PHONE_ORIGIN_NUMBER= :phone_origin_number"
+        db.execute(sql, {"node_id": node_id_,"phone_origin_number":phone_origin_number_})
+        records = db.fetchall()
+        return records
+
     #노드추가(노드 이름 등록해도 되고 안해도되고)
     def insertNewNode(self,node_list_):
 
