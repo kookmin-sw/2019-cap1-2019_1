@@ -35,7 +35,7 @@ class SlideWindow:
         # print(nonzerox)
         # init data need to sliding windows
         margin = 20
-        minpix = 10
+        minpix = 5
         good_lane_inds = []
         right_lane_inds = []
 
@@ -50,7 +50,7 @@ class SlideWindow:
 
         # indicies before start line(the region of pts_left)
         left_inds = ((nonzerox >= width / 2 - 130) & (nonzeroy >= nonzerox * 0.33 + 337) & (
-            (nonzeroy <= height - 100) & nonzerox <= width / 2 - 70)).nonzero()[0]
+                nonzerox <= width / 2 - 70)).nonzero()[0]
         good_inds = []
 
         left_img = out_img.copy()
@@ -80,6 +80,7 @@ class SlideWindow:
         line_exist_flag = None
         y_current = None
         x_current = None
+        x_current_old = None
         good_center_inds = None
         p_cut = None
 
@@ -89,6 +90,7 @@ class SlideWindow:
         if len(good_inds) > minpix:
             line_flag = 1
             x_current = np.int(np.mean(nonzerox[good_inds]))
+            x_current_old = x_current
             y_current = np.int(np.mean(nonzeroy[good_inds]))
             max_y = y_current
         else:
@@ -124,17 +126,26 @@ class SlideWindow:
                     for i in inds:
                         cv2.circle(left_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
 
+                    slope = (x_current - x_current_old) / float(win_y_high - win_y_low)
+                    x_predict = x_current + (slope * -window_height)
+                    x_current_old = x_current
+
                     # check num of indicies in square and put next location to current
                     if len(inds) > minpix:
                         self.dbscanS.fit(nonzerox[inds].reshape(-1, 1))
 
-                        n = max(self.dbscanS.labels_)
-                        max_value = 0.0
-                        max_index = 0
+                        n = max(self.dbscanS.labels_) + 1
+                        min_value = float('inf')
+                        max_index = 0.0
                         for i in range(n):
-                            mean = np.mean(nonzerox[inds[np.where(self.dbscanS.labels_ == i)]])
-                            if mean > max_value:
-                                max_value = mean
+                            inds_i = inds[np.where(self.dbscanS.labels_ == i)]
+
+                            for idx in inds_i:
+                                cv2.circle(left_img, (nonzerox[idx], nonzeroy[idx]), 1, (0, 0, 255 / n * (i + 1)), -1)
+
+                            error = np.abs(x_predict - np.mean(nonzerox[inds_i]))
+                            if error < min_value:
+                                min_value = error
                                 max_index = i
 
                         good_inds = inds[np.where(self.dbscanS.labels_ == max_index)]
