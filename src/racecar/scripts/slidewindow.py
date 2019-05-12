@@ -13,7 +13,7 @@ class SlideWindow:
         self.leftx = None
         self.rightx = None
         self.dbscanL = DBSCAN(eps=5, min_samples=5)
-        self.dbscanS = DBSCAN(eps=5, min_samples=2)
+        self.dbscanS = DBSCAN(eps=2, min_samples=5)
 
     def slidewindow(self, img):
 
