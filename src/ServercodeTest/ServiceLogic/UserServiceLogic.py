@@ -10,6 +10,8 @@ userStoreLogic=UserStoreLogic()
 class UserServiceLogic:
     def registerUser(self,user_data_):
 
-        userStoreLogic.registerUser(user_data_)
-
-        return 'success'
+        if(len(userStoreLogic.selectUserIdByPhoneOriginNumber(user_data_['phone_origin_number']))!=0):
+            return 'User Already Exits'
+        else:
+            userStoreLogic.registerUser(user_data_)
+            return 'success'
