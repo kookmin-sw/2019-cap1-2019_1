@@ -28,6 +28,7 @@ from obstacle import detect_obstacle
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+import time
 
 from ackermann_msgs.msg import AckermannDriveStamped
 
@@ -136,12 +137,12 @@ def drive_():
         if circles is not None and len(circles) > 10:
             stop()
             # TODO send massage arrive at turning point
-            sleep(1)
+            sleep(5)
             break
 
         if x_location is not None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
-            auto_drive(pid)
+            # auto_drive(pid)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
@@ -180,14 +181,42 @@ def stop():
 
 
 def go_strait():
+    global op
+    start_time = time.time()
+    while time.time() - start_time < 3:
+        pid = 0
+        auto_drive(pid)
+        print(time.time() - start_time)
+    stop()
+    # TODO send message
+    op = 'quit'
+
+
+def turn_left():
+    global op
+    start_time = time.time()
+    while time.time() - start_time < 1:
+        pid = 0
+        auto_drive(pid)
+    start_time = time.time()
+    while time.time() - start_time < 3.5:
+        pid = 0.34
+        auto_drive(pid)
+    stop()
+    op = 'quit'
+    # TODO send message
     pass
 
 
 def turn_right():
-    pass
-
-
-def turn_left():
+    global op
+    start_time = time.time()
+    while time.time() - start_time < 3:
+        pid = -0.34
+        auto_drive(pid)
+    stop()
+    # TODO send message
+    op = 'quit'
     pass
 
 
@@ -204,8 +233,10 @@ def main():
     # ack_publisher = rospy.Publisher('vesc/low_level/ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
     ack_publisher = rospy.Publisher('ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
 
-    op = 'drive'
+    op = 'left'
     while cv_image is not None:
+        print(op)
+
         if op == 'drive':
             drive_()
         elif op == 'strait':
@@ -217,10 +248,14 @@ def main():
         elif op == 'quit':
             stop()
             break
+        else:
+            break
         if cv2.waitKey(1) & 0xFF == ord('q'):
             stop()
             break
 
+
+    print('end')
     try:
         rospy.spin()
     except KeyboardInterrupt:
@@ -242,7 +277,9 @@ def process_image(frame):
     # warper
     img = warper.warp(edges_img)
     img1, x_location = slidewindow.slidewindow(img)
-    circles = processor.find_circle(warper.warp(blur_gray), show=True)
+
+
+    circles = processor.find_circle(warper.warp(gray), show=True)
 
     return img1, x_location, circles
 
