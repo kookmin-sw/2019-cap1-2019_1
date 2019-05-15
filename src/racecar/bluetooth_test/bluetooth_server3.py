@@ -2,7 +2,7 @@ import threading
 import bluetooth
 
 def register_service():
-    service_name = "Armatus Bluetooth server"
+    service_name = "Bluetooth server"
     svc_dsc = "A HERMIT server that interfaces with the Armatus Android app"
     service_prov = "Armatus"
 
@@ -47,8 +47,8 @@ if __name__ == '__main__':
     server_sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
     print("socket() returned...")
 
-    # bind socket to some port of the first abailable
-    port = bluetooth.PORT_ANY
+    # bind socket to some port of the first available
+    port = bluetooth.PORT_ANY   #0
     server_sock.bind(("", port))
     print("bind() on channel %d returned..." % port)
 
