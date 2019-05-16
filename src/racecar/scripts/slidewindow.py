@@ -41,7 +41,7 @@ class SlideWindow:
 
         # first location and segmenation location finder
         # draw line
-        pts_left = np.array([[width / 2 - 70, height], [width / 2 - 70, height - 60], [width / 2 - 130, height - 80],
+        pts_left = np.array([[width / 2 - 50, height], [width / 2 - 50, height - 60], [width / 2 - 130, height - 80],
                              [width / 2 - 130, height]], np.int32)
         cv2.polylines(out_img, [pts_left], False, (0, 255, 0), 1)
 
@@ -50,7 +50,7 @@ class SlideWindow:
 
         # indicies before start line(the region of pts_left)
         left_inds = ((nonzerox >= width / 2 - 130) & (nonzeroy >= nonzerox * 0.33 + 337) & (
-                nonzerox <= width / 2 - 70)).nonzero()[0]
+                nonzerox <= width / 2 - 50)).nonzero()[0]
         good_inds = []
 
         left_img = out_img.copy()
