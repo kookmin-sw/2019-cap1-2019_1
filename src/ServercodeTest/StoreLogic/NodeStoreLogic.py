@@ -30,13 +30,15 @@ class NodeStoreLogic:
         node_list=[]
         for node_and_node_neighbors in node_and_node_neighbors_list:
             node_tmp=node_and_node_neighbors[0]
-            data_node_neighbors_list=node_and_node_neighbors[1].split("/")
 
-            #data_node_neighbors_list를 for문돌면서 각 id에 해당하는 Node를 node_list_의 객체에 넣어줌
-            for neighbors_id in data_node_neighbors_list:
-                for node_and_node_neighbors_tmp in node_and_node_neighbors_list:
-                    if str(node_and_node_neighbors_tmp[0].node_id)==neighbors_id:
-                        node_tmp.set_neighbor(node_and_node_neighbors_tmp[0])
+            if node_and_node_neighbors[1] is not None:
+                data_node_neighbors_list=node_and_node_neighbors[1].split("/")
+
+                #data_node_neighbors_list를 for문돌면서 각 id에 해당하는 Node를 node_list_의 객체에 넣어줌
+                for neighbors_id in data_node_neighbors_list:
+                    for node_and_node_neighbors_tmp in node_and_node_neighbors_list:
+                        if str(node_and_node_neighbors_tmp[0].node_id)==neighbors_id:
+                            node_tmp.set_neighbor(node_and_node_neighbors_tmp[0])
 
             node_list.append(node_tmp)
 
