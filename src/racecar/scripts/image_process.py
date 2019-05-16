@@ -10,10 +10,10 @@ class ImageProcessor:
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([15, 50, 20])
-        self.upper_color = np.array([30, 255, 255])
+        self.lower_color = np.array([10, 50, 20])
+        self.upper_color = np.array([45, 255, 255])
 
-        self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+        self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
         self.clustering_op = clustering_op
         eps = 0.0
@@ -23,7 +23,7 @@ class ImageProcessor:
             eps = np.pi / 12
         self.dbscan = DBSCAN(eps=eps, min_samples=3)
 
-    def yellow_mask(self, frame, blurring=False, morphology=False, show=False, window_name='mask'):
+    def yellow_mask(self, frame, blurring=False, morphology=False, show=False, window_name='yeloow_img'):
         if blurring:
             img = cv2.GaussianBlur(frame, (5, 5), 0)
         else:
@@ -42,6 +42,24 @@ class ImageProcessor:
         if show:
             cv2.imshow(window_name, img_res)
         return img_res
+
+    def get_yellow_mask(self, frame, blurring=False, morphology=False, show=False, window_name='mask'):
+        if blurring:
+            img = cv2.GaussianBlur(frame, (5, 5), 0)
+        else:
+            img = frame
+
+        img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+        # create mask using color range
+        mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
+
+        if morphology:
+            mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+        if show:
+            cv2.imshow(window_name, mask)
+        return mask
 
     def find_line(self, edges_img, show=False, window_name='lines'):
         # find lines using houghlines and show them
@@ -159,9 +177,15 @@ class ImageProcessor:
                 self.draw_line(img, line, color)
 
     @staticmethod
-    def find_circle(frame, show=False, window_name='circles'):
+    def find_circle(frame, show=False, window_name='circles', show_edge=False, edge_window_name='circle_edge'):
         # find circle using houghcircle
-        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 15, param1=20, param2=10, minRadius=3, maxRadius=10)
+        param1 = 20
+        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 15, param1=param1, param2=10, minRadius=3,
+                                   maxRadius=10)
+
+        if show_edge:
+            edge_img = cv2.Canny(frame, param1, param1 * 2)
+            cv2.imshow(edge_window_name, edge_img)
 
         if show:
             img = frame.copy()

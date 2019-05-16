@@ -297,9 +297,9 @@ def main():
 
 
 def process_image(frame):
-    yellow_img = processor.yellow_mask(frame, blurring=False, morphology=False, show=True)
+    mask = processor.get_yellow_mask(frame, blurring=True, morphology=True, show=True)
     # grayscle
-    gray = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # blur
     kernel_size = 5
     blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
@@ -307,12 +307,13 @@ def process_image(frame):
     low_threshold = 60  # 60
     high_threshold = 70  # 70
     edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
+    yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
     # warper
-    img = warper.warp(edges_img)
+    img = warper.warp(yellow_edges_img)
     img1, x_location = slidewindow.slidewindow(img)
 
-
-    circles = processor.find_circle(warper.warp(gray), show=True)
+    # warp_img = warper.warp(gray)
+    circles = processor.find_circle(img, show=True, show_edge=True)
 
     return img1, x_location, circles
 
