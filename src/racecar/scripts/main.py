@@ -171,6 +171,24 @@ def auto_drive(pid):
     print(car_run_speed)
 
 
+def go(pid):
+    ack_msg = AckermannDriveStamped()
+    ack_msg.header.stamp = rospy.Time.now()
+    ack_msg.header.frame_id = ''
+    ack_msg.drive.steering_angle = pid
+    ack_msg.drive.speed = max_speed
+    ack_publisher.publish(ack_msg)
+
+
+def back(pid):
+    ack_msg = AckermannDriveStamped()
+    ack_msg.header.stamp = rospy.Time.now()
+    ack_msg.header.frame_id = ''
+    ack_msg.drive.steering_angle = pid
+    ack_msg.drive.speed = -0.4
+    ack_publisher.publish(ack_msg)
+
+
 def stop():
     ack_msg = AckermannDriveStamped()
     ack_msg.header.stamp = rospy.Time.now()
@@ -185,25 +203,23 @@ def go_strait():
     start_time = time.time()
     while time.time() - start_time < 3:
         pid = 0
-        auto_drive(pid)
+        go(pid)
         print(time.time() - start_time)
     stop()
     # TODO send message
-    op = 'quit'
 
 
 def turn_left():
     global op
     start_time = time.time()
-    while time.time() - start_time < 1:
-        pid = 0
-        auto_drive(pid)
+    while time.time() - start_time < 0.5:
+        pid = 0.0
+        go(pid)
     start_time = time.time()
     while time.time() - start_time < 3.5:
         pid = 0.34
-        auto_drive(pid)
+        go(pid)
     stop()
-    op = 'quit'
     # TODO send message
     pass
 
@@ -211,12 +227,15 @@ def turn_left():
 def turn_right():
     global op
     start_time = time.time()
+    while time.time() - start_time < 0.3:
+        pid = 0
+        back(pid)
+    start_time = time.time()
     while time.time() - start_time < 3:
         pid = -0.34
-        auto_drive(pid)
+        go(pid)
     stop()
     # TODO send message
-    op = 'quit'
     pass
 
 
@@ -233,7 +252,8 @@ def main():
     # ack_publisher = rospy.Publisher('vesc/low_level/ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
     ack_publisher = rospy.Publisher('ackermann_cmd_mux/input/teleop', AckermannDriveStamped, queue_size=1)
 
-    op = 'left'
+    op = 'drive'
+    flag = 0
     while cv_image is not None:
         print(op)
 
@@ -254,7 +274,20 @@ def main():
             stop()
             break
 
+        if op == 'quit':
+            break
+        flag += 1
 
+        if flag == 1:
+            op = 'right'
+        elif flag == 2:
+            op = 'drive'
+        elif flag == 3:
+            op = 'right'
+        elif flag == 4:
+            op = 'drive'
+        else:
+            op = 'quit'
     print('end')
     try:
         rospy.spin()
