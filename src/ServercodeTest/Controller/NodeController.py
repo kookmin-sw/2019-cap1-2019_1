@@ -43,10 +43,10 @@ def getAllNodes():
         node_neighbors_datas=[]
         # print("NodeController의 getAllNodes시작")
         # print(node.node_id)
-
-        for node_neighbor in node.neighbors:
-            # print(node_neighbor.node_id)
-            node_neighbors_datas.append(node_neighbor.node_id)
+        if node.neighbors is not None:
+            for node_neighbor in node.neighbors:
+                # print(node_neighbor.node_id)
+                node_neighbors_datas.append(node_neighbor.node_id)
 
         data = {'node_id': node.node_id, 'node_type': node.node_type, 'node_name': node.node_name, 'pos_x': node.pos_x,
                 'pos_y': node.pos_y, 'node_neighbors': node_neighbors_datas,'indoor': node.indoor,'floor': node.floor}
