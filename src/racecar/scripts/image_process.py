@@ -180,8 +180,8 @@ class ImageProcessor:
     def find_circle(frame, show=False, window_name='circles', show_edge=False, edge_window_name='circle_edge'):
         # find circle using houghcircle
         param1 = 20
-        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 15, param1=param1, param2=10, minRadius=3,
-                                   maxRadius=10)
+        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1.5, 15, param1=param1, param2=11, minRadius=2,
+                                   maxRadius=7)
 
         if show_edge:
             edge_img = cv2.Canny(frame, param1, param1 * 2)
