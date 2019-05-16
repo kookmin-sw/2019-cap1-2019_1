@@ -310,8 +310,9 @@ def process_image(frame):
     img = warper.warp(yellow_edges_img)
     img1, x_location = slidewindow.slidewindow(img)
 
-    # warp_img = warper.warp(gray)
-    circles = processor.find_circle(img, show=True, show_edge=True)
+    yellow_img2 = cv2.bitwise_and(blur_gray, blur_gray, mask=mask)
+    warp_img2 = warper.warp(yellow_img2)
+    circles = processor.find_circle(warp_img2, show=True, show_edge=True)
 
     return img1, x_location, circles
 
