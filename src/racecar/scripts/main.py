@@ -74,7 +74,7 @@ def drive():
 
         cv2.imshow('origin', cv_image)
 
-        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=False, show=False)
+        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=True, show=False)
         gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
         cv2.imshow('yellow', yellow_img)
 
@@ -120,7 +120,6 @@ def drive():
 
         circles = processor.find_circle(warp_img, show=True)
 
-
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
             break
@@ -131,22 +130,21 @@ def drive_():
     global op
     while cv_image is not None:
         cv2.imshow("origin", cv_image)
-        img1, x_location , circles = process_image(cv_image)
+        img1, x_location, circles = process_image(cv_image)
         cv2.imshow('result', img1)
-
-        if circles is not None and len(circles) > 10:
+        if circles is not None and circles.shape[1] > 20:
             stop()
             # TODO send massage arrive at turning point
-            sleep(5)
             break
 
         if x_location is not None:
             pid = round(pidcal.pid_control(int(x_location)), 6)
-            # auto_drive(pid)
+            auto_drive(pid)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
             break
+
 
 def auto_drive(pid):
     global car_run_speed
