@@ -42,7 +42,7 @@ bridge = CvBridge()
 
 cv_image = None
 ack_publisher = None
-max_speed = 0.5
+max_speed = 0.0
 car_run_speed = max_speed * 0.5
 
 op = None
@@ -274,18 +274,18 @@ def main():
 
         if op == 'quit':
             break
-        flag += 1
-
-        if flag == 1:
-            op = 'right'
-        elif flag == 2:
-            op = 'drive'
-        elif flag == 3:
-            op = 'right'
-        elif flag == 4:
-            op = 'drive'
-        else:
-            op = 'quit'
+        # flag += 1
+        #
+        # if flag == 1:
+        #     op = 'right'
+        # elif flag == 2:
+        #     op = 'drive'
+        # elif flag == 3:
+        #     op = 'right'
+        # elif flag == 4:
+        #     op = 'drive'
+        # else:
+        #     op = 'quit'
     print('end')
     try:
         rospy.spin()
@@ -295,7 +295,7 @@ def main():
 
 
 def process_image(frame):
-    mask = processor.get_yellow_mask(frame, blurring=True, morphology=True, show=True)
+    mask = processor.get_yellow_mask(frame, blurring=False, morphology=False, show=True)
     # grayscle
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # blur
@@ -310,9 +310,9 @@ def process_image(frame):
     img = warper.warp(yellow_edges_img)
     img1, x_location = slidewindow.slidewindow(img)
 
-    yellow_img2 = cv2.bitwise_and(blur_gray, blur_gray, mask=mask)
-    warp_img2 = warper.warp(yellow_img2)
-    circles = processor.find_circle(warp_img2, show=True, show_edge=True)
+    warp_img2 = warper.warp(blur_gray)
+    mask2 = warper.warp(mask)
+    circles = processor.find_circle(warp_img2, mask2, show=True, show_edge=True)
 
     return img1, x_location, circles
 

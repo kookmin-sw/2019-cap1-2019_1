@@ -177,23 +177,45 @@ class ImageProcessor:
                 self.draw_line(img, line, color)
 
     @staticmethod
-    def find_circle(frame, show=False, window_name='circles', show_edge=False, edge_window_name='circle_edge'):
+    def find_circle(gray_img, mask, show=False, window_name='circles', show_edge=False, edge_window_name='circle_edge'):
         # find circle using houghcircle
         param1 = 20
-        circles = cv2.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1.5, 15, param1=param1, param2=11, minRadius=2,
+        param2 = 11
+        circles = cv2.HoughCircles(gray_img, cv2.HOUGH_GRADIENT, 1.5, 15, param1=param1, param2=param2, minRadius=2,
                                    maxRadius=7)
 
+        edges_img = cv2.Canny(gray_img, param1 / 2, param1)
+        edges_img = cv2.bitwise_and(edges_img, edges_img, mask)
+
         if show_edge:
-            edge_img = cv2.Canny(frame, param1, param1 * 2)
-            cv2.imshow(edge_window_name, edge_img)
+            cv2.imshow(edge_window_name, edges_img)
+
+        nonzero = mask.nonzero()
+        nonzerox = nonzero[0]
+        nonzeroy = nonzero[1]
+        nonzerod = nonzerox + (nonzeroy * 1000)
+
+        theta = np.linspace(0, 2 * np.pi, 90)
+
+        circles_ = []
+        for circle in circles[0, :]:
+            x = np.uint32(np.round(np.cos(theta) * circle[2] + circle[0]))
+            y = np.uint32(np.round(np.sin(theta) * circle[2] + circle[1]))
+            d = x + (y * 1000)
+
+            correct = np.intersect1d(d, nonzerod)
+            accuracy = correct.shape[0] / 90.0
+
+            if accuracy > param2 / 100.0:
+                circles_.append(circle)
 
         if show:
-            img = frame.copy()
             # show circles
-            if circles is not None:
-                circles = np.uint16(np.around(circles))
-                for i in circles[0, :]:
+            img = gray_img.copy()
+            if circles_ is not None:
+                circles_ = np.uint16(np.around(circles_))
+                for i in circles_[0, :]:
                     cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
                     cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
             cv2.imshow(window_name, img)
-        return circles
+        return circles_
