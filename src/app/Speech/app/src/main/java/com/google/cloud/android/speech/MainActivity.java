@@ -39,6 +39,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 //layout.setVisibility(View.VISIBLE); //View.INVISIBLE, View.GONE
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     //
     public int stage;
     Bluetooth bluetooth;
+    Network network;
+    ArrayList<Node> node_list;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         setContentView(R.layout.activity_main);
 
         stage = 0;
+        network = new Network();
 
         //STT
         final Resources resources = getResources();
@@ -338,8 +342,21 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     }
 
     public void onClickCancelPath(View v){
-        Intent intent = new Intent(this, CancelPath.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, CancelPath.class);
+        //startActivity(intent);
+
+        //전체 노드 확인 test
+        String identification="User";
+        String phone_origin_number="0xx0";
+        node_list = network.requestGetAllNodes(identification,phone_origin_number);
+
+        String temp = "";
+        Iterator<Node> iter = node_list.iterator();
+        while(iter.hasNext()){
+            Node n = iter.next();
+            temp += n.getNode_id() + " " + n.getPos_x() + " " + n.getPos_y() + "\n";
+        }
+        progress.setText(temp);
     }
 
     public void onClickEnrollNode(View v){
