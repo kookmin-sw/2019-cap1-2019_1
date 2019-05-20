@@ -190,32 +190,30 @@ class ImageProcessor:
         if show_edge:
             cv2.imshow(edge_window_name, edges_img)
 
-        nonzero = mask.nonzero()
-        nonzerox = nonzero[0]
-        nonzeroy = nonzero[1]
-        nonzerod = nonzerox + (nonzeroy * 1000)
+        circles_ = [[]]
 
-        theta = np.linspace(0, 2 * np.pi, 90)
-
-        circles_ = []
-        for circle in circles[0, :]:
-            x = np.uint32(np.round(np.cos(theta) * circle[2] + circle[0]))
-            y = np.uint32(np.round(np.sin(theta) * circle[2] + circle[1]))
-            d = x + (y * 1000)
-
-            correct = np.intersect1d(d, nonzerod)
-            accuracy = correct.shape[0] / 90.0
-
-            if accuracy > param2 / 100.0:
-                circles_.append(circle)
+        for circle in circles[0]:
+            x = int(circle[0])
+            y = int(circle[1])
+            if mask[y][x] > 0:
+                circles_[0].append(circle)
 
         if show:
             # show circles
-            img = gray_img.copy()
+            img1 = gray_img.copy()
+            if circles is not None:
+                circles = np.uint16(np.around(circles))
+                for i in circles[0, :]:
+                    cv2.circle(img1, (i[0], i[1]), i[2], 255, 2)  # circle
+                    cv2.circle(img1, (i[0], i[1]), 1, 192, 2)  # center
+            cv2.imshow('circle_non_filter', img1)
+
+            img2 = gray_img.copy()
             if circles_ is not None:
                 circles_ = np.uint16(np.around(circles_))
                 for i in circles_[0, :]:
-                    cv2.circle(img, (i[0], i[1]), i[2], 255, 2)  # circle
-                    cv2.circle(img, (i[0], i[1]), 1, 192, 2)  # center
-            cv2.imshow(window_name, img)
+                    cv2.circle(img2, (i[0], i[1]), i[2], 255, 2)  # circle
+                    cv2.circle(img2, (i[0], i[1]), 1, 192, 2)  # center
+            cv2.imshow(window_name, img2)
+
         return circles_
