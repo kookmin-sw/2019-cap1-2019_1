@@ -185,7 +185,7 @@ class ImageProcessor:
                                    maxRadius=7)
 
         edges_img = cv2.Canny(gray_img, param1 / 2, param1)
-        edges_img = cv2.bitwise_and(edges_img, edges_img, mask)
+        edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
 
         if show_edge:
             cv2.imshow(edge_window_name, edges_img)
