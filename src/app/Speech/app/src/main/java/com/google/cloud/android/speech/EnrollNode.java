@@ -119,6 +119,6 @@ public class EnrollNode extends AppCompatActivity implements OnMapReadyCallback 
 
     public void sendButton(View v){
         boolean door = outDoor.isChecked();
-        network.sendPost("http://13.125.251.226:5000/insert", latitude, longitude);
+        //network.sendPost("http://13.125.251.226:5000/insert", latitude, longitude);
     }
 }

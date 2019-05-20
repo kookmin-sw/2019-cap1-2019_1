@@ -272,10 +272,6 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_bluetooth.xml",
-        "source": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_bluetooth.xml"
-    },
-    {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\design_layout_snackbar.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\layout\\design_layout_snackbar.xml"
     },
@@ -364,6 +360,10 @@
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
+        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_set_map_info.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_set_map_info.xml"
+    },
+    {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\notification_template_part_chronometer.xml"
     },
@@ -378,10 +378,6 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_alert_dialog_title_material.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\2cbc547270f2cd0a35e017df5c63c6fe5554aed4\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
-    },
-    {
-        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_test.xml",
-        "source": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_test.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\item_result.xml",
@@ -442,6 +438,10 @@
     {
         "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\design_text_input_password_icon.xml",
         "source": "C:\\Users\\yongt\\.android\\build-cache\\a452c0dc2cb0256b3b335ef6a6c10d5ff0ca3fad\\output\\res\\layout\\design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\activity_map.xml",
+        "source": "C:\\Users\\yongt\\Desktop\\2019-cap1-2019_1\\src\\app\\Speech\\app\\src\\main\\res\\layout\\activity_map.xml"
     },
     {
         "merged": "C:\\Users\\yongt\\Desktop\\capstone\\src\\app\\Speech\\app\\build\\intermediates\\res\\merged\\dev\\debug\\layout\\abc_screen_toolbar.xml",

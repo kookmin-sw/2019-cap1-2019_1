@@ -18,6 +18,7 @@ package com.google.cloud.android.speech;
 
 import android.Manifest;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -38,6 +39,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     Bluetooth bluetooth;
     Network network;
     ArrayList<Node> node_list;
-
+    Context context;
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -123,13 +126,14 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         stage = 0;
         network = new Network();
 
+
         //STT
         final Resources resources = getResources();
         final Resources.Theme theme = getTheme();
         mColorHearing = ResourcesCompat.getColor(resources, R.color.status_hearing, theme);
         mColorNotHearing = ResourcesCompat.getColor(resources, R.color.status_not_hearing, theme);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         mStatus = (TextView) findViewById(R.id.status);
         mText = (TextView) findViewById(R.id.text);
         progress = (TextView) findViewById(R.id.progress);
@@ -144,8 +148,9 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         guideCurrentPosition = "";
         guideDestinationPosition = "";
 
-        //bluetooth = new Bluetooth();
-        UI();
+        //UI();
+        //blue();
+        bluetooth = new Bluetooth();
     }
 
     @Override
@@ -374,6 +379,11 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         startActivity(intent);
     }
 
+    public void onClickMapButton(View v){
+        Intent intent = new Intent(this, map.class);
+        startActivity(intent);
+    }
+
     public void onClickTest(View v){
         stopVoiceRecorder();
         //Intent intent = new Intent(this, test.class);
@@ -415,8 +425,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             }
         }
         else if(stage>=100){
-            //bluetooth.sendCommand(sentence);
             if(stage==100){
+                //bluetooth.sendCommand(sentence);
                 String s = "현재 계신곳이 \'" + sentence + "\' 맞으시다면 네 라고 말해주세요";
                 textToSpeech(s);
                 progress.setText("현재 계신 곳 : " + sentence);
@@ -468,10 +478,22 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     //stopVoiceRecorder()
     //textToSpeech("하고싶은말")
     //recognizeSpeaking()
-    public void UI(){
-        textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 원하시면 설명듣기 라고 말해주세요. ");
+    public void sleep(int time){
+        try{
+            Thread.sleep(time);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
+    public void UI(){
+        textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 알고싶으면 설명듣기 라고 말해주세요. ");
+    }
+
+
+    public void blue(){
+        bluetooth = new Bluetooth();
+    }
     public void guidePath(String curPos, String destPos){
         Intent intent = new Intent(this, SetDestination.class);
 
@@ -487,4 +509,12 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             startVoiceRecorder();
         }
     }
+
+    public void onClickYong(View v){
+        Toast.makeText(this, "눌럿ㄷ", Toast.LENGTH_SHORT).show();
+        String ss = bluetooth.sendCommand("yong");
+        progress.setText(ss);
+    }
+
+
 }

@@ -29,13 +29,13 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <android.support.v7.widget.Toolbar
+        <!--<android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:paddingLeft="32dp"
-            android:paddingRight="32dp" />
+            android:paddingRight="32dp" />-->
 
         <include layout="@layout/item_result" />
 
@@ -51,41 +51,68 @@
         app:behavior_overlapTop="128dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <Button
-        android:id="@+id/button1"
+    <TextView
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="300dp"
-        android:onClick="onClickGuidePath"
-        android:text="목적지 설정" />
+        android:layout_gravity="center"
+        android:text="..."/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="전체노드보기"
+        android:layout_marginTop="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="360dp"
-        android:onClick="onClickCancelPath"
-        android:text="경로 취소" />
+        android:onCLick="onClickMapButton"/>
 
-    <Button
-        android:id="@+id/button3"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="420dp"
-        android:onClick="onClickEnrollNdoe"
-        android:text="노드 등록" />
+        android:layout_marginTop="260dp"
+        android:layout_gravity="center_horizontal">
+        <!--android:visibility="gone"-->
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickGuidePath"
+            android:text="길 안내" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickCancelPath"
+            android:text="경로 취소" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_marginTop="480dp"
-        android:onClick="onClickModifiedNode"
-        android:text="노드 수정" />
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickEnrollNode"
+            android:text="위치 등록" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickModifiedNode"
+            android:text="위치 수정" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button5"
@@ -94,7 +121,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="540dp"
         android:onClick="onClickPrivacyLocation"
-        android:text="이름 등록" />
+        android:visibility="gone"
+        android:text="위치 저장" />
 
     <Button
         android:id="@+id/button6"
@@ -102,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="540dp"
-        android:onClick="onClickTest"
+        android:onClick="onClickYong"
         android:text="test" />
 
 </android.support.design.widget.CoordinatorLayout>

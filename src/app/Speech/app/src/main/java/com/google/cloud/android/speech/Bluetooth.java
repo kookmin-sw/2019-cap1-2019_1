@@ -3,8 +3,10 @@ package com.google.cloud.android.speech;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +35,9 @@ public class Bluetooth
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         setPairedDevice();
+
+
+
     }
 
     public void finalize(){
@@ -221,7 +226,7 @@ public class Bluetooth
 
         void write(String msg){
             try {
-                mOutputStream.write(msg.getBytes());
+                mOutputStream.write(msg.getBytes("UTF-8"));
                 mOutputStream.flush();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during send", e );
@@ -229,10 +234,14 @@ public class Bluetooth
         }
     }
 
-    void sendCommand(String cmd){
+    String sendCommand(String cmd){
         if ( mConnectedTask != null ) {
             mConnectedTask.write(cmd);
             Log.d(TAG, "command: " + cmd);
+            return mConnectedDeviceName;
+        }
+        else{
+            return "연결안댐";
         }
     }
 
@@ -241,13 +250,16 @@ public class Bluetooth
         Set<BluetoothDevice> devices = mBluetoothAdapter.getBondedDevices();
         final BluetoothDevice[] pairedDevices = devices.toArray(new BluetoothDevice[0]);
 
-        int which=0;
+        int which=-1;
         for (int i=0;i<pairedDevices.length;i++) {
-            if (pairedDevices[i].getName() == "tegra-ubuntu")
+            if (pairedDevices[i].getName().contentEquals("tegra-ubuntu")){
                 which = i;
+            }
         }
 
-        ConnectTask task = new ConnectTask(pairedDevices[which]);
-        task.execute();
+        if(which != -1){
+            ConnectTask task = new ConnectTask(pairedDevices[which]);
+            task.execute();
+        }
     }
 }
