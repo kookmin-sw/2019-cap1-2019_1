@@ -44,6 +44,7 @@ cv_image = None
 ack_publisher = None
 max_speed = 0.0
 car_run_speed = max_speed * 0.5
+turning_coef = 0.0
 
 op = None
 
@@ -162,7 +163,7 @@ def auto_drive(pid):
     ack_msg = AckermannDriveStamped()
     ack_msg.header.stamp = rospy.Time.now()
     ack_msg.header.frame_id = ''
-    ack_msg.drive.steering_angle = pid
+    ack_msg.drive.steering_angle = pid * turning_coef
     ack_msg.drive.speed = car_run_speed
     ack_publisher.publish(ack_msg)
     print('speed: ')
