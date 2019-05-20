@@ -133,9 +133,19 @@ def drive_():
         cv2.imshow("origin", cv_image)
         img1, x_location, circles = process_image(cv_image)
         cv2.imshow('result', img1)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            op = 'quit'
+            break
+
+        if detect_obstacle():
+            stop()
+            # TODO send message detect obstacle
+            break
+
         if circles is not None and circles.shape[1] > 20:
             stop()
-            # TODO send massage arrive at turning point
+            # TODO send message arrive at turning point
             break
 
         if x_location is not None:
