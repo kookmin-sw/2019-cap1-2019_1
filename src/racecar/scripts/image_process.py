@@ -13,7 +13,7 @@ class ImageProcessor:
         self.lower_color = np.array([10, 50, 20])
         self.upper_color = np.array([45, 255, 255])
 
-        self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
 
         self.clustering_op = clustering_op
         eps = 0.0
@@ -55,8 +55,7 @@ class ImageProcessor:
         mask = cv2.inRange(img_hsv, self.lower_color, self.upper_color)
 
         if morphology:
-            mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self.kernel)
-            mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self.kernel)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_DILATE, self.kernel)
         if show:
             cv2.imshow(window_name, mask)
         return mask
