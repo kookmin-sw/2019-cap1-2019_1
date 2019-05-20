@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         stage = 0;
         network = new Network();
 
-
         //STT
         final Resources resources = getResources();
         final Resources.Theme theme = getTheme();
@@ -490,14 +489,27 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         textToSpeech("어떤 기능을 원하세요? 무슨 기능이 있는지 알고싶으면 설명듣기 라고 말해주세요. ");
     }
 
-
-    public void blue(){
-        bluetooth = new Bluetooth();
-    }
     public void guidePath(String curPos, String destPos){
         Intent intent = new Intent(this, SetDestination.class);
+        int cnt = 0, curid = 0, destid = 0;
+        String temp = "";
+        Iterator<Node> iter = node_list.iterator();
+        while(iter.hasNext()){
+            Node n = iter.next();
+            if(curPos.contentEquals(n.getNode_name())){
+                cnt++;
+                curid = n.getNode_id();
+            }
+            else if(destPos.contentEquals(n.getNode_name())){
+                cnt++;
+                destid = n.getNode_id();
+            }
+            if(cnt==2){
+                break;
+            }
+        }
 
-        intent.putExtra("currentPosition", curPos);
+        intent.putExtra("currentPostion", curid);
         intent.putExtra("destinationPosition", destPos);
 
         startActivity(intent);
@@ -515,6 +527,5 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         String ss = bluetooth.sendCommand("yong");
         progress.setText(ss);
     }
-
 
 }

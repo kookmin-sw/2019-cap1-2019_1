@@ -87,9 +87,6 @@ public class Network{
                         Log.e("Buffer Error", "Error converting result " + e.toString());
                     }
 
-
-
-
                     conn.disconnect();
                 } catch (Exception e) {
                     e.printStackTrace();

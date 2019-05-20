@@ -7,35 +7,35 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.LinkedHashSet;
 
 
 public class SetDestination extends AppCompatActivity {
 
     Network network;
+    Bluetooth bluetooth;
+    LinkedHashSet<Integer> node_list;
 
-    private String currentPosition;
-    private String destinationPosition;
+    private int currentPosition;
+    private int destinationPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_destination);
 
         Intent intent = getIntent();
-        currentPosition = intent.getExtras().getString("currentPosition");
-        destinationPosition = intent.getExtras().getString("destinationPosition");
+        currentPosition = intent.getExtras().getInt("currentPosition");
+        destinationPosition = intent.getExtras().getInt("destinationPosition");
 
         network = new Network();
+        bluetooth = new Bluetooth();
 
         Toast.makeText(this, "curPos : " + currentPosition + "\n destPos : " + destinationPosition, Toast.LENGTH_SHORT).show();
-        JSONObject str = new JSONObject();
-        try {
-            str.put("identification", "User");
-            str.put("phone_origin_number", "0xx0");
-            //str.put("departure_node_id", /* int */);
-            //str.put("arrival_node_id", /* int */);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        String identification="User";
+        String phone_origin_number="0xx0";
+        node_list = network.requestPath(identification,phone_origin_number, currentPosition, destinationPosition);
+
 
 
         //network.sendPost();  //목적지 설정하는거 형식
