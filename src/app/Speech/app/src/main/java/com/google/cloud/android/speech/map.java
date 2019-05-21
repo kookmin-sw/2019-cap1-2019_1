@@ -2,22 +2,15 @@ package com.google.cloud.android.speech;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,41 +25,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import android.location.Address;
 
-public class map extends FragmentActivity implements OnMapReadyCallback {
+import android.location.Address;
+import android.location.Geocoder;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Map extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private GPSTracker gps;
     private ArrayList<Marker> mMarkerList;
 
     private Button btnMyLocation;
-    private EditText editText;
-
-    private EnterListener enterListener;
-    private String s = "null";
 
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 11;
 
-    //위치
-    LatLng initLatLng = new LatLng(0.0, 0.0);
-    public Double latitude = initLatLng.latitude;
-    public Double longitude = initLatLng.longitude;
+    public Double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_destination);
+        setContentView(R.layout.activity_map);
 
         btnMyLocation = (Button)findViewById(R.id.button);
-        //editText = (EditText)findViewById(R.id.editText);
-        enterListener = new EnterListener();
-        //editText.setOnEditorActionListener(enterListener);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST_CODE);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         // Check and Set GPS & Network Permission
@@ -81,35 +74,30 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
-    protected void onStart() {
-        super.onStart();
-        getLocation();
-        Toast.makeText(this, "lati : " + latitude + "longi : " + longitude, Toast.LENGTH_SHORT).show();
-    }
 
-    //////////////////////////////////////
-    public void getLocation(){
-        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-    }
-
-    ///////////////////////////////
-
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        gps = new GPSTracker( map.this);
+        gps = new GPSTracker(Map.this);
         mMarkerList = new ArrayList<Marker>();
 
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 String address = getAddress(latLng);
-                latitude = latLng.latitude;
-                longitude = latLng.longitude;
+                Double latitude = latLng.latitude;
+                Double longitude = latLng.longitude;
 
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(latLng);
@@ -124,11 +112,51 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
-                for(Marker marker : mMarkerList) {
-                    if(Math.abs(marker.getPosition().latitude - latLng.latitude) < 0.05 && Math.abs(marker.getPosition().longitude - latLng.longitude) < 0.05) {
-                        Toast.makeText(map.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
-                        //mMarkerList.remove(marker);
-                        setLocInfo(marker);
+                for(final Marker marker : mMarkerList) {
+                    Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
+                    if(Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
+                        // set Dialog message
+                        dialogBuilder.setTitle("알림")
+                                .setMessage("위치 정보를 수정 또는 삭제하시겠습니까?");
+                        dialogBuilder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mMarkerList.remove(marker);
+                                marker.remove();
+                                Toast.makeText(Map.this, "A marker is removed.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("수정", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // get activity_set_map_info.xml view
+                                LayoutInflater promptli = LayoutInflater.from(Map.this);
+                                View promptsView = promptli.inflate(R.layout.activity_set_map_info, null);
+
+                                // set activity_set_map_info.xml to AlertDialog builder
+                                AlertDialog.Builder promptDialogBuilder = new AlertDialog.Builder( Map.this);
+                                promptDialogBuilder.setView(promptsView);
+                                final EditText userInput = (EditText)promptsView.findViewById(R.id.editTextDialogUserInput);
+
+                                // set Dialog message
+                                promptDialogBuilder.setCancelable(false)
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                String changedSnippet = userInput.getText().toString();
+                                                setLocInfo(marker, changedSnippet);
+                                                Toast.makeText(Map.this, "A marker is updated.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                promptDialogBuilder.show();
+                            }
+                        }).setNeutralButton("취소", null);
+                        dialogBuilder.show();
                         break;
                     }
                 }
@@ -139,7 +167,7 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 String coordText = "latitude: " + marker.getPosition().latitude + "\nlongitude: " + marker.getPosition().longitude;
-                Toast.makeText(map.this, coordText, Toast.LENGTH_LONG).show();
+                Toast.makeText(Map.this, coordText, Toast.LENGTH_LONG).show();
                 return false;
             }
         });
@@ -148,9 +176,9 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 if (gps.canGetLocation()) {
-                    latitude = gps.getLatitude();
-                    longitude = gps.getLongitude();
-                    Toast.makeText(map.this,
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+                    Toast.makeText(Map.this,
                             "latitude :" + String.valueOf(latitude) + "\nlongitude :" + String.valueOf(longitude),
                             Toast.LENGTH_LONG).show();
                 } else {
@@ -161,7 +189,6 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
 
         if (mMap != null) {
             mMap.setMyLocationEnabled(true);
-            //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         }
 
         UiSettings mapSettings;
@@ -170,14 +197,14 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         mapSettings.setTiltGesturesEnabled(true);
         mapSettings.setRotateGesturesEnabled(true);
 
-        // Add a marker in Sydney and move the camera
+        //LatLng HOUSE = new LatLng(37.5756132, 126.9237916);
+        //Marker house = mMap.addMarker(new MarkerOptions().position(HOUSE).title("House").snippet("My House~ :)"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HOUSE, 18));
         LatLng first = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(first).title("Marker in here"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(first));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(first, 15));
     }
 
     private static final int LOCATION_REQUEST_CODE = 101;
-    private String TAG = "MapDemo";
 
     protected void requestPermission(String permissionType, int requestCode) {
         int permission = ContextCompat.checkSelfPermission(this, permissionType);
@@ -199,6 +226,19 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
+    protected void onStart() {
+        super.onStart();
+        getCurrentLocation();
+        Toast.makeText(this, "latitude : " + latitude + "\nlongitude : " + longitude, Toast.LENGTH_SHORT).show();
+    }
+
+    public void getCurrentLocation() {
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+    }
+
     private String getAddress(LatLng latLng) {
         String retAddr = "";
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -214,8 +254,7 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         return retAddr;
     }
 
-    public void setLocInfo(Marker marker) {
-        String snippet = s;
+    public void setLocInfo(Marker marker, String snippet) {
         Marker setMarker;
 
         for (Marker mMarker : mMarkerList) {
@@ -228,14 +267,4 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
             }
         }
     }
-
-    class EnterListener implements EditText.OnEditorActionListener {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            s = v.getText().toString();
-            //editText.setText("");
-            return false;
-        }
-    }
-
 }

@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     }
 
     public void onClickMapButton(View v){
-        Intent intent = new Intent(this, map.class);
+        Intent intent = new Intent(this, Map.class);
         startActivity(intent);
     }
 
@@ -420,6 +420,12 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     stage = 100;
                     textToSpeech("길안내 시스템을 시작하겠습니다. 현재 계신곳을 말해주세요.");
                     progress.setText("길안내 시스템");
+                    break;
+
+                /// map test
+                case "지도 보기" :
+                    Intent intent = new Intent(this, Map.class);
+                    startActivity(intent);
                     break;
             }
         }
