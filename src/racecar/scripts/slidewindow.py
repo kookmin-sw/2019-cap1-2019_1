@@ -138,25 +138,31 @@ class SlideWindow:
 
                     # check num of indicies in square and put next location to current
                     if len(inds) > minpix:
-                        self.dbscanS.fit(nonzerox[inds].reshape(-1, 1))
+                        if np.abs(x_predict - np.mean(nonzerox[inds])) > 10:
+                            self.dbscanS.fit(nonzerox[inds].reshape(-1, 1))
 
-                        n = max(self.dbscanS.labels_) + 1
-                        min_value = float('inf')
-                        max_index = 0.0
-                        for i in range(n):
-                            inds_i = inds[np.where(self.dbscanS.labels_ == i)]
+                            n = max(self.dbscanS.labels_) + 1
+                            min_value = float('inf')
+                            max_index = 0.0
+                            for i in range(n):
+                                inds_i = inds[np.where(self.dbscanS.labels_ == i)]
 
+                                if show:
+                                    for idx in inds_i:
+                                        cv2.circle(left_img, (nonzerox[idx], nonzeroy[idx]), 1, (0, 0, 255 / n * (i + 1)), -1)
 
-                            error = np.abs(x_predict - np.mean(nonzerox[inds_i]))
-                            if error < min_value:
-                                min_value = error
-                                max_index = i
+                                error = np.abs(x_predict - np.mean(nonzerox[inds_i]))
+                                if error < min_value:
+                                    min_value = error
+                                    max_index = i
 
-                        good_inds = inds[np.where(self.dbscanS.labels_ == max_index)]
-
+                            good_inds = inds[np.where(self.dbscanS.labels_ == max_index)]
+                        else:
                             if show:
                                 for idx in inds:
                                     cv2.circle(left_img, (nonzerox[idx], nonzeroy[idx]), 1, (255, 0, 0), -1)
+                            good_inds = inds
+
                         if show:
                             for i in good_inds:
                                 cv2.circle(good_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
