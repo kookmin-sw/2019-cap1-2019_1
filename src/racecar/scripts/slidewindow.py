@@ -15,7 +15,7 @@ class SlideWindow:
         self.dbscanL = DBSCAN(eps=3, min_samples=5)
         self.dbscanS = DBSCAN(eps=2, min_samples=5)
 
-    def slidewindow(self, img):
+    def slidewindow(self, img, show=False):
 
         x_location = None
         # init out_img, height, width        
@@ -53,12 +53,16 @@ class SlideWindow:
                 nonzerox <= width / 2 - 50)).nonzero()[0]
         good_inds = []
 
-        left_img = out_img.copy()
-        good_img = out_img.copy()
+        left_img = None
+        good_img = None
+        if show:
+            left_img = out_img.copy()
+            good_img = out_img.copy()
 
         if len(left_inds) > 0:
-            for i in left_inds:
-                cv2.circle(left_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
+            if show:
+                for i in left_inds:
+                    cv2.circle(left_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
 
             self.dbscanL.fit(nonzerox[left_inds].reshape(-1, 1))
 
@@ -73,8 +77,9 @@ class SlideWindow:
 
             good_inds = left_inds[np.where(self.dbscanL.labels_ == max_index)]
 
-            for i in good_inds:
-                cv2.circle(good_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
+            if show:
+                for i in good_inds:
+                    cv2.circle(good_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
 
         # left line exist, lefty current init
         line_exist_flag = None
@@ -111,7 +116,7 @@ class SlideWindow:
                 if line_flag == 1:
                     # rectangle x,y range init
                     win_y_low = y_current - (window + 1) * window_height
-                    win_y_high = y_current - (window) * window_height
+                    win_y_high = y_current - window * window_height
                     win_x_low = x_current - margin
                     win_x_high = x_current + margin
                     # draw rectangle
@@ -123,8 +128,9 @@ class SlideWindow:
                     inds = ((nonzeroy >= win_y_low) & (nonzeroy < win_y_high) & (nonzerox >= win_x_low) & (
                             nonzerox < win_x_high)).nonzero()[0]
 
-                    for i in inds:
-                        cv2.circle(left_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
+                    if show:
+                        for i in inds:
+                            cv2.circle(left_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
 
                     slope = (x_current - x_current_old) / float(win_y_high - win_y_low)
                     x_predict = x_current + (slope * -window_height)
@@ -140,8 +146,6 @@ class SlideWindow:
                         for i in range(n):
                             inds_i = inds[np.where(self.dbscanS.labels_ == i)]
 
-                            for idx in inds_i:
-                                cv2.circle(left_img, (nonzerox[idx], nonzeroy[idx]), 1, (0, 0, 255 / n * (i + 1)), -1)
 
                             error = np.abs(x_predict - np.mean(nonzerox[inds_i]))
                             if error < min_value:
@@ -150,8 +154,12 @@ class SlideWindow:
 
                         good_inds = inds[np.where(self.dbscanS.labels_ == max_index)]
 
-                        for i in good_inds:
-                            cv2.circle(good_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
+                            if show:
+                                for idx in inds:
+                                    cv2.circle(left_img, (nonzerox[idx], nonzeroy[idx]), 1, (255, 0, 0), -1)
+                        if show:
+                            for i in good_inds:
+                                cv2.circle(good_img, (nonzerox[i], nonzeroy[i]), 1, (255, 0, 0), -1)
 
                         if len(good_inds) > minpix:
                             x_current = np.int(np.mean(nonzerox[good_inds]))
@@ -168,8 +176,9 @@ class SlideWindow:
 
                 good_lane_inds.extend(good_inds)
 
-        cv2.imshow('goods', good_img)
-        cv2.imshow('inds', left_img)
+        if show:
+            cv2.imshow('goods', good_img)
+            cv2.imshow('inds', left_img)
 
         return out_img, x_location
 
@@ -275,7 +284,7 @@ class SlideWindow:
                         p_left = np.polyfit(nonzeroy[left_lane_inds], nonzerox[left_lane_inds], 2)
                         x_current = np.int(np.polyval(p_left, win_y_high))
                     # 338~344 is for recognize line which is yellow line in processed image(you can check in imshow)
-                    if win_y_low >= 338 and win_y_low < 344:
+                    if 338 <= win_y_low < 344:
                         # 0.165 is the half of the road(0.33)
                         x_location = x_current + int(width * 0.175)
                 else:  # change line from left to right above(if)
@@ -293,7 +302,7 @@ class SlideWindow:
                     elif nonzeroy[right_lane_inds] != [] and nonzerox[right_lane_inds] != []:
                         p_right = np.polyfit(nonzeroy[right_lane_inds], nonzerox[right_lane_inds], 2)
                         x_current = np.int(np.polyval(p_right, win_y_high))
-                    if win_y_low >= 338 and win_y_low < 344:
+                    if 338 <= win_y_low < 344:
                         # 0.165 is the half of the road(0.33)
                         x_location = x_current - int(width * 0.175)
 
