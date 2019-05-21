@@ -10,7 +10,7 @@ class ImageProcessor:
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([10, 50, 20])
+        self.lower_color = np.array([10, 70, 20])
         self.upper_color = np.array([45, 255, 255])
 
         self.kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
@@ -178,10 +178,10 @@ class ImageProcessor:
     @staticmethod
     def find_circle(gray_img, mask, show=False, window_name='circles', show_edge=False, edge_window_name='circle_edge'):
         # find circle using houghcircle
-        param1 = 20
-        param2 = 11
-        circles = cv2.HoughCircles(gray_img, cv2.HOUGH_GRADIENT, 1.5, 15, param1=param1, param2=param2, minRadius=2,
-                                   maxRadius=7)
+        param1 = 30
+        param2 = 5
+        circles = cv2.HoughCircles(gray_img, cv2.HOUGH_GRADIENT, 1.3, 10, param1=param1, param2=param2, minRadius=2,
+                                   maxRadius=5)
 
         edges_img = cv2.Canny(gray_img, param1 / 2, param1)
         edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)

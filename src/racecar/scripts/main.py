@@ -143,7 +143,7 @@ def drive_():
             # TODO send message detect obstacle
             break
 
-        if circles is not None and circles.shape[1] > 20:
+        if circles is not None and circles.shape[1] > 60:
             stop()
             # TODO send message arrive at turning point
             break
