@@ -220,3 +220,51 @@ class ImageProcessor:
             cv2.imshow(window_name, img2)
 
         return circles_
+
+    def find_contours(self, gray_img, mask, show=False):
+        edges_img = cv2.Canny(gray_img, 30 / 2, 30)
+        edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
+        edges_img = cv2.morphologyEx(edges_img, cv2.MORPH_CLOSE, kernel=self.kernel_33)
+
+        if show:
+            cv2.imshow('contour_edges_img', edges_img)
+
+        img1, img2, img3 = None, None, None
+        if show:
+            img1 = gray_img.copy()
+            img2 = gray_img.copy()
+            img3 = gray_img.copy()
+        image, contours, hierarchy = cv2.findContours(edges_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        hulls = []
+
+        contours_ = []
+        for cnt, i in zip(contours, range(len(contours))):
+            hull = cv2.convexHull(cnt)
+            hulls.append(hull)
+            # epsilon = 0.05*cv2.arcLength(cnt, True)
+            # approx = cv2.approxPolyDP(cnt, epsilon, True)
+            area = cv2.contourArea(hull)
+            x, y, w, h = cv2.boundingRect(hull)
+            aspect = float(w) / h
+            extend = float(area) / (w * h)
+            if 30 < area < 600 and 0.25 < aspect < 4 and extend > 0.5:
+                contours_.append(hull)
+
+        print('contours', len(contours))
+        print('hulls', len(hulls))
+        print('contours_', len(contours_))
+
+        if show:
+            image1 = cv2.drawContours(img1, contours, -1, 255, 3)
+            cv2.imshow('contours', image1)
+
+        if show:
+            image2 = cv2.drawContours(img2, hulls, -1, 255, 3)
+            cv2.imshow('hulls', image2)
+
+        if show:
+            image3 = cv2.drawContours(img3, contours_, -1, 255, 3)
+            cv2.imshow('contours_', image3)
+
+        return contours_
