@@ -191,11 +191,14 @@ class ImageProcessor:
 
         circles_ = [[]]
 
-        for circle in circles[0]:
-            x = int(circle[0])
-            y = int(circle[1])
-            if mask[y][x] > 0:
-                circles_[0].append(circle)
+        if circles is not None:
+            for circle in circles[0]:
+                x = int(circle[0])
+                y = int(circle[1])
+                if x < 0 or mask.shape[1] - 1 < x or y < 0 or mask.shape[0] - 1 < y:
+                    continue
+                if mask[y][x] > 0:
+                    circles_[0].append(circle)
 
         if show:
             # show circles
