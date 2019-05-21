@@ -42,9 +42,10 @@ bridge = CvBridge()
 
 cv_image = None
 ack_publisher = None
-max_speed = 0.0
+run = False
+max_speed = 0.3 if run else 0.0
 car_run_speed = max_speed * 0.5
-turning_coef = 0.0
+turning_coef = 1.0 if run else 0.0
 
 op = None
 
@@ -134,14 +135,17 @@ def drive_():
         img1, x_location, circles = process_image(cv_image)
         cv2.imshow('result', img1)
 
+        if circles is not None:
+            print('num circles', circles.shape[1])
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
             break
 
-        if detect_obstacle():
-            stop()
-            # TODO send message detect obstacle
-            break
+        # if detect_obstacle():
+        #     stop()
+        #     # TODO send message detect obstacle
+        #     break
 
         if circles is not None and circles.shape[1] > 60:
             stop()
@@ -210,7 +214,8 @@ def stop():
 def go_strait():
     global op
     start_time = time.time()
-    while time.time() - start_time < 3:
+    t = 1.5 / max_speed if max_speed != 0.0 else 0.0
+    while time.time() - start_time < t:
         pid = 0
         go(pid)
         print(time.time() - start_time)
@@ -221,11 +226,13 @@ def go_strait():
 def turn_left():
     global op
     start_time = time.time()
-    while time.time() - start_time < 0.5:
+    t = 0.3 / max_speed if max_speed != 0.0 else 0.0
+    while time.time() - start_time < t:
         pid = 0.0
         go(pid)
     start_time = time.time()
-    while time.time() - start_time < 3.5:
+    t = 1.2 / max_speed if max_speed != 0.0 else 0.0
+    while time.time() - start_time < t:
         pid = 0.34
         go(pid)
     stop()
@@ -235,12 +242,14 @@ def turn_left():
 
 def turn_right():
     global op
+    # start_time = time.time()
+    # t = 0.15 / max_speed if max_speed != 0 else 0
+    # while time.time() - start_time < t:
+    #     pid = 0
+    #     back(pid)
     start_time = time.time()
-    while time.time() - start_time < 0.3:
-        pid = 0
-        back(pid)
-    start_time = time.time()
-    while time.time() - start_time < 3:
+    t = 1.3 / max_speed if max_speed != 0.0 else 0.0
+    while time.time() - start_time < t:
         pid = -0.34
         go(pid)
     stop()
@@ -285,18 +294,20 @@ def main():
 
         if op == 'quit':
             break
-        # flag += 1
-        #
-        # if flag == 1:
-        #     op = 'right'
-        # elif flag == 2:
-        #     op = 'drive'
-        # elif flag == 3:
-        #     op = 'right'
-        # elif flag == 4:
-        #     op = 'drive'
-        # else:
-        #     op = 'quit'
+
+        if run:
+            flag += 1
+
+            if flag == 1:
+                op = 'left'
+            elif flag == 2:
+                op = 'drive'
+            elif flag == 3:
+                op = 'right'
+            elif flag == 4:
+                op = 'drive'
+            else:
+                op = 'quit'
     print('end')
     try:
         rospy.spin()
@@ -306,7 +317,7 @@ def main():
 
 
 def process_image(frame):
-    mask = processor.get_yellow_mask(frame, blurring=False, morphology=False, show=True)
+    mask = processor.get_yellow_mask(frame, blurring=False, morphology=False, show=False)
     # grayscle
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # blur
@@ -319,12 +330,15 @@ def process_image(frame):
     yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
     # warper
     img = warper.warp(yellow_edges_img)
-    img1, x_location = slidewindow.slidewindow(img)
+    # img = warper.warp(edges_img)
+    img1, x_location = slidewindow.slidewindow(img, show=False)
 
-    warp_img2 = warper.warp(blur_gray)
-    mask2 = warper.warp(mask)
-    circles = processor.find_circle(warp_img2, mask2, show=True, show_edge=True)
-
+    # warp_img2 = warper.warp(blur_gray)
+    # mask2 = warper.warp(mask)
+    circles = processor.find_circle(blur_gray[blur_gray.shape[0] / 2:blur_gray.shape[0], 0:blur_gray.shape[1] / 2],
+                                    mask[mask.shape[0] / 2:mask.shape[0], 0:mask.shape[1] / 2], show=True,
+                                    show_edge=True)
+    # circles = None
     return img1, x_location, circles
 
 
