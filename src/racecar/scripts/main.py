@@ -132,11 +132,11 @@ def drive_():
     global op
     while cv_image is not None:
         cv2.imshow("origin", cv_image)
-        img1, x_location, circles = process_image(cv_image)
+        img1, x_location, contours = process_image(cv_image)
         cv2.imshow('result', img1)
 
-        if circles is not None:
-            print('num circles', circles.shape[1])
+        if contours is not None:
+            print('num circles', contours.shape[1])
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
@@ -147,7 +147,7 @@ def drive_():
         #     # TODO send message detect obstacle
         #     break
 
-        if circles is not None and circles.shape[1] > 60:
+        if contours is not None and contours.shape[1] > 20:
             stop()
             # TODO send message arrive at turning point
             break
@@ -330,16 +330,11 @@ def process_image(frame):
     yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
     # warper
     img = warper.warp(yellow_edges_img)
-    # img = warper.warp(edges_img)
     img1, x_location = slidewindow.slidewindow(img, show=False)
 
-    # warp_img2 = warper.warp(blur_gray)
-    # mask2 = warper.warp(mask)
-    circles = processor.find_circle(blur_gray[blur_gray.shape[0] / 2:blur_gray.shape[0], 0:blur_gray.shape[1] / 2],
-                                    mask[mask.shape[0] / 2:mask.shape[0], 0:mask.shape[1] / 2], show=True,
-                                    show_edge=True)
-    # circles = None
-    return img1, x_location, circles
+    contours = processor.find_contours(blur_gray[blur_gray.shape[0] / 2:blur_gray.shape[0], 0:blur_gray.shape[1] / 2],
+                                       mask[mask.shape[0] / 2:mask.shape[0], 0:mask.shape[1] / 2], show=True)
+    return img1, x_location, contours
 
 
 if __name__ == '__main__':
