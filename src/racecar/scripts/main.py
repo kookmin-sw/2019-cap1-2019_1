@@ -198,7 +198,7 @@ def back(pid):
     ack_msg.header.stamp = rospy.Time.now()
     ack_msg.header.frame_id = ''
     ack_msg.drive.steering_angle = pid
-    ack_msg.drive.speed = -0.4
+    ack_msg.drive.speed = -0.4 if max_speed > 0.4 else -max_speed
     ack_publisher.publish(ack_msg)
 
 
