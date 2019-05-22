@@ -42,7 +42,7 @@ bridge = CvBridge()
 
 cv_image = None
 ack_publisher = None
-run = False
+run = True
 max_speed = 0.3 if run else 0.0
 car_run_speed = max_speed * 0.5
 turning_coef = 1.0 if run else 0.0
@@ -297,13 +297,15 @@ def main():
 
         if run:
             flag += 1
+            stop()
+            time.sleep(2)
 
             if flag == 1:
-                op = 'left'
+                op = 'strait'
             elif flag == 2:
                 op = 'drive'
             elif flag == 3:
-                op = 'right'
+                op = 'strait'
             elif flag == 4:
                 op = 'drive'
             else:
