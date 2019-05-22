@@ -222,7 +222,7 @@ class ImageProcessor:
         return circles_
 
     def find_contours(self, gray_img, mask, show=False):
-        edges_img = cv2.Canny(gray_img, 30 / 2, 30)
+        edges_img = cv2.Canny(gray_img, 20 / 2, 20)
         edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
         edges_img = cv2.morphologyEx(edges_img, cv2.MORPH_CLOSE, kernel=self.kernel_33)
 
@@ -248,7 +248,7 @@ class ImageProcessor:
             x, y, w, h = cv2.boundingRect(hull)
             aspect = float(w) / h
             extend = float(area) / (w * h)
-            if 30 < area < 600 and 0.25 < aspect < 4 and extend > 0.5:
+            if 15 < area < 600 and 0.25 < aspect < 4 and extend > 0.5:
                 contours_.append(hull)
 
         print('contours', len(contours))
