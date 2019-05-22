@@ -136,7 +136,7 @@ def drive_():
         cv2.imshow('result', img1)
 
         if contours is not None:
-            print('num circles', contours.shape[1])
+            print('num circles', len(contours))
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             op = 'quit'
@@ -147,7 +147,7 @@ def drive_():
         #     # TODO send message detect obstacle
         #     break
 
-        if contours is not None and contours.shape[1] > 20:
+        if contours is not None and len(contours) > 20:
             stop()
             # TODO send message arrive at turning point
             break
