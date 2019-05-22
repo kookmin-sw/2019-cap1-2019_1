@@ -214,7 +214,7 @@ def stop():
 def go_strait():
     global op
     start_time = time.time()
-    t = 1.5 / max_speed if max_speed != 0.0 else 0.0
+    t = 1 / max_speed if max_speed != 0.0 else 0.0
     while time.time() - start_time < t:
         pid = 0
         go(pid)
