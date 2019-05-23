@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         if (requestCode == REQUEST_RECORD_AUDIO_PERMISSION) {
             if (permissions.length == 1 && grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -380,6 +380,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
     public void onClickMapButton(View v){
         Intent intent = new Intent(this, Map.class);
+        intent.putExtra("NideList", node_list);
+        //node_list = (ArrayList<Node>) intent.getSerializableExtra("NodeList");
         startActivity(intent);
     }
 
@@ -425,7 +427,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                 /// map test
                 case "지도 보기" :
                     Intent intent = new Intent(this, Map.class);
-                    startActivity(intent);
+                    //Node node = new Node(-1, "name", 0, 0, "false", "0", "type");
+                    //node_list.add(node);
+                    intent.putExtra("NodeList", node_list);
+                    startActivityForResult(intent, 0);
                     break;
             }
         }

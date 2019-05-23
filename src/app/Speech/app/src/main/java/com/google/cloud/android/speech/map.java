@@ -3,6 +3,7 @@ package com.google.cloud.android.speech;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,6 +36,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class Map extends FragmentActivity implements OnMapReadyCallback {
@@ -41,6 +44,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private GPSTracker gps;
     private ArrayList<Marker> mMarkerList;
+    private ArrayList<Node> NodeList;
 
     private Button btnMyLocation;
 
@@ -90,6 +94,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         gps = new GPSTracker(Map.this);
         mMarkerList = new ArrayList<Marker>();
 
+        Intent intent = getIntent();
+        intent.getExtras();
+        NodeList = (ArrayList<Node>) intent.getSerializableExtra("NodeList");
+
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -135,15 +143,43 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
                                 // set activity_set_map_info.xml to AlertDialog builder
                                 AlertDialog.Builder promptDialogBuilder = new AlertDialog.Builder( Map.this);
                                 promptDialogBuilder.setView(promptsView);
-                                final EditText userInput = (EditText)promptsView.findViewById(R.id.editTextDialogUserInput);
+                                final EditText userInputLocName = (EditText)promptsView.findViewById(R.id.editTextLocationName);
+                                final RadioGroup userInputDoorCheck = (RadioGroup)promptsView.findViewById(R.id.radioGroupDoorCheck);
+                                final EditText userInputFloor = (EditText)promptsView.findViewById(R.id.editTextFloor);
+                                final RadioGroup userInputNodeType = (RadioGroup)promptsView.findViewById(R.id.radioGroupNodeType);
 
                                 // set Dialog message
                                 promptDialogBuilder.setCancelable(false)
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                String changedSnippet = userInput.getText().toString();
-                                                setLocInfo(marker, changedSnippet);
+                                                // Set Info
+                                                String setLocName = userInputLocName.getText().toString();
+                                                Integer setDoorCheckId = userInputDoorCheck.getCheckedRadioButtonId();
+                                                String setFloor = userInputFloor.getText().toString();
+                                                Integer setNodeTypeId = userInputNodeType.getCheckedRadioButtonId();
+
+                                                String setDoorCheck = "";
+                                                switch (setDoorCheckId) {
+                                                    case R.id.radioButtonIndoor:
+                                                        setDoorCheck = "실내";
+                                                        break;
+                                                    case R.id.radioButtonOutdoor:
+                                                        setDoorCheck = "실외";
+                                                        break;
+                                                }
+
+                                                String setNodeType = "";
+                                                switch (setNodeTypeId) {
+                                                    case R.id.radioButtonPot:
+                                                        setNodeType = "점형 블록";
+                                                        break;
+                                                    case R.id.radioButtonLine:
+                                                        setNodeType = "선형 블록";
+                                                        break;
+                                                }
+
+                                                setLocInfo(marker, setLocName, setDoorCheck, setFloor, setNodeType);
                                                 Toast.makeText(Map.this, "A marker is updated.", Toast.LENGTH_SHORT).show();
                                             }
                                         })
@@ -202,8 +238,11 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HOUSE, 18));
         LatLng first = new LatLng(latitude, longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(first, 15));
+        setMarkerListFromNodeList();
+        setNodeListFromMarkerList();
     }
 
+    /* Request Permission */
     private static final int LOCATION_REQUEST_CODE = 101;
 
     protected void requestPermission(String permissionType, int requestCode) {
@@ -254,17 +293,69 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         return retAddr;
     }
 
-    public void setLocInfo(Marker marker, String snippet) {
+    public void setLocInfo(Marker marker, String locName, String doorCheck, String floor, String nodeType) {
         Marker setMarker;
+
+        String title = locName + " / " + floor;
+        String snippet = doorCheck + " / " + nodeType;
+
 
         for (Marker mMarker : mMarkerList) {
             if (mMarker == marker) {
                 setMarker = marker;
+                setMarker.setTitle(title);
                 setMarker.setSnippet(snippet);
                 mMarkerList.remove(marker);
                 mMarkerList.add(setMarker);
                 break;
             }
         }
+    }
+
+    public ArrayList<Node> getNodeList() {
+        return NodeList;
+    }
+
+    public void setNodeList(ArrayList<Node> NodeList) {
+        this.NodeList = NodeList;
+    }
+
+    private void setMarkerListFromNodeList() {
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        if (NodeList != null) {
+            Iterator<Node> nodeIter = NodeList.iterator();
+            while (nodeIter.hasNext()) {
+                Node node = nodeIter.next();
+                LatLng latLng = new LatLng(node.getPos_x(), node.getPos_y());
+                String address = getAddress(latLng);
+
+                markerOptions.position(latLng);
+                markerOptions.title(address);
+                markerOptions.snippet("latitude: " + latitude.toString() + "\nlongitude: " + longitude.toString());
+
+                Marker marker = mMap.addMarker(markerOptions);
+                mMarkerList.add(marker);
+            }
+        }
+    }
+
+    private void setNodeListFromMarkerList() {
+        Integer idx = 0;
+        for (Marker marker : mMarkerList) {
+            if (NodeList == null) {
+                NodeList = new ArrayList<Node>();
+            }
+            if (idx >= NodeList.size()) {
+                Node node = new Node(idx, idx.toString(), marker.getPosition().latitude, marker.getPosition().longitude, "true", "1", "type");
+                NodeList.add(node);
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setNodeListFromMarkerList();
     }
 }
