@@ -248,7 +248,7 @@ class ImageProcessor:
             x, y, w, h = cv2.boundingRect(hull)
             aspect = float(w) / h
             extend = float(area) / (w * h)
-            if 15 < area < 600 and 0.25 < aspect < 4 and extend > 0.5:
+            if 10 < area < 600 and 0.25 < aspect < 4 and extend > 0.5:
                 contours_.append(hull)
 
         print('contours', len(contours))
