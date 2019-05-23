@@ -67,15 +67,15 @@ class SlideWindow:
             self.dbscanL.fit(nonzerox[left_inds].reshape(-1, 1))
 
             n = max(self.dbscanL.labels_)
-            max_value = 0.0
-            max_index = 0
+            min_value = img.shape[1]
+            min_index = 0
             for i in range(n):
                 mean = np.mean(nonzerox[left_inds[np.where(self.dbscanL.labels_ == i)]])
-                if mean > max_value:
-                    max_value = mean
-                    max_index = i
+                if mean < min_value:
+                    min_value = mean
+                    min_index = i
 
-            good_inds = left_inds[np.where(self.dbscanL.labels_ == max_index)]
+            good_inds = left_inds[np.where(self.dbscanL.labels_ == min_index)]
 
             if show:
                 for i in good_inds:
@@ -143,7 +143,7 @@ class SlideWindow:
 
                             n = max(self.dbscanS.labels_) + 1
                             min_value = float('inf')
-                            max_index = 0.0
+                            min_index = 0.0
                             for i in range(n):
                                 inds_i = inds[np.where(self.dbscanS.labels_ == i)]
 
@@ -154,9 +154,9 @@ class SlideWindow:
                                 error = np.abs(x_predict - np.mean(nonzerox[inds_i]))
                                 if error < min_value:
                                     min_value = error
-                                    max_index = i
+                                    min_index = i
 
-                            good_inds = inds[np.where(self.dbscanS.labels_ == max_index)]
+                            good_inds = inds[np.where(self.dbscanS.labels_ == min_index)]
                         else:
                             if show:
                                 for idx in inds:
