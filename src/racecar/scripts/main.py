@@ -231,7 +231,7 @@ def turn_left():
         pid = 0.0
         go(pid)
     start_time = time.time()
-    t = 1.2 / max_speed if max_speed != 0.0 else 0.0
+    t = 1.1 / max_speed if max_speed != 0.0 else 0.0
     while time.time() - start_time < t:
         pid = 0.34
         go(pid)
@@ -243,12 +243,12 @@ def turn_left():
 def turn_right():
     global op
     # start_time = time.time()
-    # t = 0.15 / max_speed if max_speed != 0 else 0
+    # t = 0.1 / max_speed if max_speed != 0 else 0
     # while time.time() - start_time < t:
     #     pid = 0
-    #     back(pid)
+    #     go(pid)
     start_time = time.time()
-    t = 1.3 / max_speed if max_speed != 0.0 else 0.0
+    t = 1.1 / max_speed if max_speed != 0.0 else 0.0
     while time.time() - start_time < t:
         pid = -0.34
         go(pid)
@@ -298,14 +298,13 @@ def main():
         if run:
             flag += 1
             stop()
-            time.sleep(2)
 
             if flag == 1:
-                op = 'strait'
+                op = 'left'
             elif flag == 2:
                 op = 'drive'
             elif flag == 3:
-                op = 'strait'
+                op = 'right'
             elif flag == 4:
                 op = 'drive'
             else:
@@ -326,7 +325,7 @@ def process_image(frame):
     kernel_size = 5
     blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
     # canny edge
-    low_threshold = 60  # 60
+    low_threshold = 50  # 60
     high_threshold = 70  # 70
     edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
     yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
