@@ -58,76 +58,7 @@ def img_callback(data):
         print(e)
 
 
-def is_turning_point():
-    pass
-
-
 def drive():
-    global cv_image
-    global op
-    circles = 0
-    while cv_image is not None:
-        if is_turning_point():
-            # TODO send arrive turning_point massage
-            break
-        # if detect_obstacle():
-        #     # TODO send obstacle detecting message
-        #     continue
-
-        cv2.imshow('origin', cv_image)
-
-        yellow_img = processor.yellow_mask(cv_image, blurring=False, morphology=True, show=False)
-        gray_img = cv2.cvtColor(yellow_img, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('yellow', yellow_img)
-
-        edges_img = cv2.Canny(gray_img, 100, 200, apertureSize=3)
-        cv2.imshow('edges', edges_img)
-        warp_img = warper.warp(edges_img)
-        cv2.imshow('warp', warp_img)
-
-        # warp_img = warper.warp(gray_img)
-        # cv2.imshow('warp', warp_img)
-        #
-        # edges_img = cv2.Canny(warp_img, 100, 200, apertureSize=3)
-        # cv2.imshow('edges', edges_img)
-
-        preprocessed_img = warp_img
-        # preprocessed_img = edges_img
-
-        lines = processor.find_line(preprocessed_img, show=True)
-
-        cluster_img = preprocessed_img.copy()
-        processor.clustering(lines, cluster_img, show=True)
-
-        main_lines = processor.get_main_lines(lines)
-        main_lines_img = preprocessed_img.copy()
-        processor.draw_lines(main_lines_img, main_lines)
-        cv2.imshow('main_lines', main_lines_img)
-
-        right_line = processor.get_right_line(main_lines)
-        right_line_img = preprocessed_img.copy()
-        processor.draw_line(right_line_img, right_line)
-        cv2.imshow('right_line', right_line_img)
-
-        right_ab = processor.polar2ab(right_line)
-        x_location = processor.cal_x_location(right_ab)
-
-        if x_location is not None:
-            img_x_location = preprocessed_img.copy()
-            cv2.rectangle(img_x_location, (int(x_location) - 30, 310), (int(x_location) + 30, 370), 255, -1)
-            cv2.imshow('x_location', img_x_location)
-            x_location += cv_image.shape[1] * 0.175
-            pid = round(pidcal.pid_control(int(x_location)), 6)
-            auto_drive(pid)
-
-        circles = processor.find_circle(warp_img, show=True)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            op = 'quit'
-            break
-
-
-def drive_():
     global cv_image
     global op
     while cv_image is not None:
@@ -276,7 +207,7 @@ def main():
         print(op)
 
         if op == 'drive':
-            drive_()
+            drive()
         elif op == 'strait':
             go_strait()
         elif op == 'right':
