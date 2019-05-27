@@ -3,7 +3,6 @@ from numpy import sqrt
 
 Infinite = float('inf')
 
-
 class AStar:
     __slots__ = ()
 
