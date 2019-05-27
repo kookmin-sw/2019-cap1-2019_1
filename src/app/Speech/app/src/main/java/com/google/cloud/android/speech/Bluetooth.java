@@ -252,7 +252,7 @@ public class Bluetooth
 
         int which=-1;
         for (int i=0;i<pairedDevices.length;i++) {
-            if (pairedDevices[i].getName().contentEquals("tegra-ubuntu")){
+            if (pairedDevices[i].getName().equals("tegra-ubuntu")){
                 which = i;
             }
         }

@@ -84,7 +84,7 @@ public class TTS extends AppCompatActivity {
 
     @Override
     protected void onStop(){
-        setResult(1);
         super.onStop();
+        setResult(1);
     }
 }

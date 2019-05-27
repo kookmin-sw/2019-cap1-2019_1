@@ -15,7 +15,7 @@ public class CancelPath extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "경로 취소 화면이다.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "경로 취소 화면", Toast.LENGTH_SHORT).show();
     }
 
     public void returnButton(View v){

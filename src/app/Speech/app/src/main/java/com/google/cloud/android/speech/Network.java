@@ -98,7 +98,6 @@ public class Network{
 
         thread.start();
 
-
     }
 
     //한국어 String을 utf-8로 인코딩하는 함수
@@ -491,3 +490,16 @@ public class Network{
 //7.처음에 사용자 등록 test
 //                    String phone_origin_number="0xx0";
 //                    boolean isRequestSuccess=requestRegisterUser(phone_origin_number);
+
+//전체 노드 확인 test
+//        String identification="User";
+//        String phone_origin_number="0xx0";
+//        node_list = network.requestGetAllNodes(identification,phone_origin_number);
+//
+//        String temp = "";
+//        Iterator<Node> iter = node_list.iterator();
+//        while(iter.hasNext()){
+//            Node n = iter.next();
+//            temp += n.getNode_id() + " " + n.getPos_x() + " " + n.getPos_y() + "\n";
+//        }
+//        progress.setText(temp);

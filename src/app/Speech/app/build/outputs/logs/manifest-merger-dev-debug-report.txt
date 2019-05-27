@@ -74,7 +74,7 @@ MERGED from [com.android.support:support-compat:25.4.0] C:\Users\yongt\.android\
 		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:20:9-43
 	android:theme
 		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:23:9-44
-activity#com.google.cloud.android.speech.map
+activity#com.google.cloud.android.speech.Map
 ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:25:9-50
 	android:name
 		ADDED from C:\Users\yongt\Desktop\2019-cap1-2019_1\src\app\Speech\app\src\main\AndroidManifest.xml:25:19-38

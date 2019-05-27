@@ -38,11 +38,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 //layout.setVisibility(View.VISIBLE); //View.INVISIBLE, View.GONE
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
@@ -103,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     Network network;
     ArrayList<Node> node_list;
     Context context;
+    View group1, group2, group3;
+
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -147,8 +151,11 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         guideCurrentPosition = "";
         guideDestinationPosition = "";
 
-        //UI();
-        //blue();
+        group1 = findViewById(R.id.buttonSet1);
+        group2 = findViewById(R.id.buttonSet2);
+        group3 = findViewById(R.id.button5);
+
+        UI();
         bluetooth = new Bluetooth();
     }
 
@@ -336,9 +343,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         public ArrayList<String> getResults() {
             return mResults;
         }
-
     }
-
 
     //Button
     public void onClickGuidePath(View v){
@@ -346,21 +351,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     }
 
     public void onClickCancelPath(View v){
-        //Intent intent = new Intent(this, CancelPath.class);
-        //startActivity(intent);
-
-        //전체 노드 확인 test
-        String identification="User";
-        String phone_origin_number="0xx0";
-        node_list = network.requestGetAllNodes(identification,phone_origin_number);
-
-        String temp = "";
-        Iterator<Node> iter = node_list.iterator();
-        while(iter.hasNext()){
-            Node n = iter.next();
-            temp += n.getNode_id() + " " + n.getPos_x() + " " + n.getPos_y() + "\n";
-        }
-        progress.setText(temp);
+        Intent intent = new Intent(this, CancelPath.class);
+        startActivity(intent);
     }
 
     public void onClickEnrollNode(View v){
@@ -378,19 +370,12 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         startActivity(intent);
     }
 
-    public void onClickMapButton(View v){
-        Intent intent = new Intent(this, Map.class);
-        intent.putExtra("NideList", node_list);
-        //node_list = (ArrayList<Node>) intent.getSerializableExtra("NodeList");
-        startActivity(intent);
-    }
-
-    public void onClickTest(View v){
-        stopVoiceRecorder();
-        //Intent intent = new Intent(this, test.class);
-        //startActivity(intent);
-    }
-    //Button
+//    public void onClickMapButton(View v){
+//        Intent intent = new Intent(this, Map.class);
+//        intent.putExtra("NideList", node_list);
+//        //node_list = (ArrayList<Node>) intent.getSerializableExtra("NodeList");
+//        startActivity(intent);
+//    }
 
     public void textToSpeech(String sentence){
         stopVoiceRecorder();
@@ -410,6 +395,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
                 case "도우미 버전" :
                     textToSpeech("음성 안내 모드를 종료하겠습니다.");
+                    group1.setVisibility(View.VISIBLE);
+                    group2.setVisibility(View.VISIBLE);
+                    group3.setVisibility(View.VISIBLE);
+
                     stopVoiceRecorder();
                     break;
 
@@ -425,13 +414,13 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     break;
 
                 /// map test
-                case "지도 보기" :
-                    Intent intent = new Intent(this, Map.class);
-                    //Node node = new Node(-1, "name", 0, 0, "false", "0", "type");
-                    //node_list.add(node);
-                    intent.putExtra("NodeList", node_list);
-                    startActivityForResult(intent, 0);
-                    break;
+//                case "지도 보기" :
+//                    Intent intent = new Intent(this, Map.class);
+//                    //Node node = new Node(-1, "name", 0, 0, "false", "0", "type");
+//                    //node_list.add(node);
+//                    intent.putExtra("NodeList", node_list);
+//                    startActivityForResult(intent, 0);
+//                    break;
             }
         }
         else if(stage>=100){
@@ -469,14 +458,21 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                         sentence.contentEquals("네 맞아요")){
 
                     textToSpeech("경로 탐색을 시작하겠습니다. 잠시만 기다려주세요.");
-                    guidePath(guideCurrentPosition, guideDestinationPosition);
-                    stage = 0;
-                    progress.setText("...");
+                    stage = 104;
                 }
                 else{
                     textToSpeech("목적지를 천천히 말해주세요.");
                     stage = 102;
                 }
+            }
+            else if(stage==104){
+                guidePath(guideCurrentPosition, guideDestinationPosition);
+                stage = 105;
+            }
+            else if(stage==105){
+                stage = 0;
+                progress.setText("...");
+                textToSpeech("목적지에 도착했습니다. 길안내를 종료하겠습니다.");
             }
         }
         else if(stage>=10){
@@ -484,10 +480,6 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         }
     }
 
-    //startVoiceRecorder()
-    //stopVoiceRecorder()
-    //textToSpeech("하고싶은말")
-    //recognizeSpeaking()
     public void sleep(int time){
         try{
             Thread.sleep(time);
@@ -533,10 +525,27 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         }
     }
 
-    public void onClickYong(View v){
-        Toast.makeText(this, "눌럿ㄷ", Toast.LENGTH_SHORT).show();
-        String ss = bluetooth.sendCommand("yong");
+    public void onClickStart(View v){
+        Toast.makeText(this, "Start", Toast.LENGTH_SHORT).show();
+        String ss = bluetooth.sendCommand("start");
         progress.setText(ss);
     }
 
+    public void onClickLeft(View v){
+        Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
+        String ss = bluetooth.sendCommand("left");
+        progress.setText(ss);
+    }
+
+    public void onClickRight(View v){
+        Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
+        String ss = bluetooth.sendCommand("right");
+        progress.setText(ss);
+    }
+
+    public void onClickStop(View v){
+        Toast.makeText(this, "Stop", Toast.LENGTH_SHORT).show();
+        String ss = bluetooth.sendCommand("stop");
+        progress.setText(ss);
+    }
 }

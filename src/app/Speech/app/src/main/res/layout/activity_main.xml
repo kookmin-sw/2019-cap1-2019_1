@@ -58,21 +58,22 @@
         android:layout_gravity="center"
         android:text="..."/>
 
-    <Button
+    <!--<Button
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="전체노드보기"
         android:layout_marginTop="200dp"
         android:layout_gravity="center_horizontal"
-        android:onClick="onClickMapButton"/>
+        android:onClick="onClickMapButton"/>-->
 
     <LinearLayout
+        android:id="@+id/buttonSet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
-        android:layout_gravity="center_horizontal">
-        <!--android:visibility="gone"-->
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/button1"
@@ -91,9 +92,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/buttonSet2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="320dp"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"
         android:orientation="horizontal">
@@ -119,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="540dp"
+        android:layout_marginTop="380dp"
         android:onClick="onClickPrivacyLocation"
         android:visibility="gone"
         android:text="위치 저장" />
@@ -129,8 +131,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="360dp"
+        android:onClick="onClickStart"
+        android:visibility="gone"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="420dp"
+        android:onClick="onClickLeft"
+        android:visibility="gone"
+        android:text="Left" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="480dp"
+        android:onClick="onClickRight"
+        android:visibility="gone"
+        android:text="Right" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="540dp"
-        android:onClick="onClickYong"
-        android:text="test" />
+        android:onClick="onClickStop"
+        android:visibility="gone"
+        android:text="Stop" />
 
 </android.support.design.widget.CoordinatorLayout>

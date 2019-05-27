@@ -15,7 +15,7 @@ public class ModifiedNode extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "노드 수정 화면이다.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "노드 수정 화면.", Toast.LENGTH_SHORT).show();
     }
 
     public void returnButton(View v){
