@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Speech"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Map" />
         <activity android:name=".TTS" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

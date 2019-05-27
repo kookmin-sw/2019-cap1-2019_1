@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
         android:text="수정할 내용을 입력하세요."
-        android:textColor="#000000"
+        android:textColor="@android:color/primary_text_light"
         android:textSize="18sp" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:id="@+id/editTextLocationName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#00030303"
+        android:textColor="@android:color/primary_text_light"
         android:textSize="14sp" />
 
     <requestFocus />
@@ -99,19 +99,19 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButtonPot"
+            android:id="@+id/radioButtonNormalNode"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="점형 블록"
+            android:text="일반"
             android:textSize="14sp" />
 
         <RadioButton
-            android:id="@+id/radioButtonLine"
+            android:id="@+id/radioButtonForkNode"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="선형 블록"
+            android:text="갈림길"
             android:textSize="14sp" />
     </RadioGroup>
 
