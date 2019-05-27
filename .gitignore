@@ -1,3 +1,5 @@
+**/.idea/**
+**/__pycache__/**
 
 # Created by https://www.gitignore.io/api/androidstudio
 # Edit at https://www.gitignore.io/?templates=androidstudio
@@ -96,3 +98,4 @@ src/app/BluetoothTest/.idea/libraries/*
 src/app/BluetoothTest/.idea/misc.xml
 src/app/BluetoothTest/.idea/modules.xml
 src/app/BluetoothTest/.idea/workspace.xml
+
