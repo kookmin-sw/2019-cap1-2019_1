@@ -325,7 +325,7 @@ def process_image(frame):
     kernel_size = 5
     blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
     # canny edge
-    low_threshold = 50  # 60
+    low_threshold = 60  # 60
     high_threshold = 70  # 70
     edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
     yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)

@@ -10,7 +10,7 @@ class ImageProcessor:
         self.slidewindow = SlideWindow()
 
         # color(yellow)
-        self.lower_color = np.array([10, 70, 20])
+        self.lower_color = np.array([10, 30, 20])
         self.upper_color = np.array([45, 255, 255])
 
         self.kernel_33 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
