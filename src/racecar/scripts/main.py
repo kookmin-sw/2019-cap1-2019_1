@@ -300,13 +300,13 @@ def main():
             stop()
 
             if flag == 1:
-                op = 'left'
+                op = 'strait'
             elif flag == 2:
                 op = 'drive'
-            elif flag == 3:
-                op = 'right'
-            elif flag == 4:
-                op = 'drive'
+            # elif flag == 3:
+            #     op = 'right'
+            # elif flag == 4:
+            #     op = 'drive'
             else:
                 op = 'quit'
     print('end')
@@ -319,18 +319,26 @@ def main():
 
 def process_image(frame):
     mask = processor.get_yellow_mask(frame, blurring=False, morphology=False, show=False)
+    cv2.imshow('mask', mask)
     # grayscle
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # blur
     kernel_size = 5
     blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
+    blur_color = cv2.GaussianBlur(frame, (kernel_size, kernel_size), 0)
+    # cv2.imshow('blur', blur_color)
     # canny edge
     low_threshold = 60  # 60
     high_threshold = 70  # 70
-    edges_img = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
-    yellow_edges_img = cv2.bitwise_and(edges_img, edges_img, mask=mask)
+    edges_gray = cv2.Canny(np.uint8(blur_gray), low_threshold, high_threshold)
+    edges_color = cv2.Canny(blur_color, 60, 70)
+    yellow_edges_gray = cv2.bitwise_and(edges_gray, edges_gray, mask=mask)
+    yellow_edges_color = cv2.bitwise_and(edges_color, edges_color, mask=mask)
+    cv2.imshow('edges_img', edges_color)
+    cv2.imshow('yellow_edges_img', yellow_edges_color)
     # warper
-    img = warper.warp(yellow_edges_img)
+    # img = warper.warp(yellow_edges_gray)
+    img = warper.warp(yellow_edges_color)
     img1, x_location = slidewindow.slidewindow(img, show=False)
 
     contours = processor.find_contours(blur_gray[blur_gray.shape[0] / 2:blur_gray.shape[0], 0:blur_gray.shape[1] / 2],
