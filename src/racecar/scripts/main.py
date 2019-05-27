@@ -142,10 +142,10 @@ def drive_():
             op = 'quit'
             break
 
-        # if detect_obstacle():
-        #     stop()
-        #     # TODO send message detect obstacle
-        #     break
+        if detect_obstacle():
+            stop()
+            # TODO send message detect obstacle
+            continue
 
         if contours is not None and len(contours) > 20:
             stop()
