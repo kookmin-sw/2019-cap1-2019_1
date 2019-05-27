@@ -43,7 +43,7 @@ bridge = CvBridge()
 cv_image = None
 ack_publisher = None
 run = True
-max_speed = 0.3 if run else 0.0
+max_speed = 0.7 if run else 0.0
 car_run_speed = max_speed * 0.5
 turning_coef = 1.0 if run else 0.0
 
@@ -242,11 +242,11 @@ def turn_left():
 
 def turn_right():
     global op
-    # start_time = time.time()
-    # t = 0.1 / max_speed if max_speed != 0 else 0
-    # while time.time() - start_time < t:
-    #     pid = 0
-    #     go(pid)
+    start_time = time.time()
+    t = 0.2 / max_speed if max_speed != 0 else 0
+    while time.time() - start_time < t:
+        pid = 0
+        back(pid)
     start_time = time.time()
     t = 1.1 / max_speed if max_speed != 0.0 else 0.0
     while time.time() - start_time < t:
