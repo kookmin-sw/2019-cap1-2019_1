@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EnrollNode">
+
+    <RadioGroup
+    android:id="@+id/inOrOut"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/inDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="실내"
+        android:checked="true"/>
+
+    <RadioButton
+        android:id="@+id/outDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="실외"/>
+
+    </RadioGroup>>
+
+    <LinearLayout
+        android:id="@+id/floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioGroup
+            android:id="@+id/upOrDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지상"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지하"/>
+
+        </RadioGroup>>
+
+        <EditText
+            android:id="@+id/floorTextBox"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "DB"
+        android:onClick="sendButton"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Main"
+        android:onClick="returnButton" />
+
+</LinearLayout>
