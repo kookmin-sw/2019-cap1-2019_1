@@ -44,7 +44,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 
 //layout.setVisibility(View.VISIBLE); //View.INVISIBLE, View.GONE
 public class MainActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
@@ -370,12 +369,15 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         startActivity(intent);
     }
 
-//    public void onClickMapButton(View v){
-//        Intent intent = new Intent(this, Map.class);
-//        intent.putExtra("NideList", node_list);
-//        //node_list = (ArrayList<Node>) intent.getSerializableExtra("NodeList");
-//        startActivity(intent);
-//    }
+    public void onClickMapButton(View v){
+        
+        if (node_list == null) {
+            node_list = new ArrayList<Node>();
+        }
+        Intent intent = new Intent(this, Map.class);
+        intent.putParcelableArrayListExtra("node_list", node_list);
+        startActivityForResult(intent, 2);
+    }
 
     public void textToSpeech(String sentence){
         stopVoiceRecorder();
@@ -390,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         if(stage==0){
             switch(sentence){
                 case "설명 듣기" :
-                    textToSpeech("사용하실수 있는 기능으로 길 안내, 위치 저장, 도우미 버전 이 있습니다.");
+                    textToSpeech("사용하실 수 있는 기능으로 길 안내, 위치 저장, 도우미 버전 이 있습니다.");
                     break;
 
                 case "도우미 버전" :
@@ -400,6 +402,13 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     group3.setVisibility(View.VISIBLE);
 
                     stopVoiceRecorder();
+
+                    if (node_list == null) {
+                        node_list = new ArrayList<Node>();
+                    }
+                    Intent intent = new Intent(this, Map.class);
+                    intent.putParcelableArrayListExtra("node_list", node_list);
+                    startActivityForResult(intent, 2);
                     break;
 
                 case "위치 저장" :
@@ -409,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
 
                 case "길 안내" :
                     stage = 100;
-                    textToSpeech("길안내 시스템을 시작하겠습니다. 현재 계신곳을 말해주세요.");
+                    textToSpeech("길안내 시스템을 시작하겠습니다. 현재 계신 곳을 말해주세요.");
                     progress.setText("길안내 시스템");
                     break;
 
@@ -441,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     stage = 102;
                 }
                 else{
-                    textToSpeech("현재 계신곳을 천천히 말해주세요.");
+                    textToSpeech("현재 계신 곳을 천천히 말해주세요.");
                     stage = 100;
                 }
             }
@@ -522,6 +531,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == 1){
             startVoiceRecorder();
+        } else if(requestCode==2 && resultCode==RESULT_OK){
+            node_list = data.getParcelableArrayListExtra("NodeList");
         }
     }
 

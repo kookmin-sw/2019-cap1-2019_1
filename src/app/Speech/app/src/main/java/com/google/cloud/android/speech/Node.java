@@ -1,8 +1,11 @@
 package com.google.cloud.android.speech;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashSet;
 
-public class Node
+public class Node implements Parcelable
 {
     private int node_id;
     private String node_name;
@@ -36,6 +39,44 @@ public class Node
         node_type=node_type_;
         node_neighbors=new HashSet<Integer>();
     }
+
+    public Node(Parcel in) {
+        node_id = in.readInt();
+        node_name = in.readString();
+        pos_x = in.readDouble();
+        pos_y = in.readDouble();
+        indoor = in.readString();
+        floor = in.readString();
+        node_type = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(node_id);
+        dest.writeString(node_name);
+        dest.writeDouble(pos_x);
+        dest.writeDouble(pos_y);
+        dest.writeString(indoor);
+        dest.writeString(floor);
+        dest.writeString(node_type);
+    }
+
+    public static final Creator<Node> CREATOR = new Creator<Node>() {
+        @Override
+        public Node createFromParcel(Parcel in) {
+            return new Node(in);
+        }
+
+        @Override
+        public Node[] newArray(int size) {
+            return new Node[size];
+        }
+    };
 
     public int getNode_id() {
         return node_id;
