@@ -104,7 +104,7 @@ There are some difficulties in implementing this system, but our team will overc
 
 ------
 
-소스코드제출시 업로드 예정
+[사용법 링크]: https://github.com/kookmin-sw/2019-cap1-2019_1/blob/master/doc/manual.md
 
 
 
