@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -43,9 +44,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private GPSTracker gps;
-    private ArrayList<Marker> mMarkerList;
-    private ArrayList<Node> NodeList;
     private Network network;
+    private ArrayList<Marker> mMarkerList;
+    private ArrayList<Marker> mNewMarkerList;
+    private ArrayList<Marker> mUpdatedNewMarkerList;
+    private ArrayList<Marker> mAllMarkerList;
+    private ArrayList<Node> NodeList;
+    private HashSet<Integer> neighborHashSet;
 
     private Button btnMyLocation;
     private Button btnSetUpdate;
@@ -61,6 +66,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
 
         btnMyLocation = (Button)findViewById(R.id.button);
+        btnSetUpdate = (Button)findViewById(R.id.buttonSetUpdate);
         btnGoMain = (Button)findViewById(R.id.buttonGoSpeech);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST_CODE);
@@ -96,7 +102,11 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         gps = new GPSTracker(Map.this);
+        network = new Network();
         mMarkerList = new ArrayList<Marker>();
+        mNewMarkerList = new ArrayList<Marker>();
+        mUpdatedNewMarkerList = new ArrayList<Marker>();
+        mAllMarkerList = new ArrayList<Marker>();
 
         // Get Pracelable ArrayList<Node> from MainActivity.class
         Intent intent = getIntent();
@@ -118,14 +128,19 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
                 markerOptions.snippet("latitude: " + latitude.toString() + "\nlongitude: " + longitude.toString());
 
                 Marker marker = mMap.addMarker(markerOptions);
-                mMarkerList.add(marker);
+                mNewMarkerList.add(marker);
             }
         });
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
-                for(final Marker marker : mMarkerList) {
+                /*** on Marker Long Click ***/
+                mAllMarkerList.addAll(mNewMarkerList);
+                mAllMarkerList.addAll(mUpdatedNewMarkerList);
+                mAllMarkerList.addAll(mMarkerList);
+
+                for(final Marker marker : mAllMarkerList) {
                     Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
                     if(Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
                         // set Dialog message
@@ -135,7 +150,18 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
                             /*** Remove a Marker ***/
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                mMarkerList.remove(marker);
+                                if (mNewMarkerList.contains(marker)) {
+                                    mNewMarkerList.remove(marker);
+                                } else if (mUpdatedNewMarkerList.contains(marker)) {
+                                    mUpdatedNewMarkerList.remove(marker);
+                                } else if (mMarkerList.contains(marker)) {
+                                    Node node = getNodeFromMarker(marker);
+                                    NodeList.remove(node);
+                                    mMarkerList.remove(marker);
+                                    // Request Remove Node to Network from Map.mMarkerList
+                                    network.requestRemoveNode(node.getNode_id());
+                                }
+                                mAllMarkerList.remove(marker);
                                 marker.remove();
                                 Toast.makeText(Map.this, "A marker is removed.", Toast.LENGTH_SHORT).show();
                             }
@@ -232,11 +258,18 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
             }
         });
 
+        btnSetUpdate.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         btnGoMain.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Set NodeList from mMarkerList
-                setNodeListFromMarkerList();
+                // Set NodeList from mUpdatedNewMarkerList
+                setNodeListFromUpdatedNewMarkerList();
 
                 Intent intent = new Intent();
                 intent.putParcelableArrayListExtra("NodeList", NodeList);
@@ -261,7 +294,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         LatLng first = new LatLng(latitude, longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(first, 15));
         setMarkerListFromNodeList();
-        //setNodeListFromMarkerList();
     }
 
     /* Request Permission */
@@ -290,7 +322,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
     protected void onStart() {
         super.onStart();
         getCurrentLocation();
-        Toast.makeText(this, "latitude : " + latitude + "\nlongitude : " + longitude, Toast.LENGTH_SHORT).show();
     }
 
     public void getCurrentLocation() {
@@ -325,15 +356,30 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         }
         snippet += nodeType;
 
-        for (Marker mMarker : mMarkerList) {
-            if (mMarker == marker) {
-                setMarker = marker;
-                setMarker.setTitle(title);
-                setMarker.setSnippet(snippet);
-                mMarkerList.remove(marker);
-                mMarkerList.add(setMarker);
-                break;
-            }
+        setMarker = marker;
+        setMarker.setTitle(title);
+        setMarker.setSnippet(snippet);
+
+        if (mNewMarkerList.contains(marker)) {
+            mNewMarkerList.remove(marker);
+            mUpdatedNewMarkerList.add(setMarker);
+        } else if (mUpdatedNewMarkerList.contains(marker)) {
+            setNeighborOfUpdatedNewMarker();
+            mUpdatedNewMarkerList.remove(marker);
+            mUpdatedNewMarkerList.add(setMarker);
+        } else if (mMarkerList.contains(marker)) {
+            // Set neighbor nodes of existing marker
+            setNeighborOfExistingMarker(marker);
+            Node modifyNode = getNodeFromMarker(marker);
+            // Request Modify Node to Network from Map.mMarkerList
+            /******************************************************/
+            network.requestModifyNode(modifyNode.getNode_id(), modifyNode.getNode_type(),
+                    modifyNode.getNode_name(), neighborHashSet,
+                    modifyNode.getIndoor(), modifyNode.getFloor());
+            mMarkerList.remove(marker);
+            mMarkerList.add(setMarker);
+            mAllMarkerList.remove(marker);
+            mAllMarkerList.add(setMarker);
         }
     }
 
@@ -371,39 +417,240 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
 
                 Marker marker = mMap.addMarker(markerOptions);
                 mMarkerList.add(marker);
+                mAllMarkerList.add(marker);
             }
         }
     }
 
-    private void setNodeListFromMarkerList() {
+    private void setNodeListFromUpdatedNewMarkerList() {
         Integer idx = 0;
-        for (Marker marker : mMarkerList) {
+        for (Marker marker : mUpdatedNewMarkerList) {
             if (NodeList == null) {
                 NodeList = new ArrayList<Node>();
             }
-            if (idx >= NodeList.size()) {
-                // Get marker data
-                String[] title = marker.getTitle().split(" / ");
-                String nodeName = title[0], nodeFloor = "";
-                if (title.length > 1) {
-                    nodeFloor = title[1];
-                }
-                String[] snippet = marker.getSnippet().split(" / ");
-                String nodeIndoor = "", nodeType = "";
-                if (snippet.length == 1) {
-                    nodeType = snippet[0];
-                } else if (snippet.length > 1) {
-                    nodeIndoor = snippet[0];
-                    nodeType = snippet[1];
-                }
-
-                // Set node data
-                Node node = new Node(idx, nodeName, marker.getPosition().latitude, marker.getPosition().longitude, nodeIndoor, nodeFloor, nodeType);
-                // Append a node to NodeList
-                NodeList.add(node);
+            // Get marker data
+            String[] title = marker.getTitle().split(" / ");
+            String nodeName = title[0], nodeFloor = "";
+            if (title.length > 1) {
+                nodeFloor = title[1];
             }
+
+            String[] snippet = marker.getSnippet().split(" / ");
+            String nodeIndoor = "", nodeType = "";
+            if (snippet.length == 1) {
+                nodeType = snippet[0];
+            } else if (snippet.length > 1) {
+                nodeIndoor = snippet[0];
+                nodeType = snippet[1];
+            }
+
+            // Set node data... idx + 1000000 is temporary id
+            NodeList.add(new Node(idx + 1000000, nodeName, marker.getPosition().latitude, marker.getPosition().longitude, nodeIndoor, nodeFloor, nodeType));
+            mMarkerList.add(marker);
+            mAllMarkerList.add(marker);
+            // Set HashSet<ID> of Neighbor Nodes of this marker
+            setNeighborOfUpdatedNewMarker();
+            // Request Add New Node to Network from Map.mUpdatedNewMarkerList
+            /******************************************************/
+            network.requestAddNewNode(nodeType, nodeName, marker.getPosition().latitude, marker.getPosition().longitude, neighborHashSet, nodeIndoor, nodeFloor);
+
             idx += 1;
         }
+        mUpdatedNewMarkerList.clear();
+    }
+
+    private void setNeighborOfUpdatedNewMarker() {
+
+        neighborHashSet = new HashSet<Integer>();
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        // set Dialog message
+        dialogBuilder.setTitle("알림")
+                .setMessage("이웃 노드를 설정해주세요.");
+        dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, int which) {
+
+                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                    @Override
+                    public void onMapLongClick(LatLng latLng) {
+                        /*** on Marker Long Click ***/
+                        for(final Marker marker : mMarkerList) {
+                            Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
+                            if (Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
+                                // Get Neighbor Node
+                                Node setNeighborNode = getNodeFromMarker(marker);
+                                if (neighborHashSet.contains(setNeighborNode.getNode_id())) {
+                                    AlertDialog.Builder subDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                    subDialogBuilder.setTitle("알림")
+                                            .setMessage("이미 이웃 노드로 설정한 노드입니다. 다른 노드를 선택해주세요.");
+                                    subDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface subDialog, int which) {
+                                            Toast.makeText(getApplicationContext(), "Previous node is already selected. Please select other node.", Toast.LENGTH_LONG).show();
+                                        }
+                                    }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(final DialogInterface subDialog, int which) {
+
+                                            AlertDialog.Builder ssubDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                            ssubDialogBuilder.setTitle("알림")
+                                                    .setMessage("이웃 노드 추가를 그만합니다.");
+                                            ssubDialogBuilder.setPositiveButton("확인", null);/*new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface ssubDialog, int which) {
+                                                    ssubDialog.cancel();
+                                                    subDialog.cancel();
+                                                    dialog.dismiss();
+                                                }
+                                            });*/
+                                            ssubDialogBuilder.show();
+                                        }
+                                    });
+                                    subDialogBuilder.show();
+                                }
+                                // Append Neighbor Node ID to retNeighborSet
+                                neighborHashSet.add(setNeighborNode.getNode_id());
+
+                                AlertDialog.Builder subDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                subDialogBuilder.setTitle("알림")
+                                        .setMessage("계속해서 추가하시겠습니까?");
+                                subDialogBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface subDialog, int which) {
+                                        Toast.makeText(getApplicationContext(), "Select one more node.", Toast.LENGTH_LONG).show();
+                                    }
+                                }).setNegativeButton("아니요", null);/*new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface subDialog, int which) {
+                                        subDialog.cancel();
+                                        dialog.dismiss();
+                                    }
+                                });*/
+                                subDialogBuilder.show();
+                            }
+                        }
+                    }
+                });
+            }
+        }).setNegativeButton("취소", null);
+        dialogBuilder.show();
+    }
+
+    private void setNeighborOfExistingMarker(Marker setMarker) {
+
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        Node setNode = getNodeFromMarker(setMarker);
+        final Integer nodeIdx = NodeList.indexOf(setNode);
+        neighborHashSet = new HashSet<Integer>();
+
+        // set Dialog message
+        dialogBuilder.setTitle("알림")
+                .setMessage("이웃 노드를 설정해주세요.");
+        dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, int which) {
+                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                    @Override
+                    public void onMapLongClick(LatLng latLng) {
+                        /*** on Marker Long Click ***/
+                        for(final Marker marker : mMarkerList) {
+                            Double touchPos = 1 / Math.pow(mMap.getCameraPosition().zoom, 3);
+                            if (Math.abs(marker.getPosition().latitude - latLng.latitude) < touchPos && Math.abs(marker.getPosition().longitude - latLng.longitude) < touchPos) {
+                                // Get Neighbor Node
+                                Node setNeighborNode = getNodeFromMarker(marker);
+                                if (NodeList
+                                        .get(nodeIdx+1)
+                                        .getNode_neighbors()
+                                        .contains(setNeighborNode
+                                                .getNode_id())) {
+                                    AlertDialog.Builder subDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                    subDialogBuilder.setTitle("알림")
+                                            .setMessage("이미 이웃 노드로 설정한 노드입니다. 다른 노드를 선택해주세요.");
+                                    subDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface subDialog, int which) {
+                                            Toast.makeText(getApplicationContext(), "Previous node is already selected. Please select other node.", Toast.LENGTH_LONG).show();
+                                        }
+                                    }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(final DialogInterface subDialog, int which) {
+
+                                            AlertDialog.Builder ssubDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                            ssubDialogBuilder.setTitle("알림")
+                                                    .setMessage("이웃 노드 추가를 그만합니다.");
+                                            ssubDialogBuilder.setPositiveButton("확인", null);/*new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface ssubDialog, int which) {
+                                                    ssubDialog.cancel();
+                                                    subDialog.cancel();
+                                                    dialog.dismiss();
+                                                }
+                                            });*/
+                                            ssubDialogBuilder.show();
+                                        }
+                                    });
+                                    subDialogBuilder.show();
+                                }
+                                // Append Neighbor Node ID to retNeighborSet
+                                NodeList.get(nodeIdx).addNodeNeighbors(setNeighborNode.getNode_id());
+                                neighborHashSet.add(setNeighborNode.getNode_id());
+
+                                AlertDialog.Builder subDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                                subDialogBuilder.setTitle("알림")
+                                        .setMessage("계속해서 추가하시겠습니까?");
+                                subDialogBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface subDialog, int which) {
+                                        Toast.makeText(getApplicationContext(), "Select one more node.", Toast.LENGTH_LONG).show();
+                                    }
+                                }).setNegativeButton("아니요", null);/*new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface subDialog, int which) {
+                                        subDialog.cancel();
+                                        dialog.dismiss();
+                                    }
+                                });*/
+                                subDialogBuilder.show();
+                            }
+                        }
+                    }
+                });
+            }
+        }).setNegativeButton("취소", null);
+        dialogBuilder.show();
+    }
+
+    private Node getNodeFromMarker(Marker marker) {
+        // Get marker data
+        String[] title = marker.getTitle().split(" / ");
+        String nodeName = title[0], nodeFloor = "";
+        if (title.length > 1) {
+            nodeFloor = title[1];
+        }
+        String[] snippet = marker.getSnippet().split(" / ");
+        String nodeIndoor = "", nodeType = "";
+        if (snippet.length == 1) {
+            nodeType = snippet[0];
+        } else if (snippet.length > 1) {
+            nodeIndoor = snippet[0];
+            nodeType = snippet[1];
+        }
+
+        // Set Node to return
+        Node retNode = new Node(0, "", 0, 0, "", "", "");
+        for (Node node : NodeList) {
+            if (node.getNode_name() == nodeName
+                    && node.getPos_x() == marker.getPosition().latitude
+                    && node.getPos_y() == marker.getPosition().longitude
+                    && node.getIndoor() == nodeIndoor
+                    && node.getFloor() == nodeFloor
+                    && node.getNode_type() == nodeType) {
+                retNode = node;
+                break;
+            }
+        }
+        return retNode;
     }
 
     @Override
